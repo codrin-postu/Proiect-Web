@@ -1,0 +1,99 @@
+/*  
+**  CSS File for the index page which allows the users to login/signup or contact us at the bottom of the page.
+**  Also shows information about the website
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  margin: 0;
+  background: #fff;
+  height: 100%;
+  padding: 0;
+
+  scroll-behavior: smooth;
+
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}
+
+/* Top Bar of the index page. Including Login animation */
+
+header {
+  background: #fff;
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.top-bar {
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
+.logo {
+  float: left;
+  margin-left: 2em;
+  margin-top: 0.9em;
+}
+
+.logo-text {
+  float: left;
+  font-size: 1.5em;
+  margin-top: 0.6em;
+
+  font-weight: 600;
+}
+
+.logo-text:hover {
+  color: #444;
+}
+
+nav {
+  float: right;
+}
+
+nav ul {
+  padding: 0;
+  list-style: none;
+  margin: 0 2em 0 0;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 2.5em;
+  margin-top: 1em;
+
+  position: relative;
+}
+
+nav a {
+  color: #3f3d56;
+  text-decoration: none;
+  padding: 0.2em 1em 0.2em 1em;
+  letter-spacing: 0.02em;
+  font-size: 1em;
+  font-weight: 700;
+}
+
+nav .login {
+  border-width: 0.25em;
+  border-style: solid;
+  border-image: linear-gradient(45deg, #e74c3c, #e67e22) 1;
+}
+
+nav a:hover {
+  color: #78768f;
+}
+
+nav .login:hover {
+  background-image: linear-gradient(45deg, #e74c3c, #e67e22);
+  color: #fff;
+}
