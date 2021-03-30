@@ -10,29 +10,32 @@
 
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
   <link rel="stylesheet" href="styles/index.css">
 </head>
 
 <body>
+
   <!--Navbar-->
   <header>
-    <div class="top-bar">
+    <nav>
       <div class="logo">
         <a href="#top">
           <img src="images/svg/304315.svg" alt="Ripe Mango" />
           <p>ClassMan</p>
         </a>
       </div>
-      <nav>
-        <ul>
-          <li><a href="#how-it-works">How It Works</a></li>
-          <li><a href="#about-us">About Us</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="login.html" class="login">Login</a></li>
-        </ul>
-      </nav>
-    </div>
+      <button class="hamburger" id="hamburger">
+        <i class="fa fa-fw fa-bars"></i>
+      </button>
+      <ul class="nav-bar" id="nav-bar">
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#about-us">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="login.html" class="login">Login</a></li>
+      </ul>
+    </nav>
   </header>
 
   <!-- Top Section    -->
@@ -52,6 +55,7 @@
       </div>
     </div>
   </section>
+
   <!-- How It Works Section  -->
   <section id="how-it-works">
     <div class="info container">
@@ -66,6 +70,7 @@
       </div>
     </div>
   </section>
+
   <!-- About Us Section  -->
   <section id="about-us">
     <div class="about container">
@@ -81,34 +86,72 @@
       <div class="about-bottom">
         <div class="about-dev">
           <div class="icon"><img src="./images/png/vlad-img.png" alt="Picture of team member Vlad"></div>
-          <h3>Vlad</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit expedita, alias tempore quis earum esse,
-            in
-            volupta</p>
+          <div class="text">
+            <h3>Vlad</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit expedita, alias tempore quis earum esse,
+              in
+              volupta</p>
+          </div>
         </div>
         <div class="about-dev">
           <div class="icon"><img src="./images/png/victor-img.png" alt="Picture of team member Victor"></div>
-          <h3>Victor</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit expedita, alias tempore quis earum esse,
-            in
-            volupta</p>
+          <div class="text">
+            <h3>Victor</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit expedita, alias tempore quis earum esse,
+              in
+              volupta</p>
+          </div>
         </div>
         <div class="about-dev">
           <div class="icon"><img src="./images/png/codrin-img.png" alt="Picture of team member Codrin"></div>
-          <h3>Codrin</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit expedita, alias tempore quis earum esse,
-            in
-            volupta</p>
+          <div class="text">
+            <h3>Codrin</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit expedita, alias tempore quis earum esse,
+              in
+              volupta</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- Contact Section  -->
-  <section id="contact">
-    <div class="contact container">
-      <h2>Contact (To become Footer)</h2>
+
+  <!-- Footer (Contact Section) -->
+  <footer id="contact">
+    <div class="contact">
+      <div class="contact-form">
+        <h2>Ask us any questions.</h2>
+        <form action="/nothing.js" target="blank">
+          <p>
+            <input class="input" type="text" placeholder="Name" name="Name" required />
+          </p>
+          <p>
+            <input class="input" type="email" placeholder="Email" name="Email" required />
+          </p>
+          <p>
+            <input class="input" type="text" placeholder="Subject" name="Subject" required />
+          </p>
+          <p>
+            <input class="input" type="text" placeholder="Message" name="Message" required />
+          </p>
+          <button class="button black" type="submit">Send</button>
+        </form>
+      </div>
+      <div class="contact-info">
+        <h2>Contact Us</h2>
+        <hr>
+        <p><i class="fa fa-fw fa-map-marker"></i> Romania, Iasi, Non-existent Street, 4, 700592</p>
+        <p><i class="fa fa-fw fa-phone"></i> (+40) 7123 4567</p>
+        <p>
+          <i class="fa fa-fw fa-envelope-open"></i> questions@classman.com
+        </p>
+      </div>
+
     </div>
-  </section>
+    <div class="bottom-bar">
+      <p>classMan 2021. Class project.</p>
+    </div>
+  </footer>
+  <script src="./scripts/index.js"></script>
 </body>
 
 </html>
