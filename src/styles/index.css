@@ -3,21 +3,19 @@
 **  Also shows information about the website
 */
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
-
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "Poppins", sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
 
   background: #fff;
-  font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-size: 8px;
 }
@@ -51,7 +49,7 @@ header {
 }
 
 .top-bar {
-  max-width: 1350px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -64,10 +62,10 @@ header {
 
 .logo img:hover {
   transform: scale(1.1);
-  transition: transform .1s ease-in-out;
+  transition: transform 0.1s ease-in-out;
 }
 
-.logo h1 {
+.logo p {
   float: left;
   font-size: 1.5em;
   margin-top: 0.5em;
@@ -138,8 +136,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
-  max-width: 1800px;
+
+  max-width: 1250px;
 }
 
 @media (min-width: 850px) {
@@ -175,17 +173,22 @@ body {
 #top h1 {
   display: block;
   width: fit-content;
-
   font-size: 5em;
   font-weight: 600;
+  padding-bottom: 0.3em;
 }
 
 #top p {
   display: block;
-  max-width: 12em;
+  max-width: 20ch;
   font-size: 1.8em;
+  font-weight: 500;
   line-height: 1.2em;
   padding-bottom: 1.2em;
+}
+
+#top .buttons {
+  align-items: center;
 }
 
 #top .cta {
@@ -245,4 +248,112 @@ body {
   to {
     opacity: 1;
   }
+}
+
+/* How it Works section  */
+
+#how-it-works {
+  background-image: url(../images/svg/waves-2.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center bottom -25vh;
+}
+
+#how-it-works .info {
+  margin: 0 auto;
+  padding: 0 3em;
+}
+
+.info div {
+  margin: 2em auto;
+}
+
+@media (min-width: 850px) {
+  #how-it-works .container {
+    flex-direction: row-reverse;
+  }
+}
+
+#how-it-works h2 {
+  display: block;
+  width: fit-content;
+  font-size: 4em;
+  font-weight: 600;
+  line-height: 1em;
+  padding-bottom: 1.5em;
+}
+
+#how-it-works p {
+  display: block;
+  max-width: 30ch;
+  font-size: 1.7em;
+  font-weight: 500;
+  line-height: 1.1em;
+  word-spacing: 0.1em;
+  padding-bottom: 1.2em;
+}
+
+#how-it-works span {
+  font-weight: 600;
+  color: #e67e22;
+}
+
+#how-it-works img {
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 850px) {
+  #how-it-works img {
+    max-width: 30em;
+  }
+}
+
+
+/* About Us Section  */
+
+#about-us {
+  background-image: linear-gradient(#cbcbcb, #fff);
+}
+
+#about-us .about {
+  margin: 0 auto;
+  padding: 100px 0;
+  flex-direction: column;
+  text-align: center;
+  max-width: 1250px;
+
+}
+
+#about-us .about-top {
+  display: flex;
+
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media (min-width: 850px) {
+  #about-us .about-top {
+    flex-direction: row;
+    width: 75%;
+  }
+}
+
+#about-us h2 {
+  font-size: 4em;
+  font-weight: 600;
+  min-width: 6em;
+  color: #e74c3c;
+  margin-bottom: 0.2em;
+  letter-spacing: .05em;
+  text-align: center;
+}
+
+.about-top p {
+  max-width: 30ch;
+  font-size: 1.7em;
+  font-weight: 500;
+  line-height: 1.1em;
+  word-spacing: 0.1em;
+  padding-bottom: 1.2em;
 }
