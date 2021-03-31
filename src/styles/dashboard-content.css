@@ -1,0 +1,131 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+  background: #fff;
+  font-weight: 400;
+  font-size: 8px;
+}
+
+/* Scrollbar Modification  */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: #e6e6e6; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+/* End Scrollbar Modification  */
+
+/* General Dashboard Content  */
+
+body {
+
+  background-image: url(../images/svg/Waves.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center bottom -50vh;
+}
+
+.main-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+section {
+  border-color: #e6e6e6;
+  border-width: 0.2em;
+  border-style: solid;
+  border-radius: 10px;
+
+  flex-basis: 90%;
+
+  overflow: hidden;
+
+  margin: 1.5em;
+  background-color: #fff;
+  box-shadow: 0px 4px 4px 0 #e6e6e6;
+}
+
+section h2 {
+  font-size: 3em;
+}
+
+section .section-header {
+  padding: 0 2em;
+  border-bottom: #e6e6e6 0.3em solid;
+}
+
+section .section-content {
+  padding: 3em 2em;
+  max-height: 40vh;
+  overflow: auto;
+}
+
+section p {
+  max-width: 60ch;
+  font-size: 1.6em;
+}
+
+section .emphasis {
+  color: #e67e22;
+  font-weight: 500;
+}
+
+/* End General Dashboard Content  */
+
+/* Banner Section  */
+
+.class-banner {
+  flex-basis: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  margin: 7em 0;
+  padding: 3em;
+
+  min-height: 20vh;
+  height: fit-content;
+
+  border: none;
+  border-radius: 0;
+
+  background-image: url("../images/png/red-orange-gradient-harsh.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.class-banner h2 {
+  color: white;
+  font-size: 4em;
+  margin-bottom: 1em;
+}
+
+.class-banner p {
+  color: white;
+  font-size: 2.5em;
+}
+
+/* End Banner Section  */
