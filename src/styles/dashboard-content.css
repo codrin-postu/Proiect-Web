@@ -21,15 +21,15 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
+
 ::-webkit-scrollbar-thumb {
-  background: #e6e6e6; 
+  background: #d4d4d4;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #e67e22;
 }
 
 /* End Scrollbar Modification  */
@@ -37,17 +37,70 @@ html {
 /* General Dashboard Content  */
 
 body {
-
   background-image: url(../images/svg/Waves.svg);
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
   background-position: center bottom -50vh;
+
+  display: flex;
+
+  overflow-x: hidden;
 }
 
-.main-content {
-  display: flex;
+.content {
+  position: absolute;
+}
+
+.content.open {
+  left: 20em;
+}
+
+/* Test Top Bar  */
+
+.top-bar {
+  width: 100%;
+  height: 5em;
+  background-color: #fff;
+  border-bottom: #e6e6e6 0.2em solid;
+}
+
+/* End Test Top Bar  */
+
+/* Test Navbar  */
+
+.test-nav {
+  display: none;
+  position: fixed;
+  height: 100vh;
+  min-width: 20em;
+  background-color: #2C3E50;
+  
+  z-index: 20;
+}
+
+.test-nav .top-bar {
+  background-color: #2C3E50;
+  border-bottom: #1d2a36 0.2em solid;
+  justify-content: center;
   align-items: center;
+}
+
+.top-bar i {
+  margin: 0.35em 0.5em;
+  font-size: 3em;
+  color: #2C3E50;
+}
+
+.test-nav.show {
+  display: block;
+}
+
+/* End Test Navbar  */
+
+.main-content {
+  z-index: 10;
+  display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -60,31 +113,91 @@ section {
 
   flex-basis: 90%;
 
-  overflow: hidden;
+  overflow: visible;
 
-  margin: 1.5em;
+  margin: 1.5em 1.6em;
   background-color: #fff;
   box-shadow: 0px 4px 4px 0 #e6e6e6;
 }
 
 section h2 {
-  font-size: 3em;
+  font-size: 2.3em;
+  font-weight: 500;
 }
 
 section .section-header {
+  display: flex;
+  justify-content: space-between;
   padding: 0 2em;
   border-bottom: #e6e6e6 0.3em solid;
+  overflow: visible;
 }
 
+/* For Professor to a section  */
+
+section .prof-edit {
+  position: relative;
+  font-size: 3em;
+  align-self: center;
+  color: #838383;
+}
+
+section .prof-edit:hover {
+  color: #000;
+}
+
+section .prof-edit .tooltiptext {
+  visibility: hidden;
+  min-width: max-content;
+  background-color: #fff;
+  color: #000;
+  text-align: center;
+  border: #e6e6e6.15em solid;
+  border-radius: 5px;
+  
+  box-shadow: 0px 4px 4px 0 #c2c2c2;
+
+  font-size: 0.5em;
+  font-weight: 300;
+  font-family: 'Poppins', sans-serif;
+  
+  position: absolute;
+  z-index: 1;
+  bottom: 130%;
+  left: 40%;
+
+  margin-left: -60px;
+  padding: 0.3em 0.7em;
+}
+
+section .prof-edit:hover .tooltiptext {
+  visibility: visible;
+}
+
+section .prof-edit .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 45%;
+  border-width: 0.4em;
+  border-style: solid;
+  border-color: #e6e6e6 transparent transparent transparent;
+}
+
+/* End For professor to edit a section  */
+
+
 section .section-content {
-  padding: 3em 2em;
+  padding: 2em 2em;
   max-height: 40vh;
   overflow: auto;
 }
 
 section p {
   max-width: 60ch;
-  font-size: 1.6em;
+  font-size: 1.5em;
+  font-weight: 400;
+  padding: 1em 0;
 }
 
 section .emphasis {
@@ -102,7 +215,7 @@ section .emphasis {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
+
   margin: 7em 0;
   padding: 3em;
 
@@ -129,3 +242,34 @@ section .emphasis {
 }
 
 /* End Banner Section  */
+
+/* Media Queries  */
+@media (min-width: 400px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 850px) {
+  html {
+    font-size: 10px;
+  }
+
+  .width-halfM {
+    flex-basis: 44%;
+  }
+}
+
+@media (min-width: 1100px) {
+  .width-halfL {
+    flex-basis: 44%;
+  }
+  .width-thirdL {
+    flex-basis: 28%;
+  }
+
+  .width-two-thirdsL {
+    flex-basis: 60%;
+  }
+}
+/* End Media Queries  */
