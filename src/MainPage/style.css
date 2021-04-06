@@ -1,0 +1,19 @@
+body {
+  background: url("./image/Waves.svg");
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 200px auto;
+}
+
+.background-img {
+}
+
+.cell2 {
+  background-color: red;
+}
+
+.cell2 {
+  background-color: blue;
+}
