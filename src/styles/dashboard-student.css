@@ -1,0 +1,178 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+  background: #fff;
+  font-weight: 400;
+  font-size: 8px;
+}
+
+/* Scrollbar Modification  */
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #d4d4d4;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #e67e22;
+  }
+  
+  /* End Scrollbar Modification  */
+
+  /* General Dashboard Content  */
+
+body {
+    background-image: url(../images/svg/Waves.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center bottom -50vh;
+  
+    display: flex;
+
+  }
+  
+  .content {
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100vw;
+  }
+  
+  .content.open {
+    left: 20em;
+    width: 80vw;
+  }
+  
+  section {
+    border-color: #e6e6e6;
+    border-width: 0.2em;
+    border-style: solid;
+    border-radius: 10px;
+  
+    flex-basis: 90%;
+  
+    overflow: visible;
+  
+    margin: 1.5em 1.6em;
+    background-color: #fff;
+    box-shadow: 0px 4px 4px 0 #e6e6e6;
+  }
+  
+  section h2 {
+    font-size: 2.3em;
+    font-weight: 500;
+  }
+  
+  section .section-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2em;
+    border-bottom: #e6e6e6 0.3em solid;
+    overflow: visible;
+  }
+  
+  section .section-content {
+    padding: 2em 2em;
+    max-height: 40vh;
+    overflow: auto;
+  }
+  
+  section p {
+    max-width: 60ch;
+    font-size: 1.5em;
+    font-weight: 400;
+    padding: 1em 0;
+  }
+  
+  section .emphasis {
+    color: #e67e22;
+    font-weight: 500;
+  }
+  
+  /* End General Dashboard Content  */
+  
+  /* Banner Section  */
+  
+  .class-banner {
+    flex-basis: 100%;
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  
+    margin: 7em 0;
+    padding: 3em;
+  
+    min-height: 20vh;
+    height: fit-content;
+  
+    border: none;
+    border-radius: 0;
+  
+    background-image: url("../images/png/red-orange-gradient-harsh.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .class-banner h2 {
+    color: white;
+    font-size: 4em;
+    margin-bottom: 1em;
+  }
+  
+  .class-banner p {
+    color: white;
+    font-size: 2.5em;
+  }
+  
+  /* End Banner Section  */
+  
+  /* Media Queries  */
+  @media (min-width: 400px) {
+    html {
+      font-size: 10px;
+    }
+  }
+  
+  @media (min-width: 850px) {
+    html {
+      font-size: 10px;
+    }
+  
+    .width-halfM {
+      flex-basis: 44%;
+    }
+  }
+  
+  @media (min-width: 1100px) {
+    .width-halfL {
+      flex-basis: 44%;
+    }
+    .width-thirdL {
+      flex-basis: 28%;
+    }
+  
+    .width-two-thirdsL {
+      flex-basis: 60%;
+    }
+  }
+  /* End Media Queries  */
+  

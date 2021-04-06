@@ -255,21 +255,24 @@ section .emphasis {
     font-size: 10px;
   }
 
-  .width-halfM {
+  .width-half-M {
     flex-basis: 44%;
   }
 }
 
 @media (min-width: 1100px) {
-  .width-halfL {
+  .width-half-L {
     flex-basis: 44%;
   }
-  .width-thirdL {
+  .width-third-L {
     flex-basis: 28%;
   }
 
-  .width-two-thirdsL {
+  .width-two-thirds-L {
     flex-basis: 60%;
+  }
+  .width-full-L {
+    flex-basis: 98%;
   }
 }
 /* End Media Queries  */

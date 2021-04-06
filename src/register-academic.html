@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" type="text/css" href="./styles/register.css">
 
-    <title>ClassMan | Login </title>
+    <title>Register | Create an Academic account</title>
 </head>
 
 <body>
@@ -24,15 +24,20 @@
 
         <h1>Create Academic account</h1>
         <form action="/nothing.js" target="blank">
+            
+            <input type="text" name="FirstName" placeholder="First Name" required>
+            <input type="text" name="MidName" placeholder="Middle Name (Optional)">
+            <input type="text" name="LastName" placeholder="Last Name" required>
             <input type="email" name="Email" placeholder="Email Address" required>
             <input type="password" name="Password" placeholder="Enter password" required>
-
-            <button type="submit">Login</button>
+            <input type="password" name="Password" placeholder="Enter password again" required>
+            <button type="submit">Register</button>
+            <a href="login.html">Already have an account?</a>
         </form>
 
-        <a href="login.html">Forgot password</a>
-        <a href="index.html#top">Don't have an account?</a>
     </div>
+
 </body>
+
 
 </html>
