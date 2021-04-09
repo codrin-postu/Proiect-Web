@@ -37,9 +37,9 @@ Cuprins
     * 5.4 [Atribute pentru Calitatea Aplicatiei](#54-atribute-pentru-calitatea-aplicatiei)
     * 5.5 [Reguli de Utilizare](#55-reguli-de-utilizare)
   * [Alte Cerinte](#alte-cerinte)
-* [Appendix A: Glosar](#appendix-a-glosar)
-* [Appendix B: Modele de Analiza](#appendix-b-modele-de-analiza)
-* [Appendix C: Lista TBD](#appendix-c-lista-tbd)
+* [Anexa A: Glosar](#appendix-a-glosar)
+* [Anexa B: Modele de Analiza](#appendix-b-modele-de-analiza)
+* [Anexa C: Lista TBD](#appendix-c-lista-tbd)
 
 
 
