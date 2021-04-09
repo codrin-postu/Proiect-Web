@@ -6,6 +6,17 @@
   padding: 0;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #fff;
+  box-shadow: 0 0 0px 1000px #2c3e50 inset;
+  font-size: 2em;
+}
+
 html {
   font-family: "Poppins", sans-serif;
   height: 100vh;
@@ -55,11 +66,11 @@ img {
 }
 
 h1 {
-  margin: 1em 0 0.2em;
-  padding: 0 0 2em;
+  margin: 0.5em 0;
   text-align: center;
-  font-size: 3em;
+  font-size: 2.6em;
   font-weight: 600;
+  text-transform: capitalize;
 }
 
 .loginbox input {
@@ -75,6 +86,7 @@ h1 {
 
   color: #fff;
   font-size: 2em;
+
 }
 
 .loginbox input::placeholder {
@@ -85,7 +97,7 @@ h1 {
 .loginbox input:focus {
     border-bottom: 1px solid #e67e22;
 
-    transition: ease 0.3s;
+    transition: ease-in-out 0.3s;
     transition-property: border-bottom;
 }
 
@@ -139,6 +151,10 @@ h1 {
       font-size: 8px;
     }
 
+    .loginbox h1 {
+        padding: 1em;
+    }
+
     body {
         justify-content: center;
         align-items: center;
@@ -147,7 +163,15 @@ h1 {
     }
 
     .loginbox {
-        max-width: 50em;
+        border-radius: 10px;
         min-height: fit-content;
+    }
+
+    .loginbox.register {
+      max-width: 50em;
+    }
+
+    .loginbox.login {
+      max-width: 40em;
     }
   }
