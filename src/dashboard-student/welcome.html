@@ -6,33 +6,184 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <script src="https://kit.fontawesome.com/86fe649324.js" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="../styles/dashboard-student.css">
-    <!-- Temporary - To be connected with dashboard skeleton -->
+    <link rel="stylesheet" type="text/css" href="../styles/dashboard-student.css" />
 
-    <title>ClassMan | Student - Welcome</title>
+    <title>ClassMan Student | Welcome</title>
 </head>
 
-<body>
+<body class="stop-transition-load" id="body-padding">
+    <header class="header" id="header">
+        <div class="header-toggle">
+            <i class="fas fa-bars" id="header-toggle"></i>
+        </div>
 
-    <!-- Top Bar -->
-    <header>
-        <div class="top-bar">
-            <i class="fas fa-pencil-ruler navbar-click" id="navbar-click"></i>
+        <div class="header-img">
+            <img src="../images/png/codrin-img.png" alt="Profile Picture">
         </div>
     </header>
+    <div class="l-navbar first-navbar" id="navbar">
+        <nav class="nav">
+            <div>
+                <a href="#" class="nav-logo">
+                    <img src="../images/svg/304315.svg" alt="Ripe Mango, ClassMan Logo" />
+                    <div class="nav-logo-info">
+                        <span class="name">ClassMan</span>
+                        <span class="usertype">Student</span>
+                    </div>
 
-    <div class="test-nav show" id="test-nav">
-        <div class="top-bar">
-        </div>
+                </a>
+                <div class="nav-list">
+                    <!-- Navigation Section -->
+                    <span class="nav-section">Navigation</span>
+                    <a href="#" class="nav-link active">
+                        <i class="far fa-user"></i>
+                        <span class="nav-name">Your Account</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-cog"></i>
+                        <span class="nav-name">Security & Privacy</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="far fa-sticky-note"></i>
+                        <span class="nav-name">Join A Classroom</span>
+                    </a>
+                    <!-- Your Classes section -->
+                    <span class="nav-section">Your Classes</span>
+                    <div class="nav-class">
+                        <div class="class-select">
+                            <i class="fas fa-chevron-right"></i>
+                            <span class="class-title">Web Technologies</span>
+                        </div>
+                        <div class="class-links" id="class-links">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-book-open"></i>
+                                <span class="nav-name">Class Information</span>
+                            </a>
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-clock"></i>
+                                <span class="nav-name">Check Attendance</span>
+                            </a>
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-highlighter"></i>
+                                <span class="nav-name">Class Documentation</span>
+                            </a>
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-paperclip"></i>
+                                <span class="nav-name">Homework</span>
+                            </a>
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-percentage"></i>
+                                <span class="nav-name">Grades</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="nav-class">
+                        <div class="class-select">
+                            <i class="fas fa-chevron-right"></i>
+                            <span class="class-title">Advanced Programming</span>
+                        </div>
+                        <div class="class-links" id="class-links">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-book-open"></i>
+                                <span class="nav-name">Class Information</span>
+                            </a>
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-clock"></i>
+                                <span class="nav-name">Check Attendance</span>
+                            </a>
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-highlighter"></i>
+                                <span class="nav-name">Class Documentation</span>
+                            </a>
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-paperclip"></i>
+                                <span class="nav-name">Homework</span>
+                            </a>
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-percentage"></i>
+                                <span class="nav-name">Grades</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="nav-class">
+                        <div class="class-select">
+                            <i class="fas fa-chevron-right"></i>
+                            <span class="class-title">Discrete Mathematics</span>
+                        </div>
+                        <div class="class-links" id="class-links">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-book-open"></i>
+                                <span class="nav-name">Class Information</span>
+                            </a>
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-clock"></i>
+                                <span class="nav-name">Check Attendance</span>
+                            </a>
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-highlighter"></i>
+                                <span class="nav-name">Class Documentation</span>
+                            </a>
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-paperclip"></i>
+                                <span class="nav-name">Homework</span>
+                            </a>
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-percentage"></i>
+                                <span class="nav-name">Grades</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="nav-class">
+                        <div class="class-select">
+                            <i class="fas fa-chevron-right"></i>
+                            <span class="class-title">Discrete Mathematics</span>
+                        </div>
+                        <div class="class-links" id="class-links">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-book-open"></i>
+                                <span class="nav-name">Class Information</span>
+                            </a>
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-clock"></i>
+                                <span class="nav-name">Check Attendance</span>
+                            </a>
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-highlighter"></i>
+                                <span class="nav-name">Class Documentation</span>
+                            </a>
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-paperclip"></i>
+                                <span class="nav-name">Homework</span>
+                            </a>
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-percentage"></i>
+                                <span class="nav-name">Grades</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </div>
 
-    <div class="content open" id="content">
-        <section class="welcome-message width-full-L">
+    <!-- Dashboard Content  -->
+    <div class="main-content">
+
+        <section class="class-banner">
+            <h2>Web Technologies</h2>
+            <p>An Introduction to Web Development</p>
+        </section>
+
+        <section class="welcome-message">
             <div class="section-header">
                 <h2>Welcome to ClassMan</h2>
             </div>
@@ -42,9 +193,13 @@
                 </p>
             </div>
         </section>
+        <div class="square"></div>
+
     </div>
 
-    <script src="../scripts/navbar-test.js"></script>
+    <!-- JS Scripts -->
+    <script>document.body.classList.remove('stop-transition-load')</script>
+    <script src="../scripts/dashboard-sidemenu.js"></script>
 </body>
 
 </html>
