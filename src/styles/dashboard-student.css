@@ -1,5 +1,9 @@
+/* Custom Variables (For some reason it gives errors in CSS Validator)  */
+/* Also the calc() function does not work with var() in validator, there are */
+/* 0 issues in chrome/Edge/Firefox/Safari. These are not supported by IE */
 :root {
   --nav-background-color: #3f3d56;
+  --nav-color-dark: #1d2a36;
   --hover-accent-color: #302e41;
   --accent-orange-color: #e67e22;
   --accent-red-color: #e74c3c;
@@ -14,9 +18,13 @@
 
 /* Scrollbar Modification  */
 
+/* These may give error/warning in validator. I have provided alternatives for  */
+/* Other browsers (Firefox/Safari/IE). They work perfectly fine. */
+
+/* It is needed to get rid of that disgusting basic scrollbar, especially in the  */
+/* sidebar navigation  */
 ::-webkit-scrollbar {
-  width: 6px;
-  margin-right: 120px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -39,11 +47,18 @@
 
 html {
   font-size: 12px;
+  margin-bottom: 4px;
+
   overflow: hidden;
 }
 
-body.stop-transition-load * {
-  transition: none !important;
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body.stop-transition-load {
+  transition: none;
 }
 
 body {
@@ -51,6 +66,9 @@ body {
   margin: 4em 0 0 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
+  height: 100%;
+
+  overflow: hidden;
 
   transition: var(--nav-animation);
   transition-property: padding-left;
@@ -59,7 +77,6 @@ body {
 .body-padding {
   padding-left: 0;
 }
-
 
 a {
   text-decoration: none;
@@ -101,10 +118,12 @@ a {
 }
 
 .header-img img {
-  width: 40px;
+  width: 35px;
 }
 
 .header-padding {
+  /* Will give error in validator, it has been reported and acknowledged  */
+  /* as a bug on the Git repo of the validator project  */
   padding-left: calc(var(--sidebar-width) + 1em);
 }
 
@@ -121,7 +140,7 @@ a {
   background-color: var(--nav-background-color);
 
   transition: var(--nav-animation);
-  transition-property:width;
+  transition-property: width;
 
   z-index: var(--z-fixed);
 }
@@ -136,24 +155,27 @@ a {
 
 .nav-list {
   max-height: calc(100vh - 5em);
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
-
-  -ms-overflow-style: none;
+    
+  /* Might give error to validator due to it only being Firefox specific  */
   scrollbar-width: none;
+
 }
 
+/* Might give error to validator due to it only being Chrome/Edge specific  */
 .nav-list::-webkit-scrollbar {
   display: none;
 }
 
+/* Might give error to validator due to it only being Chrome/Edge specific  */
 .nav-list:hover::-webkit-scrollbar {
   display: block;
 }
 
+/* Might give error to validator due to it only being Chrome/Edge specific  */
 .nav-list:hover {
-  scrollbar-width: block;
-  -ms-overflow-style: auto;
+  scrollbar-width: thin;
 }
 
 .nav-logo,
@@ -171,7 +193,7 @@ a {
 .nav-logo {
   height: 4em;
   margin-bottom: 0.5em;
-  border-bottom: #1d2a36 0.2em solid;
+  border-bottom: var(--nav-color-dark) 0.2em solid;
 }
 
 .nav-logo-info {
@@ -279,17 +301,230 @@ a {
 
 /* General Dashboard Content  */
 
+.main-content {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 100vh;
+  overflow-y: scroll;
+
+/* Might give error to Validator as it is specific to Firefox  */
+  scrollbar-width: thin;
+}
+
+/* Might give error to Validator as it is specific to Chrome/Edge  */
+.main-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* Test for scroll  */
 .square {
   height: 200vh;
   width: 100%;
   background-color: red;
 }
 
+/* End Test for scroll  */
+
+section {
+  border-color: #e6e6e6;
+  border-width: 0.15em;
+  border-style: solid;
+  border-radius: 8px;
+
+  flex-basis: 95%;
+
+  overflow: visible;
+
+  height: fit-content;
+  max-height: 40vh;
+
+  margin: 1.5em 1.5em;
+  background-color: #fff;
+  box-shadow: 0px 5px 10px 0 #e6e6e6;
+}
+
+section .section-header {
+  display: flex;
+  padding: 0 2em 0 1.5em;
+  border-bottom: #e6e6e6 0.15em solid;
+  overflow: visible;
+}
+
+section .section-content {
+  padding: 1em 1.5em;
+  max-height: 40vh;
+  overflow: auto;
+}
+
+section h2 {
+  font-size: 1.6em;
+  font-weight: 600;
+}
+
+section p {
+  max-width: 60ch;
+  font-size: 1.2em;
+  font-weight: 400;
+  padding: 0;
+}
+
+section .emphasis {
+  color: var(--accent-orange-color);
+  font-weight: 500;
+}
+
 /* End General Dashboard Content  */
+
+/* Banner Section  */
+
+.class-banner {
+  flex-basis: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  margin: 5em 0;
+  padding: 3em;
+
+  min-height: 20vh;
+  height: fit-content;
+
+  border: none;
+  border-radius: 0;
+
+  background-image: url("../images/png/red-orange-gradient-harsh.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.class-banner h2 {
+  color: white;
+  font-size: 3.5em;
+  margin-bottom: 1em;
+}
+
+.class-banner p {
+  color: white;
+  font-size: 2.2em;
+}
+
+
+/* End Banner Section  */
+
+/* Input Forms  */
+
+.section-content form {
+  padding: 2em 0 0 0;
+  position: relative;
+}
+
+form label {
+  display: flex;
+  flex: 1;
+}
+
+.section-content input {
+  flex: 1;
+  width: 90%;
+  padding-bottom: 0.5em;
+  margin-bottom: 1.1em;
+
+  border: none;
+  border-bottom: 2px solid var(--nav-background-color);
+  outline: none;
+
+  background: transparent;
+
+  color: var(--nav-background-color);
+  font-size: 1.3em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+form span {
+  position: absolute;
+  left: 5px;
+  top: 15px;
+  pointer-events: none;
+  transform-origin: left top;
+  transition: transform 0.3s ease-out;
+}
+
+input:focus + span,
+.input-filled + span {
+  transform: translateY(-19px) scale(0.8);
+}
+
+.section-content input:focus {
+  border-bottom: 2px solid #e67e22;
+
+  transition: ease-in-out 0.3s;
+  transition-property: border-bottom;
+}
+
+.section-content button {
+  border: none;
+  border-radius: 10px;
+  outline: none;
+
+  height: 1.8em;
+  width: 6em;
+
+  margin: 0.5em 0 1em;
+
+  background-image: url(../images/png/red-orange-gradient-harsh.png);
+  background-size: cover;
+  background-position: center;
+
+  color: #fff;
+  font-size: 1.7em;
+
+  transition: ease 0.5s;
+  transition-property: background-position;
+}
+.section-content button:hover {
+  cursor: pointer;
+  background-image: url(../images/png/red-orange-gradient-harsh.png);
+  background-position: 0 0;
+
+  transition: ease 0.5s;
+  transition-property: background-position;
+}
+
+.section-content button:active {
+  transform: scale(1.05);
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+/* End Input Forms  */
+
+/* Custom Container Classes  */
+
+/* End Custom Container Classes  */
 
 /* Media Queries  */
 
-@media screen and (min-width: 850px) {
+@media screen and (max-width: 320px) {
+  .class-banner h2 {
+    font-size: 3.2em;
+  }
+
+  .class-banner p {
+    font-size: 2em;
+  }
+
+  .section-content form {
+    padding: 5em 0 0 0;
+  }
+
+  input + span {
+    top: 10px;
+  }
+}
+
+@media screen and (min-width: 860px) {
   html {
     font-size: 15px;
   }
@@ -297,8 +532,6 @@ a {
   body {
     margin: calc(3em + 1em) 0 0 0;
     padding-left: 220px;
-    overflow-x: hidden;
-    overflow: overlay;
   }
   .header {
     padding: 0 1em 0 calc(220px + 1em);
@@ -310,7 +543,7 @@ a {
   }
 
   .header-img img {
-    width: 45px;
+    width: 40px;
   }
 
   .l-navbar {
@@ -328,6 +561,15 @@ a {
 
   .body-padding {
     padding: 0;
+  }
+
+  .section-content form {
+    padding: 1em 0 0 0;
+  }
+
+  form span {
+    font-size: 0.9em;
+    white-space: nowrap;
   }
 }
 
