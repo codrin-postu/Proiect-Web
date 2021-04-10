@@ -337,7 +337,6 @@ section {
   overflow: visible;
 
   height: fit-content;
-  max-height: 40vh;
 
   margin: 1.5em 1.5em;
   background-color: #fff;
@@ -416,20 +415,16 @@ section .emphasis {
 /* Input Forms  */
 
 .section-content form {
-  padding: 2em 0 0 0;
+  padding: 0.5em 0 0 0;
   position: relative;
 }
 
-form label {
-  display: flex;
-  flex: 1;
-}
-
 .section-content input {
-  flex: 1;
   width: 90%;
-  padding-bottom: 0.5em;
+  padding: 0.5em 0 0.5em 0;
   margin-bottom: 1.1em;
+
+  caret-color: transparent;
 
   border: none;
   border-bottom: 2px solid var(--nav-background-color);
@@ -443,18 +438,9 @@ form label {
   text-transform: uppercase;
 }
 
-form span {
-  position: absolute;
-  left: 5px;
-  top: 15px;
-  pointer-events: none;
-  transform-origin: left top;
-  transition: transform 0.3s ease-out;
-}
-
-input:focus + span,
-.input-filled + span {
-  transform: translateY(-19px) scale(0.8);
+.section-content input::placeholder {
+  font-weight: 500;
+  text-transform: none;
 }
 
 .section-content input:focus {
@@ -502,6 +488,10 @@ input:focus + span,
 
 /* Custom Container Classes  */
 
+.join-classroom p {
+  max-width: 90%;
+}
+
 /* End Custom Container Classes  */
 
 /* Media Queries  */
@@ -515,13 +505,6 @@ input:focus + span,
     font-size: 2em;
   }
 
-  .section-content form {
-    padding: 5em 0 0 0;
-  }
-
-  input + span {
-    top: 10px;
-  }
 }
 
 @media screen and (min-width: 860px) {
@@ -561,15 +544,6 @@ input:focus + span,
 
   .body-padding {
     padding: 0;
-  }
-
-  .section-content form {
-    padding: 1em 0 0 0;
-  }
-
-  form span {
-    font-size: 0.9em;
-    white-space: nowrap;
   }
 }
 
