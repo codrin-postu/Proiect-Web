@@ -69,15 +69,15 @@
                                 <i class="fas fa-clock"></i>
                                 <span class="nav-name">Check Attendance</span>
                             </a>
-                            <a href="./classroom/class-documentation.html" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="fas fa-highlighter"></i>
                                 <span class="nav-name">Class Documentation</span>
                             </a>
-                            <a href="./classroom/homework.html" class="nav-link">
+                            <a href="./classroom/homework-list.html" class="nav-link">
                                 <i class="fas fa-paperclip"></i>
                                 <span class="nav-name">Homework</span>
                             </a>
-                            <a href="./classroom/homework.html" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="fas fa-percentage"></i>
                                 <span class="nav-name">Grades</span>
                             </a>
@@ -184,21 +184,26 @@
             </div>
             <div class="section-content">
                 <div class="account-info-split">
-                    <form action="/nothing.js" target="blank">
-            
-                        <input type="text" name="FirstName" placeholder="John" required>
-                        <input type="text" name="MidName" placeholder="Middle Name (If applicable)">
-                        <input type="text" name="LastName" placeholder="Doe" required>
-                        <input type="email" name="Email" placeholder="Email address" required>
-                       
-                        <button type="submit">Save</button>
-                    </form>
+                    <div class="information-change">
+                        <form action="/nothing.js" target="blank">
+
+                            <input type="text" name="FirstName" placeholder="First Name" value="John" required>
+                            <input type="text" name="MidName" placeholder="Middle Name (If applicable)">
+                            <input type="text" name="LastName" placeholder="Last Name" value="Doe" required>
+                            <input type="email" name="Email" placeholder="Email address" value="johndoe@email.com"
+                                required>
+
+                            <button type="submit">Save</button>
+                        </form>
+                    </div>
+
                     <div class="image-change">
-                        <!-- image here  -->
-                        <button type="submit">Save</button>
+                        <p>Profile Picture</p>
+                        <img src="../images/png/codrin-img.png" alt="Profile Image">
+                        <button type="submit">Upload Image</button>
                     </div>
                 </div>
-               
+
             </div>
         </section>
 
