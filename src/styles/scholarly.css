@@ -1,31 +1,31 @@
-article{
-    font-family:'Segoe UI', Tahoma, Verdana, sans-serif;
-    padding: 4em 1em;
+article {
+  font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
+  padding: 4em 1em;
 }
 
-h1{
-    text-align: center;
+h1 {
+  text-align: center;
 }
 
-h2{
-border-bottom-style: outset;
+h2 {
+  border-bottom-style: outset;
 }
 
-h3{
-margin-left: 1em;
+h3 {
+  margin-left: 1em;
 }
 
-h4{
-    margin-left: 2em;
+h4 {
+  margin-left: 2em;
 }
 
-h5{
-    margin-left: 3em;
+h5 {
+  margin-left: 3em;
 }
 
-li{
-    color: #16133b;
+li {
+  color: #16133b;
 }
-li a{
-    color: #3b358f;
+li a {
+  color: #3b358f;
 }
