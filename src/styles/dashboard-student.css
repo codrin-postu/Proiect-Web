@@ -25,6 +25,7 @@
 /* sidebar navigation  */
 ::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -308,6 +309,8 @@ a {
   padding-bottom: 5em;
   overflow-y: scroll;
 
+  align-content: flex-start;
+
   /* Might give error to Validator as it is specific to Firefox  */
   scrollbar-width: thin;
 }
@@ -330,7 +333,7 @@ section {
 
   height: fit-content;
 
-  margin: 1.5em 1.5em;
+  margin: 0.5em 1.5em;
   background-color: #fff;
   box-shadow: 0px 5px 10px 0 #e6e6e6;
 }
@@ -345,7 +348,6 @@ section .section-header {
 }
 
 section .section-content {
-  display: flex;
   padding: 1em 1.5em;
   max-height: 40vh;
   overflow: auto;
@@ -473,7 +475,7 @@ section p {
   max-width: 60ch;
   font-size: 1.2em;
   font-weight: 400;
-  padding: 0;
+  padding: 1em 0;
 }
 
 section .emphasis {
@@ -657,9 +659,14 @@ section .emphasis {
   padding-top: 2em;
 }
 
+.class-information .section-content {
+  padding-top: 0;
+}
+
 .class-information p {
   font-size: 1.3em;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .class-information table {
@@ -675,7 +682,7 @@ section .emphasis {
 }
 
 .class-information td {
-  padding: 0.5em 0;
+  padding: 0;
 }
 
 .class-information tr:last-child {
@@ -683,6 +690,48 @@ section .emphasis {
 }
 
 /* End Class Information Page Specific  */
+
+/* Check Attendance Page Specific */
+
+.check-attendance .section-content {
+  padding: 0 1.5em;
+}
+
+.check-attendance form {
+  padding-top: 0;
+}
+
+.check-attendance p {
+  padding: 0.5em 0;
+}
+
+.attendance-history {
+  overflow: hidden;
+}
+
+.attendance-history .section-content {
+  display: flex;
+  flex-direction: row;
+  
+  padding: 0;
+  margin: 0;
+}
+
+.attendance-history .class-date {
+  padding: 0 1em;
+}
+
+.attendance-history .attendance-status {
+  color: #e74c3c;
+  font-weight: 600;
+}
+
+.attendance-history .attendance-status.attended {
+  color: #27AE60;
+  font-weight: 400;
+}
+
+/* End Check Attendance Page Specific  */
 
 /* End Custom Container Classes  */
 
@@ -782,7 +831,7 @@ section .emphasis {
 
 @media screen and (min-width: 1100px) {
   .width-half-L {
-    flex-basis: 44%;
+    flex-basis: 46%;
   }
   .width-third-L {
     flex-basis: 28%;
