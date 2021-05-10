@@ -109,11 +109,27 @@ a {
   cursor: pointer;
 }
 
+.header-account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.header-account p {
+  margin: 0 0.4em 0 0.6em;
+  font-size: 1.1em;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.header-account i {
+  padding-bottom: 0.3em;
+}
+
 .header-img {
   width: 35px;
   height: 35px;
-  display: flex;
-  justify-content: center;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -319,7 +335,6 @@ a {
 .main-content::-webkit-scrollbar {
   display: none;
 }
-
 
 section {
   border-color: #e6e6e6;
@@ -605,10 +620,9 @@ section .emphasis {
   text-transform: uppercase;
 }
 
-
 /* Edit Account Page Specific  */
 
-.edit-account .section-content{
+.edit-account .section-content {
   max-height: 80vh;
 }
 
@@ -618,33 +632,44 @@ section .emphasis {
 }
 
 .edit-account .information-change {
-  flex-basis: 95%;
-}
-
-.edit-account .image-change {
-  flex-basis: 95%;
+  margin-top: 2em;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.image-change p {
-  font-size: 2em;
-  font-weight: 500;
-  align-self: flex-start;
+.information-change form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
 }
 
-.image-change img{
-  margin: 2em 0;
-  max-width: 20em;
-  max-height: 20em;
-  border: #fff 1px solid;  /* Temporary: Will be changed to an actual visible border */
-  border-radius: 100%;
+.edit-account .image-change {
+  margin-top: 5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.image-change button {
+.edit-account button {
   width: 8em;
-  align-self: flex-start;
+}
+
+.edit-account h3 {
+  margin-bottom: 0.5em;
+
+  font-size: 1.6em;
+  font-weight: 600;
+
+}
+
+.image-change img {
+  margin: 2em 0;
+  width: 15em;
+  height: 15em;
+  border: #fff 1px solid; /* Temporary: Will be changed to an actual visible border */
+  border-radius: 100%;
 }
 
 /* End Edit Account Page Specific  */
@@ -673,7 +698,7 @@ section .emphasis {
   border-collapse: collapse;
 }
 
-.class-information tr{
+.class-information tr {
   border-bottom: 1px #868686 solid;
 }
 
@@ -712,7 +737,7 @@ section .emphasis {
 .attendance-history .section-content {
   display: flex;
   flex-direction: row;
-  
+
   padding: 0;
   margin: 0;
 }
@@ -727,7 +752,7 @@ section .emphasis {
 }
 
 .attendance-history .attendance-status.attended {
-  color: #27AE60;
+  color: #27ae60;
   font-weight: 400;
 }
 
@@ -797,30 +822,31 @@ section .emphasis {
   .edit-account .account-info-split {
     flex-direction: row;
     justify-content: space-between;
+    margin-right: 4em;
   }
 
   .edit-account .information-change {
-    flex-basis: 66%;
-    
-  }
-
-  .edit-account img {
-    width: 10em;
-    height: 10em;
+    flex-basis: 70%;
+    align-items: center;
   }
 
   .edit-account .image-change {
-    flex-basis: 25%;
-    align-items: flex-start;
-    height: 100%;
+    margin-top: 2em;
+
+    height: inherit;
+    justify-content: space-between;
+    align-items: center;
   }
 
-  
+  .image-change img {
+    width: 20em;
+    height: 20em;
+    border-radius: 0%;
+  }
 
   .class-information p {
     font-size: 1.2em;
   }
-
 
   /* End Page Specific  */
 
