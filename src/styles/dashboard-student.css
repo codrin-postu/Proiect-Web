@@ -11,7 +11,7 @@
 
   --nav-animation: 0.5s;
 
-  --sidebar-width: 200px;
+  --sidebar-width: 240px;
 
   --z-fixed: 100;
 }
@@ -241,7 +241,7 @@ a {
   position: relative;
   color: #c9c9c9;
   font-weight: 500;
-  font-size: 1.05em;
+  font-size: 1.25em;
   margin-bottom: 0.1em;
   margin-left: 0.4em;
 }
@@ -293,7 +293,7 @@ a {
   left: 0;
   margin-top: 0.8em;
   width: 3px;
-  height: 11.5em;
+  height: 180px;
   background-color: var(--accent-orange-color);
 
   transition: 0.3s;
@@ -306,7 +306,7 @@ a {
 }
 
 .nav-class .nav-link {
-  font-size: 0.8em;
+  font-size: 0.95em;
   margin-left: 2em;
 }
 
@@ -778,6 +778,17 @@ section .emphasis {
   font-weight: 600;
 }
 
+.homework-text .code-snippet {
+  background-color: #e9e8d0;
+  padding: 0 1em;
+  margin-right: 1em;
+  border: 2px solid #e6e6e6;
+
+  font-size: 1em;
+  line-height: 1.75em;
+  font-family: Sans-Serif;
+}
+
 /* End Homework Detail Page Specific */
 
 /* End Custom Container Classes  */
@@ -819,6 +830,15 @@ section .emphasis {
   .l-navbar {
     left: 0;
     width: 220px;
+  }
+
+  .nav-link,
+  .class-select {
+    font-size: 1em;
+  }
+
+  .nav-class .nav-link {
+    font-size: 0.8em;
   }
 
   .show {
@@ -906,7 +926,8 @@ section .emphasis {
   }
 
   .special-table th {
-    font-size: 1.2em;
+    font-size: 1em;
+    padding: 0;
   }
 
   .special-table tr {
@@ -959,6 +980,8 @@ section .emphasis {
   .homework-status h3 {
     text-align: center;
   }
+
+  /* Custom Text 
 
   /* End Page Specific  */
 
