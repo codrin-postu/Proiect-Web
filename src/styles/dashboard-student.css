@@ -113,7 +113,6 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .header-account p {
@@ -319,7 +318,7 @@ a {
 
 .main-content {
   display: flex;
-  justify-content: center;
+  justify-content: space-around; /* Fixes the navbar open/close state */
   flex-wrap: wrap;
   height: 100vh;
   padding-bottom: 5em;
@@ -348,7 +347,7 @@ section {
 
   height: fit-content;
 
-  margin: 0.5em 1.5em;
+  margin: 0.5em 0;
   background-color: #fff;
   box-shadow: 0px 5px 10px 0 #e6e6e6;
 }
@@ -367,119 +366,6 @@ section .section-content {
   max-height: 40vh;
   overflow: auto;
 }
-
-/* Section for Homework (Rosca)  */
-
-section .section-content-cell1 {
-  display: grid;
-  grid-template-rows: 2em 10em 2em 10em 14em;
-  gap: 8em;
-}
-
-section .section-content-cell2 {
-  display: grid;
-  text-align: center;
-  grid-template-columns: 25em;
-  border: 1px solid black;
-  border-radius: 0.5px;
-  gap: 12em;
-}
-
-section .section-content-cell3 {
-  font-size: 1.5em;
-}
-
-section .section-content-cell4 {
-  font-size: 1em;
-}
-
-section .section-content-cell5 {
-  font-size: 1.5em;
-}
-
-section .section-content-cell6 {
-  font-size: 0.8em;
-}
-
-section .section-content-cell7 {
-  font-size: 0.8em;
-  background: grey;
-}
-
-section .section-content-cell8 {
-  display: grid;
-  grid-template-columns: 25em;
-  grid-template-rows: 10em 2em 1em;
-  gap: 10em;
-}
-
-section .section-content-cell9 {
-  margin-top: 8em;
-  font-size: 1.5em;
-}
-
-section .section-content-cell10 {
-  font-size: 0.8em;
-  color: coral;
-}
-
-section .section-content-cell11 {
-  line-height: 2.5;
-}
-
-section .section-content-cell12 {
-  font-size: 2em;
-  color: white;
-  background-color: coral;
-  text-align: center;
-  border-radius: 30px;
-  display: grid;
-  gap: 10em;
-}
-
-section .section-content-2 {
-  background: white;
-  display: grid;
-  grid-template-columns: 16em 3em 3em 3em 3em;
-  grid-template-rows: 3em 3em 3em 3em 3em;
-  margin-top: 5em;
-  gap: 10em;
-}
-
-section .section-content-cell15 {
-  width: 32em;
-  background-color: grey;
-}
-section .section-content-cell16 {
-  width: 16em;
-  background-color: grey;
-}
-section .section-content-cell17 {
-  width: 16em;
-  background-color: grey;
-}
-section .section-content-cell18 {
-  width: 16em;
-  background-color: grey;
-}
-section .section-content-cell19 {
-  width: 16em;
-  background-color: grey;
-}
-
-section .section-content-cell23 {
-  color: green;
-}
-
-section .section-content-cell38 {
-  color: orange;
-}
-
-section .section-content-cell43 {
-  color: orange;
-}
-
-/* End Section for Homework (Rosca)  */
 
 section h2 {
   font-size: 1.6em;
@@ -612,6 +498,10 @@ section .emphasis {
 
 /* Custom Container Classes  */
 
+.join-classroom .section-content {
+  max-height: 45vh;
+}
+
 .join-classroom p {
   max-width: 90%;
 }
@@ -661,7 +551,6 @@ section .emphasis {
 
   font-size: 1.6em;
   font-weight: 600;
-
 }
 
 .image-change img {
@@ -758,6 +647,73 @@ section .emphasis {
 
 /* End Check Attendance Page Specific  */
 
+/* Homework List Page Specific */
+
+.homework-list .section-content {
+  padding: 0.25em;
+  height: fit-content;
+  max-height: 80vh;
+}
+
+.homework-list table {
+  border: 0;
+  width: 100%;
+}
+
+.homework-list thead {
+  border: none;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  margin-right: 1em;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.homework-list tr {
+  border-bottom: 3px solid #ddd;
+  display: block;
+  margin-bottom: 0.625em;
+}
+
+.homework-list td {
+  border-bottom: 1px solid #ddd;
+  display: block;
+  font-size: 0.85em;
+  text-align: right;
+}
+
+.homework-list td::before {
+  content: attr(data-label);
+  float: left;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.homework-list td:last-child {
+  border-bottom: 0;
+}
+
+.homework-list th {
+  font-size: 0.9em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.homework-list .success {
+  color: #27ae60;
+  font-weight: 600;
+}
+
+.homework-list .fail {
+  color: #e74c3c;
+}
+
+/* End Homework List Page Specific */
+
 /* End Custom Container Classes  */
 
 /* Media Queries  */
@@ -769,12 +725,6 @@ section .emphasis {
 
   .class-banner p {
     font-size: 2em;
-  }
-
-  .homework-detail .section-content {
-    display: grid;
-    grid-template-columns: 35em 25.2em;
-    gap: 18em;
   }
 }
 
@@ -819,6 +769,14 @@ section .emphasis {
 
   /* Page Specific  */
 
+  /* Join Classroom */
+
+  .join-classroom .section-content {
+    max-width: 100em;
+  }
+
+  /* Edit Account */
+
   .edit-account .account-info-split {
     flex-direction: row;
     justify-content: space-between;
@@ -844,8 +802,51 @@ section .emphasis {
     border-radius: 0%;
   }
 
+  /* Class Information */
+
   .class-information p {
     font-size: 1.2em;
+  }
+
+  /* Homework List */
+
+  .homework-list table {
+    border: none;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    table-layout: fixed;
+  }
+
+  .homework-list thead {
+    background-color: #e3e3e3;
+    display: table-header-group;
+    clip: unset;
+    height: fit-content;
+    margin: 0;
+    position: unset;
+  }
+
+  .homework-list th,
+  .homework-list td {
+    padding: 0.55em 0.25em;
+    text-align: center;
+    display: table-cell;
+  }
+
+  .homework-list tr {
+    display: table-row;
+    border: 0;
+  }
+
+  .homework-list td {
+    font-size: 0.85em;
+    border: 0;
+  }
+
+  .homework-list td::before {
+    content: unset;
   }
 
   /* End Page Specific  */
@@ -855,12 +856,12 @@ section .emphasis {
   }
 }
 
-@media screen and (min-width: 1100px) {
+@media screen and (min-width: 1200px) {
   .width-half-L {
-    flex-basis: 46%;
+    flex-basis: 48%;
   }
   .width-third-L {
-    flex-basis: 28%;
+    flex-basis: 37%;
   }
 
   .width-two-thirds-L {
