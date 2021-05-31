@@ -514,9 +514,6 @@ section .emphasis {
 
 .edit-account .section-content {
   max-height: 80vh;
-}
-
-.edit-account .account-info-split {
   display: flex;
   flex-direction: column;
 }
@@ -655,54 +652,6 @@ section .emphasis {
   max-height: 80vh;
 }
 
-.homework-list table {
-  border: 0;
-  width: 100%;
-}
-
-.homework-list thead {
-  border: none;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  margin-right: 1em;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-
-.homework-list tr {
-  border-bottom: 3px solid #ddd;
-  display: block;
-  margin-bottom: 0.625em;
-}
-
-.homework-list td {
-  border-bottom: 1px solid #ddd;
-  display: block;
-  font-size: 0.85em;
-  text-align: right;
-}
-
-.homework-list td::before {
-  content: attr(data-label);
-  float: left;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.homework-list td:last-child {
-  border-bottom: 0;
-}
-
-.homework-list th {
-  font-size: 0.9em;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-
 .homework-list .success {
   color: #27ae60;
   font-weight: 600;
@@ -713,6 +662,123 @@ section .emphasis {
 }
 
 /* End Homework List Page Specific */
+
+/* Homework Information Page Specific */
+
+.homework-detail .section-content {
+  height: fit-content;
+  max-height: 80vh;
+}
+
+/* End Homework Information Page Specific */
+
+/* Class Documentation List Page Specific */
+
+.class-documentation .section-content {
+  padding: 0.25em;
+  height: fit-content;
+  max-height: 80vh;
+}
+
+.class-documentation .important {
+  font-weight: 500;
+  background-color: #ffdb99;
+}
+
+/* End Class Documentation List Page Specific */
+
+/* Tables Class */
+
+.special-table table {
+  border: 0;
+  width: 100%;
+}
+
+.special-table thead {
+  border: none;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin-right: 1em;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.special-table tr {
+  border-bottom: 2px solid #c9c9c9;
+  display: block;
+  padding: 1em 0;
+  margin-bottom: 0.625em;
+}
+
+.special-table td {
+  border-bottom: 1px solid #c9c9c9;
+  display: block;
+  padding: 0.4em 0;
+  font-size: 1em;
+  text-align: right;
+}
+
+.special-table td::before {
+  content: attr(data-label);
+  float: left;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.special-table p {
+  font-size: 1.2em;
+  text-align: right;
+  max-width: 100%;
+  height: fit-content;
+  padding: 0.25em;
+}
+
+.special-table td:last-child {
+  border-bottom: 0;
+}
+
+.special-table th {
+  font-size: 0.9em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* End Tables Class Specific */
+
+/* Homework Detail Page Specific */
+
+.homework-detail .section-content {
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.homework-detail .homework-text {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.homework-detail .homework-status {
+  margin-top: 3em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-top: 1px solid #c9c9c9;
+  padding-top: 3em;
+}
+
+.homework-status h3 {
+  margin-bottom: 0.5em;
+
+  font-size: 1.6em;
+  font-weight: 600;
+}
+
+/* End Homework Detail Page Specific */
 
 /* End Custom Container Classes  */
 
@@ -777,7 +843,7 @@ section .emphasis {
 
   /* Edit Account */
 
-  .edit-account .account-info-split {
+  .edit-account .section-content {
     flex-direction: row;
     justify-content: space-between;
     margin-right: 4em;
@@ -808,9 +874,9 @@ section .emphasis {
     font-size: 1.2em;
   }
 
-  /* Homework List */
+  /* Tables class */
 
-  .homework-list table {
+  .special-table table {
     border: none;
     width: 100%;
     border-collapse: collapse;
@@ -819,7 +885,7 @@ section .emphasis {
     table-layout: fixed;
   }
 
-  .homework-list thead {
+  .special-table thead {
     background-color: #e3e3e3;
     display: table-header-group;
     clip: unset;
@@ -828,25 +894,70 @@ section .emphasis {
     position: unset;
   }
 
-  .homework-list th,
-  .homework-list td {
-    padding: 0.55em 0.25em;
+  .special-table th,
+  .special-table td {
+    padding: 1.4em 0.35em;
     text-align: center;
     display: table-cell;
   }
 
-  .homework-list tr {
+  .special-table tr:nth-child(even) {
+    background-color: #f0f0f0;
+  }
+
+  .special-table th {
+    font-size: 1.2em;
+  }
+
+  .special-table tr {
     display: table-row;
     border: 0;
   }
 
-  .homework-list td {
-    font-size: 0.85em;
+  .special-table td {
+    font-size: 1em;
     border: 0;
   }
 
-  .homework-list td::before {
+  .special-table td::before {
     content: unset;
+  }
+
+  .special-table p {
+    font-size: 1em;
+    text-align: center;
+  }
+
+  /* Homework Detail */
+
+  .homework-detail {
+    width: fit-content;
+    max-width: 100em;
+  }
+
+  .homework-detail .section-content {
+    flex-direction: row;
+    justify-content: space-around;
+    min-width: fit-content;
+  }
+
+  .homework-detail .homework-text {
+    flex-basis: 100ch;
+    flex-grow: 140ch;
+  }
+
+  .homework-detail .homework-status {
+    margin: 0;
+    flex-direction: column;
+    padding-left: 1em;
+    border-top: none;
+    height: inherit;
+    align-items: center;
+    text-align: center;
+  }
+
+  .homework-status h3 {
+    text-align: center;
   }
 
   /* End Page Specific  */
