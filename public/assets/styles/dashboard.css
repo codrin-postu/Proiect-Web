@@ -582,14 +582,11 @@ section .emphasis {
 
 .class-information table {
   border-collapse: collapse;
-}
-
-.class-information tr {
-  border-bottom: 1px #868686 solid;
+  width: 100%;
 }
 
 .class-information td + td {
-  border-left: 8em transparent solid;
+  border-left: 4em transparent solid;
 }
 
 .class-information td {
@@ -667,7 +664,7 @@ section .emphasis {
 
 .homework-detail .section-content {
   height: fit-content;
-  max-height: 80vh;
+  max-height: 77vh;
 }
 
 /* End Homework Information Page Specific */
@@ -677,7 +674,7 @@ section .emphasis {
 .class-documentation .section-content {
   padding: 0.25em;
   height: fit-content;
-  max-height: 80vh;
+  max-height: 77vh;
 }
 
 .class-documentation .important {
@@ -890,8 +887,17 @@ section .emphasis {
 
   /* Class Information */
 
+  .class-information table {
+    width: 100%;
+    table-layout: fixed;
+  }
+
   .class-information p {
     font-size: 1.2em;
+  }
+
+  .class-information td {
+    align-self: center;
   }
 
   /* Tables class */
@@ -927,7 +933,7 @@ section .emphasis {
 
   .special-table th {
     font-size: 1em;
-    padding: 0;
+    padding: 0.7em 0;
   }
 
   .special-table tr {

@@ -7,15 +7,14 @@
   <meta name="description" content="A class manager to help you stay connected and up to date with your classes!">
   <meta name="author" content="Created by Vlad Ghiorghita, Victor Rosca and Codrin Postu">
 
-  <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
-
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/86fe649324.js" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="styles/index.css">
+  <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="<?=ASSETS?>styles/index.css">
 
-  <title>ClassMan</title>
+  <title><?= $data['page_title']?></title>
 </head>
 
 <body>
@@ -25,7 +24,7 @@
     <nav>
       <div class="logo">
         <a href="#top">
-          <img src="images/svg/304315.svg" alt="Ripe Mango" />
+          <img src="<?=ASSETS?>images/svg/304315.svg" alt="Ripe Mango" />
           <p>ClassMan</p>
         </a>
       </div>
@@ -36,7 +35,7 @@
         <li><a href="#how-it-works">How It Works</a></li>
         <li><a href="#about-us">About Us</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="login.html" class="login">Login</a></li>
+        <li><a href="login" class="login">Login</a></li>
       </ul>
     </nav>
   </header>
@@ -49,12 +48,12 @@
         <p>The easiest way to keep track of your classes.</p>
         <p>Create a...</p>
         <div class="buttons">
-          <a href="register-student.html" class="cta">Student Account</a>
-          <a href="register-academic.html" class="cta">Academic Account</a>
+          <a href="registerstudent" class="cta">Student Account</a>
+          <a href="registeracademic" class="cta">Academic Account</a>
         </div>
       </div>
       <div>
-        <img src="images/svg/index-topsection.svg" alt="Student on a book." />
+        <img src="<?=ASSETS?>images/svg/index-topsection.svg" alt="Student on a book." />
       </div>
     </div>
   </section>
@@ -69,7 +68,7 @@
         <p>Once you join the class, you can use it to track your grades, send Homework and check-in for attendance.</p>
       </div>
       <div>
-        <img src="images/svg/how-it-works_img.svg" alt="Student setting goals." />
+        <img src="<?=ASSETS?>images/svg/how-it-works_img.svg" alt="Student setting goals." />
       </div>
     </div>
   </section>
@@ -88,21 +87,21 @@
 
       <div class="about-bottom">
         <div class="about-dev">
-          <div class="icon"><img src="./images/png/vlad-img.png" alt="Picture of team member Vlad"></div>
+          <div class="icon"><img src="<?=ASSETS?>/images/png/vlad-img.png" alt="Picture of team member Vlad"></div>
           <div class="text">
             <h3>Vlad</h3>
             <p>Student, interested in Unity, Web Development, producing music and speedrunning games.</p>
           </div>
         </div>
         <div class="about-dev">
-          <div class="icon"><img src="./images/png/victor-img.png" alt="Picture of team member Victor"></div>
+          <div class="icon"><img src="<?=ASSETS?>/images/png/victor-img.png" alt="Picture of team member Victor"></div>
           <div class="text">
             <h3>Victor</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit expedita</p>
           </div>
         </div>
         <div class="about-dev">
-          <div class="icon"><img src="./images/png/codrin-img.png" alt="Picture of team member Codrin"></div>
+          <div class="icon"><img src="<?=ASSETS?>/images/png/codrin-img.png" alt="Picture of team member Codrin"></div>
           <div class="text">
             <h3>Codrin</h3>
             <p>Currently a student, with a passion for Web Development and Java</p>
@@ -145,10 +144,10 @@
 
     </div>
     <div class="bottom-bar">
-      </a><p>classMan 2021. Class project.</p> <a style="color: #fff" href="./scholarly.html">Scholarly</a>
+      </a><p>classMan 2021. Class project.</p> <a style="color: #fff" href="./scholarly.html">Scholarly</a> <!-- TODO: Not currently linked! To finish  -->
     </div>
   </footer>
-  <script src="./scripts/index.js"></script>
+  <script src="<?=ASSETS?>/scripts/index.js"></script>
 </body>
 
 </html>
