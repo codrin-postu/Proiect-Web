@@ -7,9 +7,11 @@ use core\Application;
 
 $application = new Application();
 
-$router = new Router();
-$application->$router->get('/',function() {
+$application->router->get('/',function() {
     return 'Hello World';
-})
+});
+$application->router->get('/contact', function() {
+    return 'Contact';
+});
 
 $application->run();
