@@ -27,7 +27,7 @@ class Router
     public function resolve()
     {
         $path = $this->request->getPath();
-        $method = $this->request->getMethod();
+        $method = $this->request->method();
         $callback = $this->routes[$method][$path] ?? false;
 
         //var_dump($callback); //Check for callback status.
@@ -42,7 +42,11 @@ class Router
             return $this->renderView($callback);
         }
 
-       return call_user_func($callback);
+        // if(is_array($callback)) {
+        //     $callback[0] = new $callback[0]();
+        // }
+
+       return call_user_func($callback, $this->request);
     }
 
     public function renderGivenContent($viewContent, $data = [])
@@ -68,7 +72,6 @@ class Router
     private function renderContent($view, $data)
     {
 //        extract($data);  //extracts the key as a variable
-
         ob_start();
         include Application::$rootDir."/views/$view.php";
         return ob_get_clean();

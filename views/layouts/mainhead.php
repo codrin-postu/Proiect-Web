@@ -11,8 +11,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/86fe649324.js" crossorigin="anonymous"></script>
 
-  <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="./assets/styles/index.css"> <!-- TODO: Change the stylesheet to be based on the open page with var --> 
+  <link rel="shortcut icon" href="<?= $data["relPath"]?>/assets/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="<?= $data["relPath"].'/assets/styles/'.$data["stylesheet"]?>">
 
   <title>ClassMa | <?= $data["pageTitle"]?></title>
 </head>

@@ -4,24 +4,24 @@ namespace controllers;
 
 use core\Application;
 use core\Controller;
+use core\Request;
 
 class PageController extends Controller
 {
     public function index()
     {
         $data = [
-            'pageTitle' => 'A simple Class Manager'
+            'pageTitle' => 'A simple Class Manager',
+            'relPath' => '.',
+            'stylesheet' => 'index.css'
         ];
         return $this->render('index', $data);
     }
 
-    public function login()
+    public function handleLogin(Request $request)
     {
-        return "Show login form!";
-    }
-
-    public function handleLogin()
-    {
+        $body = $request->getBody();
+        var_dump($body);
         return "Handling login data!";
     }
 }

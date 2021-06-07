@@ -14,7 +14,6 @@
             <button type="submit">Login</button>
         </form>
 
-        <a href="recover">Forgot password</a>
         <a href="/">Don't have an account?</a>
     </div>
 </body>

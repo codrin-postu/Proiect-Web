@@ -8,3 +8,4 @@ require __DIR__."/core/Response.php";
 require __DIR__."/core/Controller.php";
 
 require __DIR__."/controllers/PageController.php";
+require __DIR__."/controllers/RegisterController.php";
