@@ -49,6 +49,10 @@ class RegisterController extends Controller
             {
                 return 'Account created!';
             }
+            echo '<pre>';
+            var_dump($registerModel->errors);
+            echo '</pre>';
+            exit;
             return $this->render('register/student', $data);
         }
         
