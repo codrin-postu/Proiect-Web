@@ -14,7 +14,7 @@
   <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="./assets/styles/index.css"> <!-- TODO: Change the stylesheet to be based on the open page with var --> 
 
-  <title><?= $data['title']?></title>
+  <title>ClassMa | <?= $data["pageTitle"]?></title>
 </head>
 
 {{content}}

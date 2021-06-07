@@ -4,13 +4,13 @@ session_start();
 
 require __DIR__."/../requires.php";
 
-use \controllers\Controller;
+use \controllers\PageController;
 use core\Application;
 
 $application = new Application(dirname(__DIR__)); //send in the project root DIR
-$controller = new Controller();
+$controller = new PageController();
 
-$application->router->get('/', 'index');
+$application->router->get('/', [$controller, 'index']);
 
 $application->router->get('/login', [$controller, 'login']);
 $application->router->post('/login', [$controller, 'handleLogin']);

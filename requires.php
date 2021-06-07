@@ -5,5 +5,6 @@ require  __DIR__."/core/Router.php";
 require  __DIR__."/core/Request.php";
 require __DIR__."/core/Config.php";
 require __DIR__."/core/Response.php";
+require __DIR__."/core/Controller.php";
 
-require __DIR__."/controllers/Controller.php";
+require __DIR__."/controllers/PageController.php";

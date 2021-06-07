@@ -45,28 +45,30 @@ class Router
        return call_user_func($callback);
     }
 
-    public function renderGivenContent($viewContent)
+    public function renderGivenContent($viewContent, $data = [])
     {
-        $layout = $this->renderLayout();
+        $layout = $this->renderLayout($data);
         return str_replace("{{content}}", $viewContent, $layout);
     }
 
-    public function renderView($view)
+    public function renderView($view, $data = [])
     {
-        $layout = $this->renderLayout();
-        $content = $this->renderContent($view);
+        $layout = $this->renderLayout($data);
+        $content = $this->renderContent($view, $data);
         return str_replace("{{content}}", $content, $layout);
     }
 
-    private function renderLayout()
+    private function renderLayout($data)
     {
         ob_start();     //caches output
         include Application::$rootDir."/views/layouts/mainhead.php";
         return ob_get_clean();
     }
 
-    private function renderContent($view)
+    private function renderContent($view, $data)
     {
+//        extract($data);  //extracts the key as a variable
+
         ob_start();
         include Application::$rootDir."/views/$view.php";
         return ob_get_clean();

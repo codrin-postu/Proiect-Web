@@ -2,10 +2,10 @@
 
 namespace core;
 
-class Application 
+class Application
 {
 
-    // public static Application $application;
+    public static Application $application;
     public static string $rootDir;
     public Router $router;
     public Request $request;
@@ -14,7 +14,7 @@ class Application
     public function __construct($root)
     {
         self::$rootDir = $root;
-        // self::$application = $this;
+        self::$application = $this;
         $this->request = new Request();
         $this->response = new Response();
         $this->router = new Router($this->request, $this->response);
