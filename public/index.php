@@ -9,8 +9,6 @@ use controllers\RegisterController;
 use core\Application;
 
 $application = new Application(dirname(__DIR__)); //send in the project root DIR
-$pageController = new PageController();
-$regController = new RegisterController();
 
 $application->router->get('/', [PageController::class, 'index']);
 

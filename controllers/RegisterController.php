@@ -5,6 +5,7 @@ namespace controllers;
 use core\Application;
 use core\Controller;
 use core\Request;
+use models\RegisterModel;
 
 class RegisterController extends Controller
 {
@@ -32,15 +33,25 @@ class RegisterController extends Controller
 
     public function registerStudent(Request $request)
     {
-        if ($request->isPost()) {
-            $registerModel = new RegisterModel();
-            return 'Handle submitted data!';
-        }
+        $registerModel = new RegisterModel();
         $data = [
             'pageTitle' => 'Create Student account',
             'relPath' => '..',
-            'stylesheet' => 'register.css'
+            'stylesheet' => 'register.css',
+            'model' => $registerModel
         ];
+
+        if ($request->isPost()) {
+            
+            $registerModel->loadData($request->getBody());
+
+            if ($registerModel->validate() && $registerModel->register()) 
+            {
+                return 'Account created!';
+            }
+            return $this->render('register/student', $data);
+        }
+        
         return $this->render('register/student', $data);
     }
 }
