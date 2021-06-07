@@ -13,8 +13,8 @@
         rel="stylesheet">
     <script src="https://kit.fontawesome.com/86fe649324.js" crossorigin="anonymous"></script>
 
-    <link rel="shortcut icon" href="<?=ASSETS?>/images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="<?=ASSETS?>/styles/register.css">
+    <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="./assets/styles/register.css">
 
     <title>ClassMan | Login </title>
 </head>
@@ -22,7 +22,7 @@
 <body>
     <div class="loginbox login">
         <div class="avatar">
-            <img src="<?=ASSETS?>/images/svg/304315.svg" alt="Mango, logo of application ClassMan">
+            <img src="./assets/images/svg/304315.svg" alt="Mango, logo of application ClassMan">
         </div>
 
         <h1>Login</h1>
@@ -33,7 +33,7 @@
             <button type="submit">Login</button>
         </form>
 
-        <a href="login.html">Forgot password</a>
+        <a href="recover">Forgot password</a>
         <a href="index.html#top">Don't have an account?</a>
     </div>
 </body>

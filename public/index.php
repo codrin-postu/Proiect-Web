@@ -2,15 +2,12 @@
 
 session_start();
 
-require "../requires.php";
+require __DIR__."/../requires.php";
+use core\Application;
 
 $application = new Application();
 
-$router = new Router();
-$router->get('/',function() {
-    return 'Hello World';
-})
-
-$application->useRouter($router);
+$application->router->get('/', 'index');
+$application->router->get('/login', 'login');
 
 $application->run();

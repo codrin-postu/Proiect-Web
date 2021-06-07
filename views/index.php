@@ -11,8 +11,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/86fe649324.js" crossorigin="anonymous"></script>
 
-  <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="<?=ASSETS?>styles/index.css">
+  <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./assets/styles/index.css">
 
   <title><?= $data['page_title']?></title>
 </head>
@@ -24,8 +24,8 @@
     <nav>
       <div class="logo">
         <a href="#top">
-          <img src="<?=ASSETS?>images/svg/304315.svg" alt="Ripe Mango" />
-          <p>ClassMan</p>
+          <img src="./assets/images/svg/304315.svg" alt="Ripe Mango" />
+          <p>ClassMa</p>
         </a>
       </div>
       <button class="hamburger" id="hamburger">
@@ -44,7 +44,7 @@
   <section id="top">
     <div class="top container">
       <div>
-        <h1>ClassMan</h1>
+        <h1>ClassMa</h1>
         <p>The easiest way to keep track of your classes.</p>
         <p>Create a...</p>
         <div class="buttons">
@@ -53,7 +53,7 @@
         </div>
       </div>
       <div>
-        <img src="<?=ASSETS?>images/svg/index-topsection.svg" alt="Student on a book." />
+        <img src="./assets/images/svg/index-topsection.svg" alt="Student on a book." />
       </div>
     </div>
   </section>
@@ -68,7 +68,7 @@
         <p>Once you join the class, you can use it to track your grades, send Homework and check-in for attendance.</p>
       </div>
       <div>
-        <img src="<?=ASSETS?>images/svg/how-it-works_img.svg" alt="Student setting goals." />
+        <img src="./assets/images/svg/how-it-works_img.svg" alt="Student setting goals." />
       </div>
     </div>
   </section>
@@ -87,21 +87,21 @@
 
       <div class="about-bottom">
         <div class="about-dev">
-          <div class="icon"><img src="<?=ASSETS?>/images/png/vlad-img.png" alt="Picture of team member Vlad"></div>
+          <div class="icon"><img src="./assets/images/png/vlad-img.png" alt="Picture of team member Vlad"></div>
           <div class="text">
             <h3>Vlad</h3>
             <p>Student, interested in Unity, Web Development, producing music and speedrunning games.</p>
           </div>
         </div>
         <div class="about-dev">
-          <div class="icon"><img src="<?=ASSETS?>/images/png/victor-img.png" alt="Picture of team member Victor"></div>
+          <div class="icon"><img src="./assets/images/png/victor-img.png" alt="Picture of team member Victor"></div>
           <div class="text">
             <h3>Victor</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit expedita</p>
           </div>
         </div>
         <div class="about-dev">
-          <div class="icon"><img src="<?=ASSETS?>/images/png/codrin-img.png" alt="Picture of team member Codrin"></div>
+          <div class="icon"><img src="./assets/images/png/codrin-img.png" alt="Picture of team member Codrin"></div>
           <div class="text">
             <h3>Codrin</h3>
             <p>Currently a student, with a passion for Web Development and Java</p>
@@ -138,7 +138,7 @@
         <p><i class="fas fa-fw fa-map-marker"></i> Romania, Iasi, Non-existent Street, 4, 700592</p>
         <p><i class="fas fa-fw fa-phone"></i> (+40) 7123 4567</p>
         <p>
-          <i class="fas fa-fw fa-envelope-open"></i> questions@classman.com
+          <i class="fas fa-fw fa-envelope-open"></i> questions@classma.com
         </p>
       </div>
 
@@ -147,7 +147,7 @@
       </a><p>classMan 2021. Class project.</p> <a style="color: #fff" href="./scholarly.html">Scholarly</a> <!-- TODO: Not currently linked! To finish  -->
     </div>
   </footer>
-  <script src="<?=ASSETS?>/scripts/index.js"></script>
+  <script src="./assets/scripts/index.js"></script>
 </body>
 
 </html>
