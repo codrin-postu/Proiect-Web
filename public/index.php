@@ -15,13 +15,13 @@ $regController = new RegisterController();
 $application->router->get('/', [$pageController, 'index']);
 
 $application->router->get('/login', [$regController, 'login']);
-// $application->router->post('/login', [$regController, 'handleLogin']);
+$application->router->post('/login', [$regController, 'handleLogin']);
 
 $application->router->get('/register/academic', [$regController, 'registerAcademic']);
-// $application->router->post('/register/academic', [$regController, 'registerAcademic']);
+$application->router->post('/register/academic', [$regController, 'registerAcademic']);
 
 $application->router->get('/register/student', [$regController, 'registerStudent']);
-// $application->router->post('/register/student', [$regController, 'registerStudent']);
+$application->router->post('/register/student', [$regController, 'registerStudent']);
 
 $application->router->get('/dashboard/welcome', 'dashboard/welcome');
 

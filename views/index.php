@@ -29,8 +29,8 @@
         <p>The easiest way to keep track of your classes.</p>
         <p>Create a...</p>
         <div class="buttons">
-          <a href="registerstudent" class="cta">Student Account</a>
-          <a href="registeracademic" class="cta">Academic Account</a>
+          <a href="register/student" class="cta">Student Account</a>
+          <a href="register/academic" class="cta">Academic Account</a>
         </div>
       </div>
       <div>
