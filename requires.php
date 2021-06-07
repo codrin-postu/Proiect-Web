@@ -9,3 +9,5 @@ require __DIR__."/core/Controller.php";
 
 require __DIR__."/controllers/PageController.php";
 require __DIR__."/controllers/RegisterController.php";
+
+require __DIR__."/models/RegisterModel.php";

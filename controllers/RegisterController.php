@@ -15,6 +15,7 @@ class RegisterController extends Controller
             'relPath' => '.',
             'stylesheet' => 'register.css'
         ];
+        $this->setLayout('mainhead');
         return $this->render('login', $data);
     }
 
@@ -25,12 +26,14 @@ class RegisterController extends Controller
             'relPath' => '..',
             'stylesheet' => '/register.css'
         ];
+        $this->setLayout('mainhead');
         return $this->render('register/academic', $data);
     }
 
     public function registerStudent(Request $request)
     {
         if ($request->isPost()) {
+            $registerModel = new RegisterModel();
             return 'Handle submitted data!';
         }
         $data = [

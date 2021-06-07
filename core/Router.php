@@ -34,6 +34,7 @@ class Router
 
         if (!$callback) 
         {
+            Application::$application->controller = new Controller();
             $this->response->setStatusCode(404);
             return $this->renderView("_404");
         }
@@ -42,9 +43,10 @@ class Router
             return $this->renderView($callback);
         }
 
-        // if(is_array($callback)) {
-        //     $callback[0] = new $callback[0]();
-        // }
+        if(is_array($callback)) {
+            Application::$application->controller = new $callback[0]();
+            $callback[0] = Application::$application->controller;
+        }
 
        return call_user_func($callback, $this->request);
     }
@@ -64,8 +66,9 @@ class Router
 
     private function renderLayout($data)
     {
+        $layout = Application::$application->controller->layout;
         ob_start();     //caches output
-        include Application::$rootDir."/views/layouts/mainhead.php";
+        include Application::$rootDir."/views/layouts/$layout.php";
         return ob_get_clean();
     }
 
