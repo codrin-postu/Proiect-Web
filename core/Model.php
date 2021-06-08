@@ -58,18 +58,34 @@ abstract class Model
                 {
                     $this->addError($inputType, self::RULE_MAX, $rule);
                 }
+
+                if ($ruleType === self::RULE_MATCH && $value !== $this->{$rule['matchAttribute']}) 
+                {
+                    $this->addError($inputType, self::RULE_MATCH, $rule);
+                }
             }
         }
 
         return empty($this->errors);
     }
 
-    public function addError(string $inputType, string $rule, $data)
+    public function addError(string $inputType, string $rule, $data = [])
     {
-        // foreach ($data as $key => $value) {
-            
-        // }
-        $this->errors[$inputType][] = $this->errorMessages()[$rule] ?? ''; 
+        $message = $this->errorMessages()[$rule] ?? '';
+        foreach ($data as $key => $value) {
+            $message = str_replace("{{$key}}", $value, $message);
+        }
+        $this->errors[$inputType][] = $message; 
+    }
+
+    public function hasError($inputType)
+    {
+        return $this->errors[$inputType] ?? false;
+    }
+
+    public function getFirstError($inputType)
+    {
+        return $this->errors[$inputType][0] ?? false;
     }
 
     public function errorMessages()
