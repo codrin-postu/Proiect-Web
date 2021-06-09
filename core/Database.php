@@ -32,16 +32,16 @@ class Database
 
             $migrationClass = pathinfo($migration, PATHINFO_FILENAME);  //returns the name of the file without .php extension
             $instance = new $migrationClass();
-            echo "DATABASE: Applying migration: $migrationClass\n";
-            $instance->up();
-            echo "DATABASE: Applied migration: $migrationClass \n";
+            $this->log("Applying migration: $migrationClass");
+            $instance->up();  //applying migrations that are not part of the applied migrations table
+            $this->log("Applied migration: $migrationClass");
             $migrationsToApply[] = $migration;
         }
 
         if (!empty($migrationsToApply)) {
             $this->saveMigrations($migrationsToApply);
         } else {
-            echo "DATABASE: All migrations have been already applied.\n";
+            $this->log("All migrations have been already applied.");
         }
     }
 
@@ -73,7 +73,7 @@ class Database
 
     protected function log($message)
     {
-        echo '['.date('Y-m-d H:i:s').'] - '.$message.'\n';
+        echo '['.date('Y-m-d H:i:s').'] - '.$message."\n";
     }
 
 
