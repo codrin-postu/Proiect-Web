@@ -9,6 +9,7 @@ abstract class Model
     public const RULE_MIN = 'min';
     public const RULE_MAX = 'max';
     public const RULE_MATCH = 'match';
+    public const RULE_CHECKED = 'checked';
     // public const RULE_UNIQUE = 'unique';
 
     public array $errors = [];
@@ -26,8 +27,8 @@ abstract class Model
 
     public function validate()
     {
-        foreach ($this->rules() as $inputType => $rules) {
-            $value = $this->{$inputType};
+        foreach ($this->rules() as $input => $rules) {
+            $value = $this->{$input};
             foreach ($rules as $rule) {
                 if (!is_string($rule)) {
                     $ruleType = $rule[0];
@@ -36,7 +37,7 @@ abstract class Model
                 }
 
                 if ($ruleType === self::RULE_REQUIRED && !$value) {
-                    $this->addError($inputType, self::RULE_REQUIRED);
+                    $this->addError($input, self::RULE_REQUIRED);
                 }
                 
                 // echo '<pre>';
@@ -46,22 +47,22 @@ abstract class Model
                 
                 if ($ruleType === self::RULE_EMAIL && !filter_var($value, FILTER_VALIDATE_EMAIL)) 
                 {
-                    $this->addError($inputType, self::RULE_EMAIL);
+                    $this->addError($input, self::RULE_EMAIL);
                 }
 
                 if ($ruleType === self::RULE_MIN && strlen($value) < $rule['min']) 
                 {
-                    $this->addError($inputType, self::RULE_MIN, $rule);
+                    $this->addError($input, self::RULE_MIN, $rule);
                 }
 
                 if ($ruleType === self::RULE_MAX && strlen($value) > $rule['max']) 
                 {
-                    $this->addError($inputType, self::RULE_MAX, $rule);
+                    $this->addError($input, self::RULE_MAX, $rule);
                 }
 
                 if ($ruleType === self::RULE_MATCH && $value !== $this->{$rule['matchAttribute']}) 
                 {
-                    $this->addError($inputType, self::RULE_MATCH, $rule);
+                    $this->addError($input, self::RULE_MATCH, $rule);
                 }
             }
         }
@@ -69,23 +70,23 @@ abstract class Model
         return empty($this->errors);
     }
 
-    public function addError(string $inputType, string $rule, $data = [])
+    public function addError(string $input, string $rule, $data = [])
     {
         $message = $this->errorMessages()[$rule] ?? '';
         foreach ($data as $key => $value) {
             $message = str_replace("{{$key}}", $value, $message);
         }
-        $this->errors[$inputType][] = $message; 
+        $this->errors[$input][] = $message; 
     }
 
-    public function hasError($inputType)
+    public function hasError($input)
     {
-        return $this->errors[$inputType] ?? false;
+        return $this->errors[$input] ?? false;
     }
 
-    public function getFirstError($inputType)
+    public function getFirstError($input)
     {
-        return $this->errors[$inputType][0] ?? false;
+        return $this->errors[$input][0] ?? false;
     }
 
     public function errorMessages()

@@ -78,14 +78,33 @@ h1 {
 }
 
 .loginbox .form-group {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
+  /* display: flex; */
+  margin-bottom: 2em;
 }
 
 .loginbox .invalid-feedback {
   height: 0.7em;
   font-size: 1.3em;
   color: #e67e22;
+}
+
+.form-group label {
+  display: inline-block;
+  position: relative;
+  top: -4px;
+  width: 20em;
+  font-size: 1.5em;
+}
+
+.loginbox input[type="checkbox"] {
+  width: 1em;
+  height: 1em;
+  margin: 0.4em;
+  border: none;
+  border-bottom: 1px solid #fff;
+
+  background: transparent;
+  font-size: 1.8em;
 }
 
 .loginbox input {

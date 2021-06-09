@@ -20,13 +20,16 @@ class Field
     public const TYPE_TIME = 'time';
     public const TYPE_BUTTON = 'button';
     public const TYPE_SUBMIT = 'submit';
+    public const TYPE_HIDDEN = 'hidden';
 
     public string $fieldType;
     public Model $model;
     public string $inputType;
+    public string $value;
 
-    public function __construct(Model $model, $inputType)
+    public function __construct(Model $model, $inputType, $value = '')
     {
+        $this->value = $value;
         $this->fieldType = self::TYPE_TEXT;
         $this->model = $model;
         $this->inputType = $inputType;
@@ -34,20 +37,48 @@ class Field
 
     public function __toString()
     {
-            return sprintf('
-            <div class="form-group">
-                <input type="%s" name="%s" placeholder="%s" value="%s" >
+        $output = '<div class="form-group">';
+        if ($this->fieldType === self::TYPE_HIDDEN) {
+            $output = $output.sprintf(
+                '<input type="%s" name="%s" placeholder="%s" value="%s" >',
+                $this->fieldType,
+                $this->inputType, 
+                '', 
+                $this->value);
+        } else if ($this->fieldType === self::TYPE_CHECKBOX) {
+            if ($this->model->{$this->inputType} === "on") 
+            { 
+                $isChecked = 'checked';
+            } else 
+            { 
+                $isChecked = '';
+            }
+            $output = $output.sprintf(
+                '<input type="%s" name="%s" %s>
+                <label>%s</label>',
+                $this->fieldType,
+                $this->inputType,
+                $isChecked,
+                $this->value);
+                
+        } else {
+            $output = $output.sprintf(
+                '<input type="%s" name="%s" placeholder="%s" value="%s" >',
+                $this->fieldType,
+                $this->inputType, 
+                $this->value,
+                $this->model->{$this->inputType});
+        }
+
+
+            return $output.sprintf('
                 <div class="invalid-feedback"> 
                     <p>%s</p>
                 </div>
             </div>
             ', 
-            $this->fieldType,
-            $this->inputType, 
-            $this->inputType, 
-            $this->model->{$this->inputType},
-            $this->model->getFirstError($this->inputType),
-    );
+            $this->model->getFirstError($this->inputType)
+            );
     }
 
     public function setField($fieldType)
