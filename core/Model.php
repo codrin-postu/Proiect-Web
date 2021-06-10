@@ -39,37 +39,37 @@ abstract class Model
                 }
 
                 if ($ruleType === self::RULE_REQUIRED && !$value) {
-                    $this->addError($input, self::RULE_REQUIRED);
+                    $this->addErrorRule($input, self::RULE_REQUIRED);
                 }
                 
                 if ($ruleType === self::RULE_EMAIL && !filter_var($value, FILTER_VALIDATE_EMAIL)) 
                 {
-                    $this->addError($input, self::RULE_EMAIL);
+                    $this->addErrorRule($input, self::RULE_EMAIL);
                 }
 
                 if ($ruleType === self::RULE_MIN && strlen($value) < $rule['min']) 
                 {
-                    $this->addError($input, self::RULE_MIN, $rule);
+                    $this->addErrorRule($input, self::RULE_MIN, $rule);
                 }
 
                 if ($ruleType === self::RULE_MAX && strlen($value) > $rule['max']) 
                 {
-                    $this->addError($input, self::RULE_MAX, $rule);
+                    $this->addErrorRule($input, self::RULE_MAX, $rule);
                 }
 
                 if ($ruleType === self::RULE_MATCH && $value !== $this->{$rule['matchAttribute']}) 
                 {
-                    $this->addError($input, self::RULE_MATCH, $rule);
+                    $this->addErrorRule($input, self::RULE_MATCH, $rule);
                 }
 
                 if ($ruleType === self::RULE_PASS && !preg_match('/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/', $value)) {
                     var_dump($value);
-                    $this->addError($input, self::RULE_PASS);
+                    $this->addErrorRule($input, self::RULE_PASS);
                 }
                 
                 if($ruleType === self::RULE_TEXT && (!ctype_alpha($value) && strlen($value) > 0))
                 {
-                    $this->addError($input, self::RULE_TEXT);
+                    $this->addErrorRule($input, self::RULE_TEXT);
                 }
 
                 if ($ruleType === self::RULE_UNIQUE) {
@@ -85,7 +85,7 @@ abstract class Model
                     $matches = $stmt->fetchObject();
                     if($matches)
                     {
-                        $this->addError($input, self::RULE_UNIQUE, ['inputType' => $input]);
+                        $this->addErrorRule($input, self::RULE_UNIQUE, ['inputType' => $input]);
                     }
                 }
             }
@@ -94,7 +94,12 @@ abstract class Model
         return empty($this->errors);
     }
 
-    public function addError(string $input, string $rule, $data = [])
+    public function addError(string $input, $message)
+    {
+        $this->errors[$input][] = $message; 
+    }
+
+    private function addErrorRule(string $input, string $rule, $data = [])
     {
         $message = $this->errorMessages()[$rule] ?? '';
         foreach ($data as $key => $value) {

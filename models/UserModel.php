@@ -11,6 +11,7 @@ class UserModel extends DatabaseModel
     const STATUS_ONLINE = 1;
     const STATUS_DELETED = 2;
 
+    public string $id = '0';
     public string $firstName = '';
     public string $lastName = '';
     public string $middleName = '';
@@ -20,6 +21,11 @@ class UserModel extends DatabaseModel
     public string $accountType = ''; //"student" "academic" <- professor
     public string $agreeTOS = '';
     public int $userStatus = self::STATUS_OFFLINE;
+
+    public function primaryKey() : string
+    {
+        return 'id';
+    }
 
     public function tableName() : string
     {

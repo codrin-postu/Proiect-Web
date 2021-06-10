@@ -9,16 +9,6 @@ use models\UserModel;
 
 class RegisterController extends Controller
 {
-    public function login()
-    {
-        $data = [
-            'pageTitle' => 'Login',
-            'relPath' => '.',
-            'stylesheet' => 'register.css'
-        ];
-        $this->setLayout('mainhead');
-        return $this->render('login', $data);
-    }
 
     public function registerAcademic(Request $request)
     {

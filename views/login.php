@@ -7,14 +7,14 @@
         </div>
 
         <h1>Login</h1>
-        <form action="" method="POST">
-            <input type="email" name="Email" placeholder="Email address" required>
-            <input type="password" name="Password" placeholder="Enter password" required>
-
+        <?php $form = core\form\Form::begin('', 'POST') ?>
+            <?php echo $form->field($data['model'], 'email', 'Email Address')->setField(core\form\Field::TYPE_EMAIL); ?>
+            <?php echo $form->field($data['model'], 'password', 'Password')->setField(core\form\Field::TYPE_PASS); ?>
+    
             <button type="submit">Login</button>
-        </form>
+        <?php core\form\Form::end() ?>
 
-        <a href="recover">Forgot password</a>
+        <a href="/recover">Forgot password</a>
         <a href="/">Don't have an account?</a>
     </div>
 </body>

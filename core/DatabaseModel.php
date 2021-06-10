@@ -10,6 +10,8 @@ abstract class DatabaseModel extends Model
 
     abstract public function columnsToInput() : array;
 
+    abstract public function primaryKey() : string;
+
     public function save()
     {
         $tableName = $this->tableName();
@@ -36,6 +38,21 @@ abstract class DatabaseModel extends Model
     static public function prepare($stmt)
     {
         return Application::$application->database->pdo->prepare($stmt);
+    }
+
+    public function findOne($where)
+    {
+        $tableName = static::tableName();
+        $inputs = array_keys($where);
+        $endStmt = implode("AND ",array_map(fn($input) => "$input = :$input", $inputs));
+        // SELECT * FROM tableName WHERE email = :email AND firstname = :firstname
+        $stmt = self::prepare("SELECT * FROM $tableName WHERE $endStmt");
+        foreach ($where as $key => $value) {
+            $stmt->bindValue(":$key", $value);
+        }
+
+        $stmt->execute();
+        return $stmt->fetchObject(static::class);
     }
 
 }

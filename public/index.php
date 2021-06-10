@@ -6,14 +6,15 @@ require __DIR__."/../requires.php";
 
 use controllers\PageController;
 use controllers\RegisterController;
+use controllers\LoginController;
 use core\Application;
 
 $application = new Application(dirname(__DIR__)); //send in the project root DIR
 
 $application->router->get('/', [PageController::class, 'index']);
 
-$application->router->get('/login', [RegisterController::class, 'login']);
-$application->router->post('/login', [RegisterController::class, 'handleLogin']);
+$application->router->get('/login', [LoginController::class, 'login']);
+$application->router->post('/login', [LoginController::class, 'login']);
 
 $application->router->get('/register/academic', [RegisterController::class, 'registerAcademic']);
 $application->router->post('/register/academic', [RegisterController::class, 'registerAcademic']);
