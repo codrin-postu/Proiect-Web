@@ -9,7 +9,7 @@ class UserModel extends DatabaseModel
 {
     public string $firstName = '';
     public string $lastName = '';
-    public string $middleName = ' ';
+    public string $middleName = '';
     public string $email = '';
     public string $password = '';
     public string $confirmPassword = '';
@@ -40,10 +40,11 @@ class UserModel extends DatabaseModel
     public function rules() : array
     {
         return [
-            'firstName' => [self::RULE_REQUIRED],
-            'lastName' => [self::RULE_REQUIRED],
+            'firstName' => [self::RULE_REQUIRED, self::RULE_TEXT],
+            'lastName' => [self::RULE_REQUIRED, self::RULE_TEXT],
+            'middleName' => [self::RULE_TEXT],
             'email' => [self::RULE_REQUIRED, self::RULE_EMAIL],
-            'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 8], [self::RULE_MAX, 'max' => 64]],
+            'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 8], [self::RULE_MAX, 'max' => 64], self::RULE_PASS],
             'confirmPassword' => [self::RULE_REQUIRED, [self::RULE_MATCH, 'matchAttribute' => 'password']],
             'agreeTOS' => [self::RULE_REQUIRED]
         ];
