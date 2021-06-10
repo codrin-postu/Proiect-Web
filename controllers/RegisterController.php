@@ -59,11 +59,23 @@ class RegisterController extends Controller
 
             if ($user->validate() && $user->save()) 
             {
-                return 'Account created!';
+                Application::$application->session->setFlash('success', 'Your account has been registered succesfully!');
+                Application::$application->response->redirect('/dashboard/welcome');
+                exit;
             }
             return $this->render('register/student', $data);
         }
         
         return $this->render('register/student', $data);
+    }
+
+    public function dashboardWelcome(Request $request)
+    {
+        $data = [
+            'pageTitle' => 'Welcome',
+            'relPath' => '..',
+            'stylesheet' => 'dashboard.css',
+        ];
+        return $this->render('dashboard/welcome', $data);
     }
 }

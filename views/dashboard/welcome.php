@@ -183,10 +183,12 @@
                 <h2>Welcome to ClassMan</h2>
             </div>
             <div class="section-content">
+                <?php if(\core\Application::$application->session->getFlash('success')): ?>
+                    <?php echo '<p>'.\core\Application::$application->session->getFlash('success').'</p>'; ?>
+                <?php endif; ?>  
                 <p>Use the Sidebar menu to join a Classroom using the
                     <span class="emphasis">Unique Code</span> provided by your Professor or Administrator
                 </p>
-                <p>As this is a test just for the design of the website, only the Student part of the project is accesible.</p>
             </div>
         </section>
 

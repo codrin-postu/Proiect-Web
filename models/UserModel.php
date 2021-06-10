@@ -38,7 +38,7 @@ class UserModel extends DatabaseModel
 
     public function save()
     {
-        $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+        $this->password = password_hash($this->password, PASSWORD_BCRYPT);
 
         return parent::save();
     }
@@ -49,7 +49,7 @@ class UserModel extends DatabaseModel
             'firstName' => [self::RULE_REQUIRED, self::RULE_TEXT],
             'lastName' => [self::RULE_REQUIRED, self::RULE_TEXT],
             'middleName' => [self::RULE_TEXT],
-            'email' => [self::RULE_REQUIRED, self::RULE_EMAIL],
+            'email' => [self::RULE_REQUIRED, self::RULE_EMAIL, [self::RULE_UNIQUE, 'table' => self::class]],
             'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 8], [self::RULE_MAX, 'max' => 64], self::RULE_PASS],
             'confirmPassword' => [self::RULE_REQUIRED, [self::RULE_MATCH, 'matchAttribute' => 'password']],
             'agreeTOS' => [self::RULE_REQUIRED]

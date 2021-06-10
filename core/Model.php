@@ -12,7 +12,7 @@ abstract class Model
     public const RULE_CHECKED = 'checked';
     public const RULE_PASS = 'password';
     public const RULE_TEXT = 'text';
-    // public const RULE_UNIQUE = 'unique';
+    public const RULE_UNIQUE = 'unique';
 
     public array $errors = [];
 
@@ -67,9 +67,26 @@ abstract class Model
                     $this->addError($input, self::RULE_PASS);
                 }
                 
-                if($ruleType === self::RULE_TEXT && !ctype_alpha($value))
+                if($ruleType === self::RULE_TEXT && (!ctype_alpha($value) && strlen($value) > 0))
                 {
                     $this->addError($input, self::RULE_TEXT);
+                }
+
+                if ($ruleType === self::RULE_UNIQUE) {
+                    $className = $rule['table'];
+                    $uniqueInput = $rule['input'] ?? $input;
+                    $tableName = $className::tableName();
+
+                    $stmt = Application::$application->database->prepare("SELECT * FROM $tableName 
+                        WHERE $uniqueInput = :$input;");
+                    $stmt->bindValue(":$input", $value);
+                    $stmt->execute();
+                    
+                    $matches = $stmt->fetchObject();
+                    if($matches)
+                    {
+                        $this->addError($input, self::RULE_UNIQUE, ['inputType' => $input]);
+                    }
                 }
             }
         }
@@ -106,6 +123,7 @@ abstract class Model
             self::RULE_MATCH => 'The two password fields must match',
             self::RULE_PASS => 'Password must contain at least a letter and a number',
             self::RULE_TEXT => 'This field can only contain letters',
+            self::RULE_UNIQUE => 'An account with this {inputType} already exists'
         ];
     }
 }

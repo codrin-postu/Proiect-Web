@@ -21,7 +21,7 @@ $application->router->post('/register/academic', [RegisterController::class, 're
 $application->router->get('/register/student', [RegisterController::class, 'registerStudent']);
 $application->router->post('/register/student', [RegisterController::class, 'registerStudent']);
 
-$application->router->get('/dashboard/welcome', 'dashboard/welcome');
+$application->router->get('/dashboard/welcome', [RegisterController::class, 'dashboardWelcome']);
 
 
 $application->run();

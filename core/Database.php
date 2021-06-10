@@ -71,62 +71,14 @@ class Database
         $stmt->execute();
     }
 
-    protected function log($message)
+    protected function log(string $message)
     {
         echo '['.date('Y-m-d H:i:s').'] - '.$message."\n";
     }
 
+    public function prepare(string $stmt)
+    {
+        return $this->pdo->prepare($stmt);
+    }
 
-    // private function db_connect()
-    // {
-    //     try {
-    //         $string = DB_TYPE . ":host=" . DB_HOST . ";dbname=" . DB_NAME . ";";
-    //         $db = new \PDO($string, DB_USER, DB_PASS);
-    //        return $db;
-    //     } catch (\PDOException $e) {
-    //         die($e->getMessage());
-    //     }
-    // }
-
-    // public function db_read($query, $data = [])
-    // {
-    //     $DB = $this->db_connect();
-    //     $stm = $DB->prepare($query);
-
-    //     if(count($data) < 1)
-    //     {
-    //         $stm = $DB->query($query);
-    //         $check = $stm ? 1 : 0;
-    //     } else {
-    //         $check = $stm->execute($data);
-    //     }
-
-    //     if($check) 
-    //     {
-    //         return $stm->fetchAll(PDO::FETCH_OBJ);
-    //     } else {
-    //         return false;
-    //     }
-    // }
-
-    // public function db_write($query, $data = [])
-    // {
-    //     $DB = $this->db_connect();
-    //     $stm = $DB->prepare($query);
-
-    //     if(count($data) < 1)
-    //     {
-    //         $stm = $DB->query($query);
-    //         $check = $stm ? 1 : 0;
-    //     } else {
-    //         $check = $stm->execute($data);
-    //     }
-
-    //     if($check) 
-    //     {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
 }

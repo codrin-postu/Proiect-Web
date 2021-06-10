@@ -12,6 +12,7 @@ class Application
     public Response $response;
     public Controller $controller;
     public Database $database;
+    public Session $session;
 
     public function __construct($root)
     {
@@ -19,7 +20,8 @@ class Application
         self::$application = $this;
         $this->request = new Request();
         $this->response = new Response();
-        
+        $this->session = new Session();
+
         $this->router = new Router($this->request, $this->response);
 
         $this->database = new Database();
