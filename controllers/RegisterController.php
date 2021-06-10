@@ -22,18 +22,18 @@ class RegisterController extends Controller
 
     public function registerAcademic(Request $request)
     {
-        $registerModel = new UserModel();
+        $user = new UserModel();
         $data = [
             'pageTitle' => 'Create academic account',
             'relPath' => '..',
             'stylesheet' => 'register.css',
-            'model' => $registerModel
+            'model' => $user
         ];
         if ($request->isPost()) {
             
-            $registerModel->loadData($request->getBody());
+            $user->loadData($request->getBody());
 
-            if ($registerModel->validate() && $registerModel->register()) 
+            if ($user->validate() && $user->save()) 
             {
                 return 'Account created!';
             }
@@ -45,19 +45,19 @@ class RegisterController extends Controller
 
     public function registerStudent(Request $request)
     {
-        $registerModel = new UserModel();
+        $user = new UserModel();
         $data = [
             'pageTitle' => 'Create Student account',
             'relPath' => '..',
             'stylesheet' => 'register.css',
-            'model' => $registerModel
+            'model' => $user
         ];
 
         if ($request->isPost()) {
             
-            $registerModel->loadData($request->getBody());
+            $user->loadData($request->getBody());
 
-            if ($registerModel->validate() && $registerModel->register()) 
+            if ($user->validate() && $user->save()) 
             {
                 return 'Account created!';
             }

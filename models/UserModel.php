@@ -7,6 +7,10 @@ use core\Model;
 
 class UserModel extends DatabaseModel
 {
+    const STATUS_OFFLINE = 0; //default
+    const STATUS_ONLINE = 1;
+    const STATUS_DELETED = 2;
+
     public string $firstName = '';
     public string $lastName = '';
     public string $middleName = '';
@@ -15,7 +19,7 @@ class UserModel extends DatabaseModel
     public string $confirmPassword = '';
     public string $accountType = ''; //"student" "academic" <- professor
     public string $agreeTOS = '';
-    // public string $testRadio = '';  //just for test purposes
+    public int $userStatus = self::STATUS_OFFLINE;
 
     public function tableName() : string
     {
@@ -24,17 +28,19 @@ class UserModel extends DatabaseModel
 
     public function columnsToInput() : array
     {
-        return ['firstname', 'middlename', 'lastname', 'email', 'type', 'password'];
+        return ['firstname', 'middlename', 'lastname', 'email', 'type', 'password', 'status'];
     }
 
     public function inputs() : array
     {
-            return ['firstName', 'middleName', 'lastName', 'email', 'accountType', 'password'];
+            return ['firstName', 'middleName', 'lastName', 'email', 'accountType', 'password', 'userStatus'];
     }
 
-    public function register()
+    public function save()
     {
-        $this->save();
+        $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+
+        return parent::save();
     }
 
     public function rules() : array
