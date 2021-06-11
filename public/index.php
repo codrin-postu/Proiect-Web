@@ -4,6 +4,7 @@ session_start();
 
 require __DIR__."/../requires.php";
 
+use controllers\DashboardController;
 use controllers\PageController;
 use controllers\RegisterController;
 use controllers\LoginController;
@@ -22,7 +23,7 @@ $application->router->post('/register/academic', [RegisterController::class, 're
 $application->router->get('/register/student', [RegisterController::class, 'registerStudent']);
 $application->router->post('/register/student', [RegisterController::class, 'registerStudent']);
 
-$application->router->get('/dashboard/welcome', [RegisterController::class, 'dashboardWelcome']);
+$application->router->get('/dashboard/welcome', [DashboardController::class, 'dashboardWelcome']);
 
 
 $application->run();

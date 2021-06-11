@@ -25,11 +25,6 @@ abstract class DatabaseModel extends Model
             // var_dump($this->$input, $this->{$input});
              $stmt->bindValue(":$input", $this->{$input});
         }
-
-        // echo '<pre>';
-        // var_dump($stmt);
-        // echo '</pre>';
-        // exit;
     
         $stmt->execute();
         return true;

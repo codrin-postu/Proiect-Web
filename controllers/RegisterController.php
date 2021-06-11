@@ -58,14 +58,4 @@ class RegisterController extends Controller
         
         return $this->render('register/student', $data);
     }
-
-    public function dashboardWelcome(Request $request)
-    {
-        $data = [
-            'pageTitle' => 'Welcome',
-            'relPath' => '..',
-            'stylesheet' => 'dashboard.css',
-        ];
-        return $this->render('dashboard/welcome', $data);
-    }
 }

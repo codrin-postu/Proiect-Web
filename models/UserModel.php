@@ -34,7 +34,7 @@ class UserModel extends DatabaseModel
 
     public function columnsToInput() : array
     {
-        return ['firstname', 'middlename', 'lastname', 'email', 'type', 'password', 'status'];
+        return ['firstName', 'middleName', 'lastName', 'email', 'accountType', 'password', 'status'];
     }
 
     public function inputs() : array
@@ -60,5 +60,20 @@ class UserModel extends DatabaseModel
             'confirmPassword' => [self::RULE_REQUIRED, [self::RULE_MATCH, 'matchAttribute' => 'password']],
             'agreeTOS' => [self::RULE_REQUIRED]
         ];
+    }
+
+
+    /**
+     * Must use the database column names NOT the variables that have been set up above, 
+     * if they are different.
+     */
+    public function getDisplayName()
+    {
+        return implode(' ', [$this->firstName,$this->middleName,$this->lastName]);
+    }
+
+    public function getUserType()
+    {
+        return ucfirst($this->accountType);
     }
 }

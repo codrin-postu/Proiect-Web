@@ -12,9 +12,13 @@
         rel="stylesheet">
     <script src="https://kit.fontawesome.com/86fe649324.js" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" type="text/css" href="../styles/dashboard-student.css" />
+    <link rel="stylesheet" type="text/css" href="<?php
 
-    <title>ClassMan Student | Join a Classroom</title>
+use core\Application;
+
+echo array_key_exists("relPath", $data) ? $data["relPath"].'/assets/styles/'.$data["stylesheet"] : '/assets/stylesheet/dashboard.css'?>"/>
+
+    <title>ClassMa <?php echo array_key_exists("pageTitle", $data) ? "| ".$data["pageTitle"] : ''?></title>
 </head>
 
 <body class="stop-transition-load" id="body-padding">
@@ -24,20 +28,21 @@
         </div>
 
         <div class="header-img">
-            <img src="../images/png/codrin-img.png" alt="Profile Picture">
+            <img src="<?php echo array_key_exists("relPath", $data) ? $data["relPath"].'/assets/images/png/codrin-img.png' : '/assets/images/png/codrin-img.png'?>" alt="Profile Picture">
         </div>
     </header>
     <div class="l-navbar first-navbar" id="navbar">
         <nav class="nav">
             <div>
-                <a href="./welcome.html" class="nav-logo">
-                    <img src="../images/svg/304315.svg" alt="Ripe Mango, ClassMan Logo" />
+                <a href="#" class="nav-logo">
+                    <img src="<?php echo array_key_exists("relPath", $data) ? $data["relPath"].'/assets/images/svg/304315.svg' : '/assets/images/png/304315.svg'?>" alt="Ripe Mango, ClassMa Logo" />
                     <div class="nav-logo-info">
                         <span class="name">ClassMa</span>
-                        <span class="usertype">Student</span>
+                        <span class="usertype"><?php echo Application::$application->user->getUserType() ?></span>
                     </div>
 
                 </a>
+                <!-- Must be generated like the forms -->
                 <div class="nav-list">
                     <!-- Navigation Section -->
                     <span class="nav-section">Navigation</span>
@@ -175,32 +180,4 @@
         </nav>
     </div>
 
-    <!-- Dashboard Content  -->
-    <div class="main-content">
-
-        <section class="join-classroom">
-            <div class="section-header">
-                <h2>Join a Classroom</h2>
-            </div>
-            <div class="section-content">
-                <form action="/nothing.js" target="blank">
-                    <label for="">
-                        <p>Classroom Code - Insert the 6 character code provided by your professor/teacher</p>
-                        <input type="text" name="ClassCode" placeholder="###-###" required>
-
-                    </label>
-
-                    <button type="submit">Send code</button>
-                </form>
-            </div>
-        </section>
-
-    </div>
-
-    <!-- JS Scripts -->
-    <script>document.body.classList.remove('stop-transition-load')</script>
-    <script src="../scripts/dashboard-sidemenu.js"></script>
-    <script src="../scripts/dashboard-input.js"></script>
-</body>
-
-</html>
+{{content}}

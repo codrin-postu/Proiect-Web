@@ -94,12 +94,12 @@ abstract class Model
         return empty($this->errors);
     }
 
-    public function addError(string $input, $message)
+    public function addError(string $input, string $data)
     {
-        $this->errors[$input][] = $message; 
+        $this->errors[$input][] = $data; 
     }
 
-    private function addErrorRule(string $input, string $rule, $data = [])
+    private function addErrorRule(string $input, string $rule, array $data = [])
     {
         $message = $this->errorMessages()[$rule] ?? '';
         foreach ($data as $key => $value) {
