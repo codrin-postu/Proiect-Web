@@ -1,3 +1,8 @@
+<?php
+use core\Application;
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,11 +17,7 @@
         rel="stylesheet">
     <script src="https://kit.fontawesome.com/86fe649324.js" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" type="text/css" href="<?php
-
-use core\Application;
-
-echo array_key_exists("relPath", $data) ? $data["relPath"].'/assets/styles/'.$data["stylesheet"] : '/assets/stylesheet/dashboard.css'?>"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo array_key_exists("relPath", $data) ? $data["relPath"].'/assets/styles/'.$data["stylesheet"] : '/assets/stylesheet/dashboard.css'?>"/>
 
     <title>ClassMa <?php echo array_key_exists("pageTitle", $data) ? "| ".$data["pageTitle"] : ''?></title>
 </head>
@@ -27,8 +28,12 @@ echo array_key_exists("relPath", $data) ? $data["relPath"].'/assets/styles/'.$da
             <i class="fas fa-bars" id="header-toggle"></i>
         </div>
 
+        <div class="header-account">
         <div class="header-img">
             <img src="<?php echo array_key_exists("relPath", $data) ? $data["relPath"].'/assets/images/png/codrin-img.png' : '/assets/images/png/codrin-img.png'?>" alt="Profile Picture">
+            
+        </div>
+        <a href="/logout">Logout</a>
         </div>
     </header>
     <div class="l-navbar first-navbar" id="navbar">
@@ -46,15 +51,15 @@ echo array_key_exists("relPath", $data) ? $data["relPath"].'/assets/styles/'.$da
                 <div class="nav-list">
                     <!-- Navigation Section -->
                     <span class="nav-section">Navigation</span>
-                    <a href="./account.html" class="nav-link">
+                    <a href="/dashboard/account" class="nav-link">
                         <i class="far fa-user"></i>
                         <span class="nav-name">Your Account</span>
                     </a>
-                    <a href="./security.html" class="nav-link">
+                    <a href="/dashboard/security" class="nav-link">
                         <i class="fas fa-cog"></i>
                         <span class="nav-name">Security & Privacy</span>
                     </a>
-                    <a href="./join-classroom.html" class="nav-link">
+                    <a href="/dashboard/classroom/join" class="nav-link">
                         <i class="far fa-sticky-note"></i>
                         <span class="nav-name">Join A Classroom</span>
                     </a>

@@ -17,4 +17,15 @@ class DashboardController extends Controller
         $this->setLayout('dashboardheader');
         return $this->render('dashboard/welcome', $data);
     }
+
+    public function dashboardAccount(Request $request)
+    {
+        $data = [
+            'pageTitle' => 'Account',
+            'relPath' => '..',
+            'stylesheet' => 'dashboard.css',
+        ];
+        $this->setLayout('dashboardheader');
+        return $this->render('dashboard/account', $data);
+    }
 }

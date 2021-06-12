@@ -26,11 +26,17 @@ class LoginController extends Controller
         if ($request->isPost()) {
             $login->loadData($request->getBody());
             if ($login->validate() && $login->finalize()) {
-                $response->redirect('/dashboard/welcome');
+                $response->redirect('dashboard/welcome');
                 exit;
             }
         }
         $this->setLayout('mainhead');
         return $this->render('login', $data);
+    }
+
+    public function logout(Request $request, Response $response)
+    {
+        Application::$application->logout();
+        $response->redirect('/login');
     }
 }

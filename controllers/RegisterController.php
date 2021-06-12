@@ -25,7 +25,9 @@ class RegisterController extends Controller
 
             if ($user->validate() && $user->save()) 
             {
-                return 'Account created!';
+                Application::$application->session->setFlash('success', 'Your account has been registered succesfully!');
+                Application::$application->response->redirect('/dashboard/welcome');
+                exit;
             }
             return $this->render('register/academic', $data);
         }
