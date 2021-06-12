@@ -5,12 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ClassMan | <?php echo $data['exception']->getCode() ?> </title>
+    <link rel="stylesheet" type="text/css" href='/assets/styles/error.css'/>
 </head>
 <body>
     <section>
-        <h1><?php echo $data['exception']->getCode() ?> </h1>
-        <p><?php echo $data['exception']->getMessage() ?></p>
-        <a href="/">Go back</a>
+        <img src="/assets/images/svg/<?php echo $data['exception']->getCode() ?>.svg" alt="">
+        <h1><span class='emphasis'>Oh no!</span> <?php echo $data['exception']->getMessage() ?></h1>
+        <p>You may find these links useful:</p>
+        <a href="/">Homepage</a>
+        <a href="/login">Login</a>
     </section>
 </body>
 </html>

@@ -1,0 +1,64 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+  background: #fff;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+img {
+  width: 90vw;
+  margin: 4em auto 3em;
+}
+
+h1 {
+  font-size: 1.3em;
+
+  margin: 1em 1em 2em;
+  text-align: center;
+}
+
+.emphasis {
+  color: #e74c3c;
+}
+
+p {
+  font-size: 0.9em;
+  font-weight: 500;
+  margin-bottom: 1em;
+}
+
+a {
+  color: #1d2a36;
+  text-decoration: none;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+@media screen and (min-width: 860px) {
+  img {
+    width: 60vw;
+    max-height: 60vh;
+    max-width: 50em;
+  }
+}
