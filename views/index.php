@@ -97,21 +97,17 @@
     <div class="contact">
       <div class="contact-form">
         <h2>Ask us any questions.</h2>
-        <form action="/nothing.js" target="_self">
-          <p>
-            <input class="input" type="text" placeholder="Name" name="Name" required />
-          </p>
-          <p>
-            <input class="input" type="email" placeholder="Email" name="Email" required />
-          </p>
-          <p>
-            <input class="input" type="text" placeholder="Subject" name="Subject" required />
-          </p>
-          <p>
-            <input class="input" type="text" placeholder="Message" name="Message" required />
-          </p>
-          <button type="submit">Send</button>
-        </form>
+        <?php $form = core\form\Form::begin('', 'POST') ?>
+            <?php echo $form->field($data['model'], 'name', 'Your name')->setField(core\form\Field::TYPE_TEXT); ?>
+            <?php echo $form->field($data['model'], 'email', 'Your Email')->setField(core\form\Field::TYPE_EMAIL); ?>
+            <?php echo $form->field($data['model'], 'subject', 'Subject')->setField(core\form\Field::TYPE_TEXT); ?>
+            <?php echo $form->field($data['model'], 'message', 'Message')->setField(core\form\Field::TYPE_TEXT); ?>
+    
+            <button type="submit">Send</button>
+        <?php core\form\Form::end() ?>
+        <?php if (\core\Application::$application->session->getFlash('success')): ?>
+                    <?php echo '<p>'.\core\Application::$application->session->getFlash('success').'</p>'; ?>
+                <?php endif; ?>  
       </div>
       <div class="contact-info">
         <h2>Contact Us</h2>

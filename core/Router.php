@@ -37,7 +37,6 @@ class Router
         if (!$callback) 
         {
             Application::$application->controller = new Controller();
-            $this->response->setStatusCode(404);
             throw new NotFoundException();
         }
 

@@ -2,7 +2,7 @@
 
 namespace core;
 
-use core\middlewares\Middleware;
+use core\Middleware;
 
 class Controller
 {

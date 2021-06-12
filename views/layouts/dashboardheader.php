@@ -59,10 +59,18 @@ use core\Application;
                         <i class="fas fa-cog"></i>
                         <span class="nav-name">Security & Privacy</span>
                     </a>
+                    <?php if(Application::$application->user->isAcademic()) : ?>
+                    <a href="/dashboard/classroom/create" class="nav-link">
+                        <i class="far fa-sticky-note"></i>
+                        <span class="nav-name">Create A Classroom</span>
+                    </a>
+                    <?php else : ?>
                     <a href="/dashboard/classroom/join" class="nav-link">
                         <i class="far fa-sticky-note"></i>
                         <span class="nav-name">Join A Classroom</span>
                     </a>
+                    <?php endif; ?>
+
                     <!-- Your Classes section -->
                     <span class="nav-section">Your Classes</span>
                     <div class="nav-class">

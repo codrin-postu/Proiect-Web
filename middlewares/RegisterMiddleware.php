@@ -1,8 +1,8 @@
 <?php
 
-namespace core\middlewares;
+namespace middlewares;
 
-use core\middlewares\Middleware;
+use core\Middleware;
 use core\Application;
 use core\exceptions\ForbiddenException;
 

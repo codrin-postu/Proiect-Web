@@ -4,13 +4,22 @@ namespace controllers;
 
 use core\Controller;
 use core\Request;
-use core\middlewares\RegisterMiddleware;
+use middlewares\AcademicMiddleware;
+use middlewares\RegisterMiddleware;
 
 class DashboardController extends Controller
 {
     public function __construct()
     {
-        $this->registerMiddleware(new RegisterMiddleware(['dashboardWelcome', 'dashboardAccount']));
+        $this->registerMiddleware(new RegisterMiddleware([
+            'dashboardWelcome', 
+            'dashboardAccount',
+            'dashboardSecurity'
+        ]));
+        
+        $this->registerMiddleware(new AcademicMiddleware([
+            'dashboardClassroomCreate'
+        ]));
     }
 
     public function dashboardWelcome(Request $request)

@@ -49,6 +49,7 @@ class Application
         try {
             echo $this->router->resolve();
         } catch (Exception $e) {
+            $this->response->setStatusCode($e->getCode());
             echo $this->router->renderView("_error", ["exception" => $e]);
         }
         
@@ -83,6 +84,14 @@ class Application
     public static function isGuest()
     {
         return !self::$application->user;
+    }
+
+    public static function isAcademic()
+    {
+        echo '<pre>';
+        var_dump(self::$application->user->isAcademic());
+        echo '</pre>';
+        return !self::$application->user->isAcademic();
     }
 
 }

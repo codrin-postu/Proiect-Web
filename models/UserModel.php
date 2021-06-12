@@ -27,6 +27,16 @@ class UserModel extends DatabaseModel
         return 'id';
     }
 
+    public function isAcademic()
+    {
+        return $this->accountType === 'academic';
+    }
+
+    public function isStudent()
+    {
+        return $this->accountType === 'student';
+    }
+
     public function tableName() : string
     {
         return 'users';

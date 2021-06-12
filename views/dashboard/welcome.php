@@ -11,12 +11,10 @@
                     <?php echo '<p>'.\core\Application::$application->session->getFlash('success').'</p>'; ?>
                 <?php endif; ?>  
 
-                <?php if (\core\Application::isGuest()): ?>
-                    <p>Hey you are not logged into your account! Please log in at <a href="/login"></a></p>
-                <?php else: ?>
-                    <p>Welcome <span class="emphasis"><?php echo \core\Application::$application->user->getDisplayName() ?></span></p>
+                <?php if (!\core\Application::isGuest()): ?>
+                    <p>Welcome <span class="emphasis"><?php echo \core\Application::$application->user->getDisplayName() ?></span>.</p>
                 <p>Use the Sidebar menu to join a Classroom using the
-                    <span class="emphasis">Unique Code</span> provided by your Professor or Administrator
+                    <span class="emphasis">Unique Code</span> provided by your Professor or Administrator.
                 </p>
                 <?php endif; ?>
             </div>

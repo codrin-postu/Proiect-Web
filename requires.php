@@ -11,12 +11,13 @@ require __DIR__."/core/Model.php";
 require __DIR__."/core/Database.php";
 require __DIR__."/core/DatabaseModel.php";
 require __DIR__."/core/Session.php";
+require __DIR__."/core/Middleware.php";
 
 require __DIR__."/core/exceptions/NotFoundException.php";
 require __DIR__."/core/exceptions/ForbiddenException.php";
 
-require __DIR__."/core/middlewares/Middleware.php";
-require __DIR__."/core/middlewares/RegisterMiddleware.php";
+require __DIR__."/middlewares/RegisterMiddleware.php";
+require __DIR__."/middlewares/AcademicMiddleware.php";
 
 require __DIR__."/core/form/Form.php";
 require __DIR__."/core/form/Field.php";
@@ -32,5 +33,6 @@ require __DIR__."/controllers/DashboardController.php";
 
 require __DIR__."/models/UserModel.php";
 require __DIR__."/models/LoginModel.php";
+require __DIR__."/models/ContactModel.php";
 
 require __DIR__."/config.php";

@@ -13,6 +13,7 @@ use core\Application;
 $application = new Application(dirname(__DIR__)); //send in the project root DIR
 
 $application->router->get('/', [PageController::class, 'index']);
+$application->router->post('/', [PageController::class, 'index']);
 
 $application->router->get('/login', [LoginController::class, 'login']);
 $application->router->post('/login', [LoginController::class, 'login']);
