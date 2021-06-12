@@ -2,12 +2,15 @@
 
 namespace core;
 
+use Exception;
+
 class Application
 {
 
     public static Application $application;
     public static string $rootDir;
 
+    public string $layout = 'mainhead';
     public string $userClass;
     public Router $router;
     public Request $request;
@@ -43,7 +46,12 @@ class Application
 
     public function run()
     {
-        echo $this->router->resolve();
+        try {
+            echo $this->router->resolve();
+        } catch (Exception $e) {
+            echo $this->router->renderView("_error", ["exception" => $e]);
+        }
+        
     }
 
     public function getController()

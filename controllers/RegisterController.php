@@ -7,8 +7,15 @@ use core\Controller;
 use core\Request;
 use models\UserModel;
 
+use core\middlewares\RegisterMiddleware;
+
 class RegisterController extends Controller
 {
+
+    public function __construct()
+    {
+        //$this->registerMiddleware(new RegisterMiddleware(['dashboardWelcome', 'dashboardAccount']));
+    }
 
     public function registerAcademic(Request $request)
     {

@@ -4,9 +4,15 @@ namespace controllers;
 
 use core\Controller;
 use core\Request;
+use core\middlewares\RegisterMiddleware;
 
 class DashboardController extends Controller
 {
+    public function __construct()
+    {
+        $this->registerMiddleware(new RegisterMiddleware(['dashboardWelcome', 'dashboardAccount']));
+    }
+
     public function dashboardWelcome(Request $request)
     {
         $data = [

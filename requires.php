@@ -12,6 +12,12 @@ require __DIR__."/core/Database.php";
 require __DIR__."/core/DatabaseModel.php";
 require __DIR__."/core/Session.php";
 
+require __DIR__."/core/exceptions/NotFoundException.php";
+require __DIR__."/core/exceptions/ForbiddenException.php";
+
+require __DIR__."/core/middlewares/Middleware.php";
+require __DIR__."/core/middlewares/RegisterMiddleware.php";
+
 require __DIR__."/core/form/Form.php";
 require __DIR__."/core/form/Field.php";
 
