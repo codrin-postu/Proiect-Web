@@ -42,4 +42,19 @@ $application->router->get('/dashboard/classroom/join', [DashboardController::cla
 $application->router->get('/dashboard/classroom/create', [DashboardController::class, 'dashboardClassroomCreate']);
 // $application->router->post('/dashboard/classroom/create', [DashboardController::class, 'dashboardClassroomCreate']);
 
+$application->router->get('/dashboard/classroom/{classroomId}/info', [ClassroomController::class, 'classroomInfo']);
+
+$application->router->get('/dashboard/classroom/{classroomId}/documentation', [ClassroomController::class, 'classroomDocumentation']);
+
+$application->router->get('/dashboard/classroom/{classroomId}/attendance', [ClassroomController::class, 'classroomAttendance']);
+
+$application->router->get('/dashboard/classroom/{classroomId}/attendance', [ClassroomController::class, 'classroomAttendance']);
+
+$application->router->get('/dashboard/classroom/{classroomId}/grades', [ClassroomController::class, 'classroomGrades']);
+
+$application->router->get('/dashboard/classroom/{classroomId}/homework', [ClassroomController::class, 'classroomHomeworkList']);
+
+$application->router->get('/dashboard/classroom/{classroomId}/homework/{hwId}', [ClassroomController::class, 'classroomHomework']);
+$application->router->post('/dashboard/classroom/{classroomId}/homework/{hwId}', [ClassroomController::class, 'classroomHomework']);
+
 $application->run();
