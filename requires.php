@@ -28,6 +28,7 @@ require __DIR__."/controllers/PageController.php";
 require __DIR__."/controllers/RegisterController.php";
 require __DIR__."/controllers/LoginController.php";
 require __DIR__."/controllers/DashboardController.php";
+require __DIR__."/controllers/ClassroomController.php";
 
 // Models
 

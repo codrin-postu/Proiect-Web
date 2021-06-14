@@ -79,7 +79,7 @@ use core\Application;
                             <span class="class-title">Web Technologies</span>
                         </div>
                         <div class="class-links">
-                            <a href="./classroom/class-information.html" class="nav-link">
+                            <a href="/dashboard/classroom/{classroomId}/info" class="nav-link">
                                 <i class="fas fa-book-open"></i>
                                 <span class="nav-name">Class Information</span>
                             </a>

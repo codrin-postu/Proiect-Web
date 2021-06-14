@@ -17,8 +17,5 @@ class migration02_renameUserColumn
 
     public function down()
     {
-        $database = Application::$application->database;
-        $stmt = "DROP TABLE users;";
-        $database->pdo->exec($stmt);
     }
 }

@@ -7,7 +7,7 @@ use core\Request;
 use middlewares\AcademicMiddleware;
 use middlewares\RegisterMiddleware;
 
-class DashboardController extends Controller
+class ClassroomController extends Controller
 {
     public function __construct()
     {
@@ -22,29 +22,14 @@ class DashboardController extends Controller
         ]));
     }
 
-    public function dashboardWelcome(Request $request)
+    public function classroomInfo(Request $request)
     {
-        echo '<pre>';
-        preg_match('/\d+\/',$request->getPath(), $matches);
-        var_dump($matches);
-        echo '</pre>';
         $data = [
             'pageTitle' => 'Welcome',
             'relPath' => '..',
             'stylesheet' => 'dashboard.css',
         ];
         $this->setLayout('dashboardheader');
-        return $this->render('dashboard/welcome', $data);
-    }
-
-    public function dashboardAccount(Request $request)
-    {
-        $data = [
-            'pageTitle' => 'Account',
-            'relPath' => '..',
-            'stylesheet' => 'dashboard.css',
-        ];
-        $this->setLayout('dashboardheader');
-        return $this->render('dashboard/account', $data);
+        return $this->render('dashboard/classroom/classinfo', $data);
     }
 }

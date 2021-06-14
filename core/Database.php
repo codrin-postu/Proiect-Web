@@ -15,7 +15,7 @@ class Database
 
     public function applyMigrations()
     {
-        $migrationsToApply = [];
+        $migrationsApplied = [];
         $this->createMigrationsTable();
         $appliedMigrations = $this->getAppliedMigrations();
 
@@ -33,14 +33,14 @@ class Database
             $migrationClass = pathinfo($migration, PATHINFO_FILENAME);  //returns the name of the file without .php extension
             $instance = new $migrationClass();
             $this->log("Applying migration: $migrationClass");
+            $instance->down();
             $instance->up();  //applying migrations that are not part of the applied migrations table
             $this->log("Applied migration: $migrationClass");
-            $migrationsToApply[] = $migration;
+            $this->saveMigration($migration);
+            $migrationsApplied[] = $migration;
         }
 
-        if (!empty($migrationsToApply)) {
-            $this->saveMigrations($migrationsToApply);
-        } else {
+        if (empty($migrationsToApply)) {
             $this->log("All migrations have been already applied.");
         }
     }
@@ -67,6 +67,15 @@ class Database
         $migrationsString = implode(", ", array_map(fn($m) => "('$m')", $migrations));
         $stmt = $this->pdo->prepare("INSERT INTO migrations (migration) VALUES 
                 $migrationsString
+            ");
+        $stmt->execute();
+    }
+
+    public function saveMigration(string $migration)
+    {
+        $migrationString = implode (" ", array_map(fn($m) => "('$m')", [$migration]));
+        $stmt = $this->pdo->prepare("INSERT INTO migrations (migration) VALUES 
+                $migrationString
             ");
         $stmt->execute();
     }
