@@ -35,5 +35,6 @@ require __DIR__."/controllers/ClassroomController.php";
 require __DIR__."/models/UserModel.php";
 require __DIR__."/models/LoginModel.php";
 require __DIR__."/models/ContactModel.php";
+require __DIR__."/models/ClassroomModel.php";
 
 require __DIR__."/config.php";

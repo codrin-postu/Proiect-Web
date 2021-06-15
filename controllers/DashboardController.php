@@ -6,6 +6,7 @@ use core\Controller;
 use core\Request;
 use middlewares\AcademicMiddleware;
 use middlewares\RegisterMiddleware;
+use models\ClassroomModel;
 
 class DashboardController extends Controller
 {
@@ -39,6 +40,7 @@ class DashboardController extends Controller
 
     public function dashboardAccount(Request $request)
     {
+        
         $data = [
             'pageTitle' => 'Account',
             'relPath' => '..',
@@ -46,5 +48,40 @@ class DashboardController extends Controller
         ];
         $this->setLayout('dashboardheader');
         return $this->render('dashboard/account', $data);
+    }
+
+    public function dashboardSecurity(Request $request)
+    {
+        $data = [
+            'pageTitle' => 'Security',
+            'relPath' => '..',
+            'stylesheet' => 'dashboard.css',
+        ];
+        $this->setLayout('dashboardheader');
+        return $this->render('dashboard/security', $data);
+    }
+
+    public function dashboardClassroomJoin(Request $request)
+    {
+        $data = [
+            'pageTitle' => 'Join a Classroom',
+            'relPath' => '../..',
+            'stylesheet' => 'dashboard.css',
+        ];
+        $this->setLayout('dashboardheader');
+        return $this->render('dashboard/joinclassroom', $data);
+    }
+
+    public function dashboardClassroomCreate(Request $request)
+    {
+        $model = new ClassroomModel();
+        $data = [
+            'pageTitle' => 'Create a Classroom',
+            'relPath' => '../..',
+            'stylesheet' => 'dashboard.css',
+            'model' => $model
+        ];
+        $this->setLayout('dashboardheader');
+        return $this->render('dashboard/createclassroom', $data);
     }
 }

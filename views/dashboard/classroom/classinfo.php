@@ -116,7 +116,7 @@
 
     <!-- JS Scripts -->
     <script>document.body.classList.remove('stop-transition-load')</script>
-    <script src="../../scripts/dashboard-sidemenu.js"></script>
+    <script src="/assets/scripts/dashboard-sidemenu.js"></script>
 </body>
 
 </html>
