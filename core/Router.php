@@ -30,9 +30,8 @@ class Router
     {
         $path = preg_replace('/\/\d+/ i', '/:id', $this->request->getPath());
         $method = $this->request->method();
-
-        
-
+        var_dump(date('Y-m-d h:i:s', time() + (30 * 60)));
+        exit;
         $callback = $this->routes[$method][$path] ?? false;
 
         //var_dump($callback); //Check for callback status.
