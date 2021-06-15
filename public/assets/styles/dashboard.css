@@ -427,38 +427,45 @@ section .emphasis {
 /* Input Forms  */
 
 .section-content form {
-  padding: 0.5em 0 0 0;
+  padding: 0.2em 0 0 0;
   position: relative;
 }
 
 .section-content input {
-  width: 90%;
-  padding: 0.5em 0 0.5em 0;
-  margin-bottom: 1.1em;
+  width: 95%;
+  padding: 0.2em 0;
 
   caret-color: var(--accent-orange-color);
 
   border: none;
-  border-bottom: 2px solid var(--nav-background-color);
+  border-bottom: 1px solid var(--nav-background-color);
   outline: none;
 
   background: transparent;
 
   color: var(--nav-background-color);
   font-size: 1.3em;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .section-content input::placeholder {
-  font-weight: 500;
+  font-weight: 400;
   text-transform: none;
 }
 
 .section-content input:focus {
-  border-bottom: 2px solid #e67e22;
+  width: 100%;
+  border-bottom: 1px solid #e67e22;
 
   transition: ease-in-out 0.3s;
   transition-property: border-bottom;
+}
+
+.section-content form p {
+  margin: 0.1em 0 0.3em;
+  padding: 0.3em 0.1em 0.5em;
+  font-size: 1em;
+  color: var(--accent-red-color);
 }
 
 .section-content button {

@@ -86,4 +86,6 @@ class UserModel extends DatabaseModel
     {
         return ucfirst($this->accountType);
     }
+
+    
 }

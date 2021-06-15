@@ -21,6 +21,8 @@ class Field
     public const TYPE_BUTTON = 'button';
     public const TYPE_SUBMIT = 'submit';
     public const TYPE_HIDDEN = 'hidden';
+    public const TYPE_TEXTAREA = 'textarea';
+    public const TYPE_SELECT = 'select';
 
     public string $fieldType;
     public Model $model;

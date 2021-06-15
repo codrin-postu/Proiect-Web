@@ -65,12 +65,12 @@ class ClassroomModel extends DatabaseModel
     public function rules() : array
     {
         return [
-            'name' => [self::RULE_REQUIRED, self::RULE_TEXT],
-            'description' => [self::RULE_REQUIRED, self::RULE_TEXT],
-            'duration' => [self::RULE_TEXT],
-            'commitment' => [self::RULE_REQUIRED, self::RULE_EMAIL, [self::RULE_UNIQUE, 'table' => self::class]],
-            'classCount' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 8], [self::RULE_MAX, 'max' => 64], self::RULE_PASS],
-            'subject' => [self::RULE_REQUIRED, [self::RULE_MATCH, 'matchAttribute' => 'password']],
+            'name' => [self::RULE_REQUIRED],
+            'description' => [self::RULE_REQUIRED],
+            'duration' => [self::RULE_REQUIRED],
+            'commitment' => [self::RULE_REQUIRED],
+            'classCount' => [self::RULE_REQUIRED],
+            'subject' => [self::RULE_REQUIRED],
             'evaluation' => [self::RULE_REQUIRED],
             'difficulty' => [self::RULE_REQUIRED],
             'prerequisites' => [self::RULE_REQUIRED],
