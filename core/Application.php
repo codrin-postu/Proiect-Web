@@ -86,12 +86,4 @@ class Application
         return !self::$application->user;
     }
 
-    public static function isAcademic()
-    {
-        echo '<pre>';
-        var_dump(self::$application->user->isAcademic());
-        echo '</pre>';
-        return !self::$application->user->isAcademic();
-    }
-
 }

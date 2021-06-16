@@ -2,11 +2,13 @@
 
 namespace controllers;
 
+use core\Application;
 use core\Controller;
 use core\Request;
 use middlewares\AcademicMiddleware;
 use middlewares\RegisterMiddleware;
 use models\ClassroomModel;
+
 
 class DashboardController extends Controller
 {
@@ -26,7 +28,7 @@ class DashboardController extends Controller
     public function dashboardWelcome(Request $request)
     {
         echo '<pre>';
-        preg_match('/\d+\/',$request->getPath(), $matches);
+        preg_match('/\/\d+\//',$request->getPath(), $matches);
         var_dump($matches);
         echo '</pre>';
         $data = [
@@ -74,13 +76,23 @@ class DashboardController extends Controller
 
     public function dashboardClassroomCreate(Request $request)
     {
-        $model = new ClassroomModel();
+        $classroom = new ClassroomModel();
         $data = [
             'pageTitle' => 'Create a Classroom',
             'relPath' => '../..',
             'stylesheet' => 'dashboard.css',
-            'model' => $model
+            'model' => $classroom
         ];
+
+        if($request->isPost()) {
+            $classroom->loadData($request->getBody());
+
+            if ($classroom->validate() && $classroom->save()) {
+                Application::$application->session->setFlash('success', 'The classroom has been created succesfully!');
+                Application::$application->response->redirect('/dashboard/classroom/create');
+                exit;
+            }
+        }
         $this->setLayout('dashboardheader');
         return $this->render('dashboard/createclassroom', $data);
     }

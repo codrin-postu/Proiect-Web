@@ -2,7 +2,7 @@
     <!-- Dashboard Content  -->
     <div class="main-content">
 
-        <section class="join-classroom create-classroom">
+        <section class="create-classroom">
             <div class="section-header">
                 <h2>Create a Classroom</h2>
             </div>

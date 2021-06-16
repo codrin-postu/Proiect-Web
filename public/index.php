@@ -29,7 +29,7 @@ $application->router->post('/register/student', [RegisterController::class, 'reg
 
 // All dashboard routes \/
 
-$application->router->get('/dashboard/welcome/:id', [DashboardController::class, 'dashboardWelcome']);
+$application->router->get('/dashboard/welcome', [DashboardController::class, 'dashboardWelcome']);
 
 $application->router->get('/dashboard/account', [DashboardController::class, 'dashboardAccount']);
 // $application->router->post('/dashboard/account', [DashboardController::class, 'dashboardAccount']);
@@ -41,7 +41,7 @@ $application->router->get('/dashboard/classroom/join', [DashboardController::cla
 // $application->router->post('/dashboard/classroom/join', [DashboardController::class, 'dashboardClassroomJoin']);
 
 $application->router->get('/dashboard/classroom/create', [DashboardController::class, 'dashboardClassroomCreate']);
-// $application->router->post('/dashboard/classroom/create', [DashboardController::class, 'dashboardClassroomCreate']);
+$application->router->post('/dashboard/classroom/create', [DashboardController::class, 'dashboardClassroomCreate']);
 
 $application->router->get("/dashboard/classroom/:id/info", [ClassroomController::class, 'classroomInfo']);
 
