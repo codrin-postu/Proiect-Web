@@ -4,7 +4,7 @@ namespace core\form;
 
 use core\Model;
 
-class Form 
+class Form
 {
     public static function begin($action, $method)
     {
@@ -17,8 +17,8 @@ class Form
         echo '</form>';
     }
 
-    public function field(Model $model, $inputType, $value = '') 
-    {   
-        return new Field($model, $inputType, $value);
+    public function field(Model $model, $inputType = '', $value = '', $attributes = '')
+    {
+        return new Field($model, $inputType, $value, $attributes);
     }
 }

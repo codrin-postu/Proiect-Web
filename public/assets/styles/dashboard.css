@@ -323,7 +323,6 @@ a {
   justify-content: space-around; /* Fixes the navbar open/close state */
   flex-wrap: wrap;
   height: 100vh;
-  padding-bottom: 5em;
   overflow-y: scroll;
 
   align-content: flex-start;
@@ -429,56 +428,118 @@ section .emphasis {
 .section-content form {
   padding: 0.2em 0 0 0;
   position: relative;
+  max-width: 60em;
 }
 
-.section-content input {
-  width: 95%;
-  padding: 0.2em 0;
-
-  caret-color: var(--accent-orange-color);
-
+.section-content form fieldset {
   border: none;
-  border-bottom: 1px solid var(--nav-background-color);
+  margin: 1em 0;
+}
+
+.section-content form legend {
+  font-size: 1.7em;
+  margin-bottom: 0.6em;
+}
+
+.section-content form .number {
+  display: inline-block;
+  text-align: center;
+  border-radius: 15px 15px 15px 0;
+
+  margin: 0 0.5em 0 1em;
+  height: 1.5;
+  width: 1.5em;
+
+  background: #e67e22;
+  color: #fff;
+}
+
+.section-content form input,
+.section-content form textarea,
+.section-content form select {
+  box-sizing: border-box;
   outline: none;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  padding: 10px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
 
-  background: transparent;
+  background: #e9e9e9;
+  caret-color: var(--nav-color-dark);
+  color: #5e5454;
 
-  color: var(--nav-background-color);
   font-size: 1.3em;
   font-weight: 400;
+  font-family: "Poppins", sans-serif;
+}
+
+.section-content form textarea {
+  resize: vertical;
+}
+
+.section-content form select {
+  -webkit-appearance: menulist-button;
+  -moz-appearance: menulist-button;
+  appearance: none;
+
+  height: 35px;
 }
 
 .section-content input::placeholder {
   font-weight: 400;
+  color: #ada5a5;
   text-transform: none;
 }
 
 .section-content input:focus {
-  width: 100%;
-  border-bottom: 1px solid #e67e22;
+  background: #e2e2e2;
 
-  transition: ease-in-out 0.3s;
-  transition-property: border-bottom;
+  transition: ease-in-out 0.2s;
+  transition-property: background;
+}
+
+.section-content form .invalid-feedback {
+  display: block;
+  margin: 0.5em 0 1em 1.5em;
 }
 
 .section-content form p {
-  margin: 0.1em 0 0.3em;
   padding: 0.3em 0.1em 0.5em;
   font-size: 1em;
   color: var(--accent-red-color);
 }
 
+/* Form Rows */
+
+.section-content form .row {
+  display: flex;
+  flex-basis: auto;
+  justify-content: space-between;
+}
+
+form .row .form-group:nth-child(2) {
+  margin-left: 4em;
+}
+
+.section-content .row .form-group {
+  width: 90%;
+}
+
+/* End Form Rows */
+
+/* Button Design */
+
 .section-content button {
   border: none;
   border-radius: 10px;
   outline: none;
-  padding: 0 0.5em;
+  padding: 0.5em;
 
-  height: 1.8em;
   min-width: 6em;
-  width: fit-content;
+  max-width: fit-content;
 
-  margin: 0.5em 0 1em;
+  margin: 0.5em 1em 1em;
 
   background-image: url(../images/png/red-orange-gradient-harsh.png);
   background-size: cover;
@@ -486,10 +547,12 @@ section .emphasis {
 
   color: #fff;
   font-size: 1.7em;
+  font-family: "Poppins", sans-serif;
 
   transition: ease 0.5s;
   transition-property: background-position;
 }
+
 .section-content button:hover {
   cursor: pointer;
   background-image: url(../images/png/red-orange-gradient-harsh.png);
@@ -512,10 +575,6 @@ section .emphasis {
   max-height: 45vh;
 }
 
-.create-classroom .section-content {
-  max-height: 80vh;
-}
-
 .join-classroom p {
   max-width: 90%;
 }
@@ -523,6 +582,18 @@ section .emphasis {
 .join-classroom input {
   text-transform: uppercase;
 }
+
+/* Create Account Page Specific */
+
+.create-classroom .section-content {
+  max-height: 88vh;
+}
+
+.create-classroom {
+  max-width: 100ch;
+}
+
+/* End Create Account Page Specific */
 
 /* Edit Account Page Specific  */
 
@@ -984,7 +1055,7 @@ section .emphasis {
 
   .homework-detail .homework-text {
     flex-basis: 100ch;
-    flex-grow: 140ch;
+    flex-grow: 0;
   }
 
   .homework-detail .homework-status {

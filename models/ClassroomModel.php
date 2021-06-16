@@ -19,50 +19,53 @@ class ClassroomModel extends DatabaseModel
     public string $prerequisites = '';
     public string $credits = '';
     public string $topics = '';
+    public string $disabled = ''; //Not to be used. Just for disabled inputs
 
-    public function primaryKey() : string
+    public function primaryKey(): string
     {
         return 'id';
     }
 
-    public function tableName() : string
+    public function tableName(): string
     {
         return 'classrooms';
     }
 
-    public function columnsToInput() : array
+    public function columnsToInput(): array
     {
-        return ['name', 
-            'description', 
-            'duration', 
-            'commitment', 
-            'classCount', 
-            'subject', 
+        return [
+            'name',
+            'description',
+            'duration',
+            'commitment',
+            'classCount',
+            'subject',
             'evaluation',
-            'difficulty', 
-            'prerequisites', 
-            'credits', 
+            'difficulty',
+            'prerequisites',
+            'credits',
             'topics'
         ];
     }
 
-    public function inputs() : array
+    public function inputs(): array
     {
-            return ['name', 
-            'description', 
-            'duration', 
-            'commitment', 
-            'classCount', 
-            'subject', 
+        return [
+            'name',
+            'description',
+            'duration',
+            'commitment',
+            'classCount',
+            'subject',
             'evaluation',
-            'difficulty', 
-            'prerequisites', 
-            'credits', 
+            'difficulty',
+            'prerequisites',
+            'credits',
             'topics'
         ];
     }
 
-    public function rules() : array
+    public function rules(): array
     {
         return [
             'name' => [self::RULE_REQUIRED],
@@ -74,9 +77,7 @@ class ClassroomModel extends DatabaseModel
             'evaluation' => [self::RULE_REQUIRED],
             'difficulty' => [self::RULE_REQUIRED],
             'prerequisites' => [self::RULE_REQUIRED],
-            'credits' => [self::RULE_REQUIRED],
             'topics' => [self::RULE_REQUIRED],
         ];
     }
-
 }
