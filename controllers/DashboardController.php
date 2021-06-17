@@ -61,7 +61,6 @@ class DashboardController extends Controller
             'model' => $userUpdate
         ];
 
-
         $userUpdate->loadData([
             'id' => $user->id,
             'firstName' => $user->firstName,
@@ -73,10 +72,6 @@ class DashboardController extends Controller
         if ($request->isPost()) {
             $userUpdate->loadData($request->getBody());
 
-            // echo "<pre>";
-            // var_dump($userUpdate);
-            // echo "</pre>";
-            // exit;
             if ($userUpdate->validate() && $userUpdate->update()) {
                 Application::$application->session->setFlash('success', 'Your information has been updated!');
                 Application::$application->response->redirect('/dashboard/account');
@@ -98,7 +93,6 @@ class DashboardController extends Controller
             'model' => $passwordUpdate
         ];
 
-
         $passwordUpdate->loadData([
             'id' => $user->id,
             'currentPassword' => $user->password,
@@ -107,10 +101,6 @@ class DashboardController extends Controller
         if ($request->isPost()) {
             $passwordUpdate->loadData($request->getBody());
 
-            // echo "<pre>";
-            // var_dump($userUpdate);
-            // echo "</pre>";
-            // exit;
             echo 'reaches this';
             if ($passwordUpdate->validate() && $passwordUpdate->update()) {
                 Application::$application->session->setFlash('success', 'Your password has been updated!');
@@ -118,6 +108,8 @@ class DashboardController extends Controller
                 exit;
             }
         }
+
+
 
         $this->setLayout('dashboardheader');
         return $this->render('dashboard/security', $data);
@@ -159,10 +151,6 @@ class DashboardController extends Controller
         $classroom = new ClassroomModel();
         $user = Application::$application->session->get('user');
         $userClassroom = new UserClassroomModel();
-        // echo '<pre>';
-        // var_dump();
-        // echo '</pre>';
-
 
         $data = [
             'pageTitle' => 'Create a Classroom',

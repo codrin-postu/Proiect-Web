@@ -572,6 +572,10 @@ form .row .row-70 {
 
 /* Custom Container Classes  */
 
+.join-classroom {
+  max-width: 100ch;
+}
+
 .join-classroom .section-content {
   max-height: 45vh;
   max-width: 100ch;
