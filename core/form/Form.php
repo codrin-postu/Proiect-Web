@@ -16,14 +16,4 @@ class Form
     {
         echo '</form>';
     }
-
-    public static function selectBegin($name)
-    {
-        echo sprintf('<select name="%s">', $name);
-    }
-
-    public static function selectEnd()
-    {
-        echo '</select>';
-    }
 }

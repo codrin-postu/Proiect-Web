@@ -18,6 +18,7 @@ require __DIR__ . "/core/exceptions/ForbiddenException.php";
 
 require __DIR__ . "/middlewares/RegisterMiddleware.php";
 require __DIR__ . "/middlewares/AcademicMiddleware.php";
+require __DIR__ . "/middlewares/StudentMiddleware.php";
 
 require __DIR__ . "/core/form/Form.php";
 require __DIR__ . "/core/form/Field.php";
@@ -38,6 +39,7 @@ require __DIR__ . "/models/ContactModel.php";
 require __DIR__ . "/models/ClassroomModel.php";
 require __DIR__ . "/models/UserClassroomModel.php";
 require __DIR__ . "/models/ClassroomJoinModel.php";
+require __DIR__ . "/models/UserUpdateModel.php";
 
 // Fields
 

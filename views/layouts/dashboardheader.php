@@ -39,7 +39,7 @@ use core\Application;
     <div class="l-navbar first-navbar" id="navbar">
         <nav class="nav">
             <div>
-                <a href="#" class="nav-logo">
+                <a href="/dashboard/welcome" class="nav-logo">
                     <img src="<?php echo array_key_exists("relPath", $data) ? $data["relPath"] . '/assets/images/svg/304315.svg' : '/assets/images/png/304315.svg' ?>" alt="Ripe Mango, ClassMa Logo" />
                     <div class="nav-logo-info">
                         <span class="name">ClassMa</span>

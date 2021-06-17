@@ -23,12 +23,10 @@ use fields\TextField;
         </div>
         <div class="section-content">
             <?php $form = core\form\Form::begin('', 'POST') ?>
-            <form action="/nothing.js" target="blank">
-                <?php echo new TextField($data['model'], 'classroomId', 'Enter the 6 digit Classroom code!'); ?>
+            <?php echo new TextField($data['model'], 'classroomId', 'Enter the 6 digit Classroom code!'); ?>
 
-                <button type="submit">Send Code</button>
-                <?php core\form\Form::end() ?>
-            </form>
+            <button type="submit">Send Code</button>
+            <?php core\form\Form::end() ?>
         </div>
     </section>
 

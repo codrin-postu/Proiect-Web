@@ -91,4 +91,14 @@ class UserModel extends DatabaseModel
     {
         return ucfirst($this->accountType);
     }
+
+    public static function getUser($id)
+    {
+        $stmt = self::prepare("SELECT * FROM users WHERE id = :$id;");
+
+        $stmt->bindValue(":$id", $id);
+
+        $stmt->execute();
+        return $stmt->fetchObject(UserModel::class);
+    }
 }

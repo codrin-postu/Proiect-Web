@@ -3,6 +3,7 @@
 namespace core;
 
 use Exception;
+use models\UserModel;
 
 class Application
 {
@@ -18,7 +19,7 @@ class Application
     public Controller $controller;
     public Database $database;
     public Session $session;
-    public ?DatabaseModel $user;
+    public ?UserModel $user;
 
     public function __construct($root)
     {
@@ -36,12 +37,10 @@ class Application
         $primaryValue = $this->session->get('user');
         if ($primaryValue) {
             $primaryKey = (new $this->userClass)->primaryKey();
-            $this->user= (new $this->userClass())->findOne([$primaryKey => $primaryValue]);
+            $this->user = (new $this->userClass())->findOne([$primaryKey => $primaryValue]);
         } else {
             $this->user = NULL;
         }
-        
-        
     }
 
     public function run()
@@ -52,7 +51,6 @@ class Application
             $this->response->setStatusCode($e->getCode());
             echo $this->router->renderView("_error", ["exception" => $e]);
         }
-        
     }
 
     public function getController()
@@ -60,13 +58,13 @@ class Application
         return $this->controller;
     }
 
-    public function setController($controller) 
-    {  
+    public function setController($controller)
+    {
         $this->controller = $controller;
     }
 
     public function login(DatabaseModel $user)
-    {  
+    {
         $this->user = $user;
         $primaryKey = $user->primaryKey();
         $primaryValue = $user->{$primaryKey};
@@ -75,8 +73,8 @@ class Application
         return true;
     }
 
-    public function logout() : void
-    {  
+    public function logout(): void
+    {
         $this->user = NULL;
         $this->session->remove('user');
     }
@@ -85,5 +83,4 @@ class Application
     {
         return !self::$application->user;
     }
-
 }

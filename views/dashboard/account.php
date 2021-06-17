@@ -1,41 +1,47 @@
+<!-- Dashboard Content  -->
+<div class="main-content">
 
-    <!-- Dashboard Content  -->
-    <div class="main-content">
-
-        <section class="edit-account">
+    <?php if (\core\Application::$application->session->getFlash('success')) : ?>
+        <section>
             <div class="section-header">
-                <h2>Edit your account details</h2>
+                <h2>Account details updated</h2>
             </div>
             <div class="section-content">
-                <div class="information-change">
-                    <h3>General Information</h3>
-                    <form action="/nothing.js" target="_blank">
-
-                        <input type="text" name="FirstName" placeholder="First Name" value="John" required>
-                        <input type="text" name="MidName" placeholder="Middle Name (If applicable)">
-                        <input type="text" name="LastName" placeholder="Last Name" value="Doe" required>
-                        <input type="email" name="Email" placeholder="Email address" value="johndoe@email.com" required>
-                        <input type="telephone" name="Phone" placeholder="Phone Number" value="">
-                        <input type="text" name="Passions" placeholder="Your Passions" value="">
-                    </form>
-                    <button type="submit">Save</button>
-                </div>
-
-                <div class="image-change">
-                    <h3>Profile Picture</h3>
-                    <img src="../images/png/codrin-img.png" alt="Profile Image">
-                    <button type="submit">Upload Image</button>
-                </div>
-
-
+                <?php echo '<p>' . \core\Application::$application->session->getFlash('success') . '</p>'; ?>
             </div>
+
+
         </section>
+    <?php endif; ?>
 
-    </div>
+    <section class="edit-account">
+        <div class="section-header">
+            <h2>Edit your account details</h2>
+        </div>
+        <div class="section-content">
+            <?php $form = core\form\Form::begin('', 'POST');
 
-    <!-- JS Scripts -->
-    <script>document.body.classList.remove('stop-transition-load')</script>
-    <script src="/assets/scripts/dashboard-sidemenu.js"></script>
+            use fields\EmailField;
+            use fields\TextField; ?>
+            <fieldset>
+                <legend><span class="number">1</span> General Account Information</legend>
+                <?php echo new TextField($data['model'], 'firstName', 'First Name'); ?>
+                <?php echo new TextField($data['model'], 'middleName', 'Middle Name'); ?>
+                <?php echo new TextField($data['model'], 'lastName', 'Last Name'); ?>
+                <?php echo new EmailField($data['model'], 'email', 'Email Address (Can not be changed)', 'disabled'); ?>
+            </fieldset>
+            <button type="submit">Save</button>
+            <?php core\form\Form::end() ?>
+        </div>
+    </section>
+
+</div>
+
+<!-- JS Scripts -->
+<script>
+    document.body.classList.remove('stop-transition-load')
+</script>
+<script src="/assets/scripts/dashboard-sidemenu.js"></script>
 </body>
 
 </html>

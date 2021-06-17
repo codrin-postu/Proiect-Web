@@ -32,10 +32,10 @@ $application->router->post('/register/student', [RegisterController::class, 'reg
 $application->router->get('/dashboard/welcome', [DashboardController::class, 'dashboardWelcome']);
 
 $application->router->get('/dashboard/account', [DashboardController::class, 'dashboardAccount']);
-// $application->router->post('/dashboard/account', [DashboardController::class, 'dashboardAccount']);
+$application->router->post('/dashboard/account', [DashboardController::class, 'dashboardAccount']);
 
 $application->router->get('/dashboard/security', [DashboardController::class, 'dashboardSecurity']);
-// $application->router->post('/dashboard/security', [DashboardController::class, 'dashboardSecurity']);
+$application->router->post('/dashboard/security', [DashboardController::class, 'dashboardSecurity']);
 
 $application->router->get('/dashboard/classroom/join', [DashboardController::class, 'dashboardClassroomJoin']);
 $application->router->post('/dashboard/classroom/join', [DashboardController::class, 'dashboardClassroomJoin']);
@@ -49,7 +49,7 @@ $application->router->get('/dashboard/classroom/:id/documentation', [ClassroomCo
 
 $application->router->get('/dashboard/classroom/:id/attendance', [ClassroomController::class, 'classroomAttendance']);
 
-$application->router->get('/dashboard/classroom/:id/attendance', [ClassroomController::class, 'classroomAttendance']);
+// $application->router->get('/dashboard/classroom/:id/attendance', [ClassroomController::class, 'classroomAttendance']);
 
 $application->router->get('/dashboard/classroom/:id/grades', [ClassroomController::class, 'classroomGrades']);
 

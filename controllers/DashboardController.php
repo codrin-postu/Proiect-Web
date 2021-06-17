@@ -7,10 +7,12 @@ use core\Controller;
 use core\Request;
 use middlewares\AcademicMiddleware;
 use middlewares\RegisterMiddleware;
+use middlewares\StudentMiddleware;
 use models\ClassroomModel;
 use models\UserClassroomModel;
 use models\UserModel;
 use models\ClassroomJoinModel;
+use models\UserUpdateModel;
 
 class DashboardController extends Controller
 {
@@ -25,14 +27,19 @@ class DashboardController extends Controller
         $this->registerMiddleware(new AcademicMiddleware([
             'dashboardClassroomCreate'
         ]));
+
+        $this->registerMiddleware(new StudentMiddleware([
+            'dashboardClassroomJoin'
+        ]));
     }
 
     public function dashboardWelcome(Request $request)
     {
-        echo '<pre>';
-        preg_match('/\/\d+\//', $request->getPath(), $matches);
-        var_dump($matches);
-        echo '</pre>';
+        // echo '<pre>';
+        // preg_match('/\/\d+\//', $request->getPath(), $matches);
+        // var_dump($matches);
+        // echo '</pre>';
+
         $data = [
             'pageTitle' => 'Welcome',
             'relPath' => '..',
@@ -44,12 +51,37 @@ class DashboardController extends Controller
 
     public function dashboardAccount(Request $request)
     {
-
+        $userUpdate = new UserUpdateModel();
+        $user = UserModel::getUser(Application::$application->session->get('user'));
         $data = [
             'pageTitle' => 'Account',
             'relPath' => '..',
             'stylesheet' => 'dashboard.css',
+            'model' => $userUpdate
         ];
+
+
+        $userUpdate->loadData([
+            'id' => $user->id,
+            'firstName' => $user->firstName,
+            'middleName' => $user->middleName,
+            'lastName' => $user->lastName,
+            'email' => $user->email
+        ]);
+
+        if ($request->isPost()) {
+            $userUpdate->loadData($request->getBody());
+
+            // echo "<pre>";
+            // var_dump($userUpdate);
+            // echo "</pre>";
+            // exit;
+            if ($userUpdate->validate() && $userUpdate->update()) {
+                Application::$application->session->setFlash('success', 'Your information has been updated!');
+                Application::$application->response->redirect('/dashboard/account');
+                exit;
+            }
+        }
         $this->setLayout('dashboardheader');
         return $this->render('dashboard/account', $data);
     }
@@ -61,6 +93,22 @@ class DashboardController extends Controller
             'relPath' => '..',
             'stylesheet' => 'dashboard.css',
         ];
+
+        if ($request->isPost()) {
+            $classroomJoin->loadData($request->getBody());
+            $userClassroom->loadData([
+                "classroomId" => $classroomJoin->classroomId,
+                "userId" => Application::$application->user->id,
+                "type" => "student"
+            ]);
+
+            if ($classroomJoin->validate() && $classroomJoin->finalize() && $userClassroom->save()) {
+                Application::$application->session->setFlash('success', 'The code has been sent! Please wait for professor approval!');
+                Application::$application->response->redirect('/dashboard/classroom/join');
+                exit;
+            }
+        }
+
         $this->setLayout('dashboardheader');
         return $this->render('dashboard/security', $data);
     }

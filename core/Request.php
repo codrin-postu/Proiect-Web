@@ -8,7 +8,7 @@ class Request
     {
         $path = $_SERVER['REQUEST_URI'] ?? '/'; //If the URI is not present, it is assumed that the path is the default one
         $position = strpos($path, '?');
-        
+
         if ($position === false) return $path;
 
         return substr($path, 0, $position);  //extracts path from start to '?' character in link
@@ -29,23 +29,30 @@ class Request
         return $this->method() === 'post';
     }
 
-    public function getBody() 
+    public function isPut()
+    {
+        return $this->method() === 'put';
+    }
+
+    public function isDelete()
+    {
+        return $this->method() === 'delete';
+    }
+
+    public function getBody()
     {
         $body = [];
         $method = $this->method();
-        if ($method === 'get') 
-        {
-            foreach($_GET as $key => $value) 
-            {
-                $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);           
+        if ($method === 'get') {
+            foreach ($_GET as $key => $value) {
+                $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
-        } else if ($method === 'post') 
-        {
-            foreach($_POST as $key => $value) {
+        } else if ($method === 'post' || $method === 'put') {
+            foreach ($_POST as $key => $value) {
                 $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
-        } 
-    }
+            }
+        }
 
-    return $body;
+        return $body;
     }
 }
