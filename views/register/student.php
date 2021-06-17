@@ -1,24 +1,34 @@
+<?php
+
+use fields\EmailField;
+use fields\PasswordField;
+use fields\TextField;
+use fields\CheckboxField;
+use fields\HiddenField;
+
+?>
 
 <body>
     <div class="loginbox register">
         <div class="avatar">
-            <img src="<?=$data["relPath"]?>/assets/images/svg/304315.svg" alt="Mango, logo of application ClassMan">
+            <img src="<?= $data["relPath"] ?>/assets/images/svg/304315.svg" alt="Mango, logo of application ClassMan">
         </div>
 
         <h1>Create Student account</h1>
         <?php $form = core\form\Form::begin('', 'POST') ?>
-            <?php echo $form->field($data['model'], 'firstName', 'First Name'); ?>
-            <?php echo $form->field($data['model'], 'middleName', 'Middle Name'); ?>
-            <?php echo $form->field($data['model'], 'lastName', 'Last Name'); ?>
-            <?php echo $form->field($data['model'], 'email', 'Email Address')->setField(core\form\Field::TYPE_EMAIL); ?>
-            <?php echo $form->field($data['model'], 'password', 'Password')->setField(core\form\Field::TYPE_PASS); ?>
-            <?php echo $form->field($data['model'], 'confirmPassword','Confirm Password')->setField(core\form\Field::TYPE_PASS); ?>
-            <?php echo $form->field($data['model'], 'agreeTOS', 'Agree to Terms of Service')->setField(\core\form\Field::TYPE_CHECKBOX); ?>
-            <?php echo $form->field($data['model'], 'accountType', 'student')->setField(\core\form\Field::TYPE_HIDDEN); ?>
-            
-            <button type="submit">Register</button>
-            <a href="../login">Already have an account?</a>
-            <p><a href="./academic">Create Academic account?</a></p>
+        <?php echo new TextField($data['model'], 'firstName', 'First Name'); ?>
+        <?php echo new TextField($data['model'], 'middleName', 'Middle Name'); ?>
+        <?php echo new TextField($data['model'], 'lastName', 'Last Name'); ?>
+        <?php echo new EmailField($data['model'], 'email', 'Email Address'); ?>
+        <?php echo new PasswordField($data['model'], 'password', 'Password'); ?>
+        <?php echo new PasswordField($data['model'], 'confirmPassword', 'Confirm Password'); ?>
+        <?php echo new CheckboxField($data['model'], 'agreeTOS', 'Agree to Terms of Service'); ?>
+
+        <?php echo new HiddenField($data['model'], 'accountType', 'student'); ?>
+
+        <button type="submit">Register</button>
+        <a href="../login">Already have an account?</a>
+        <p><a href="./academic">Create Academic account?</a></p>
         <?php core\form\Form::end() ?>
 
         <!-- <form action="" method="POST">

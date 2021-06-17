@@ -1,4 +1,5 @@
 <?php
+
 use core\Application;
 ?>
 
@@ -13,13 +14,12 @@ use core\Application;
 
     <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/86fe649324.js" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" type="text/css" href="<?php echo array_key_exists("relPath", $data) ? $data["relPath"].'/assets/styles/'.$data["stylesheet"] : '/assets/stylesheet/dashboard.css'?>"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo array_key_exists("relPath", $data) ? $data["relPath"] . '/assets/styles/' . $data["stylesheet"] : '/assets/stylesheet/dashboard.css' ?>" />
 
-    <title>ClassMa <?php echo array_key_exists("pageTitle", $data) ? "| ".$data["pageTitle"] : ''?></title>
+    <title>ClassMa <?php echo array_key_exists("pageTitle", $data) ? "| " . $data["pageTitle"] : '' ?></title>
 </head>
 
 <body class="stop-transition-load" id="body-padding">
@@ -29,18 +29,18 @@ use core\Application;
         </div>
 
         <div class="header-account">
-        <div class="header-img">
-            <img src="<?php echo array_key_exists("relPath", $data) ? $data["relPath"].'/assets/images/png/codrin-img.png' : '/assets/images/png/codrin-img.png'?>" alt="Profile Picture">
-            
-        </div>
-        <a href="/logout">Logout</a>
+            <div class="header-img">
+                <img src="<?php echo array_key_exists("relPath", $data) ? $data["relPath"] . '/assets/images/png/codrin-img.png' : '/assets/images/png/codrin-img.png' ?>" alt="Profile Picture">
+
+            </div>
+            <a href="/logout">Logout</a>
         </div>
     </header>
     <div class="l-navbar first-navbar" id="navbar">
         <nav class="nav">
             <div>
                 <a href="#" class="nav-logo">
-                    <img src="<?php echo array_key_exists("relPath", $data) ? $data["relPath"].'/assets/images/svg/304315.svg' : '/assets/images/png/304315.svg'?>" alt="Ripe Mango, ClassMa Logo" />
+                    <img src="<?php echo array_key_exists("relPath", $data) ? $data["relPath"] . '/assets/images/svg/304315.svg' : '/assets/images/png/304315.svg' ?>" alt="Ripe Mango, ClassMa Logo" />
                     <div class="nav-logo-info">
                         <span class="name">ClassMa</span>
                         <span class="usertype"><?php echo Application::$application->user->getUserType() ?></span>
@@ -59,16 +59,16 @@ use core\Application;
                         <i class="fas fa-cog"></i>
                         <span class="nav-name">Security & Privacy</span>
                     </a>
-                    <?php if(Application::$application->user->isAcademic()) : ?>
-                    <a href="/dashboard/classroom/create" class="nav-link">
-                        <i class="far fa-sticky-note"></i>
-                        <span class="nav-name">Create A Classroom</span>
-                    </a>
+                    <?php if (Application::$application->user->isAcademic()) : ?>
+                        <a href="/dashboard/classroom/create" class="nav-link">
+                            <i class="far fa-sticky-note"></i>
+                            <span class="nav-name">Create A Classroom</span>
+                        </a>
                     <?php else : ?>
-                    <a href="/dashboard/classroom/join" class="nav-link">
-                        <i class="far fa-sticky-note"></i>
-                        <span class="nav-name">Join A Classroom</span>
-                    </a>
+                        <a href="/dashboard/classroom/join" class="nav-link">
+                            <i class="far fa-sticky-note"></i>
+                            <span class="nav-name">Join A Classroom</span>
+                        </a>
                     <?php endif; ?>
 
                     <!-- Your Classes section -->
@@ -99,98 +99,16 @@ use core\Application;
                                 <i class="fas fa-percentage"></i>
                                 <span class="nav-name">Grades</span>
                             </a>
-                        </div>
-                    </div>
-
-                    <div class="nav-class">
-                        <div class="class-select">
-                            <i class="fas fa-chevron-right"></i>
-                            <span class="class-title">Advanced Programming</span>
-                        </div>
-                        <div class="class-links">
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-book-open"></i>
-                                <span class="nav-name">Class Information</span>
-                            </a>
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-clock"></i>
-                                <span class="nav-name">Check Attendance</span>
-                            </a>
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-highlighter"></i>
-                                <span class="nav-name">Class Documentation</span>
-                            </a>
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-paperclip"></i>
-                                <span class="nav-name">Homework</span>
-                            </a>
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-percentage"></i>
-                                <span class="nav-name">Grades</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="nav-class">
-                        <div class="class-select">
-                            <i class="fas fa-chevron-right"></i>
-                            <span class="class-title">Discrete Mathematics</span>
-                        </div>
-                        <div class="class-links">
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-book-open"></i>
-                                <span class="nav-name">Class Information</span>
-                            </a>
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-clock"></i>
-                                <span class="nav-name">Check Attendance</span>
-                            </a>
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-highlighter"></i>
-                                <span class="nav-name">Class Documentation</span>
-                            </a>
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-paperclip"></i>
-                                <span class="nav-name">Homework</span>
-                            </a>
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-percentage"></i>
-                                <span class="nav-name">Grades</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="nav-class">
-                        <div class="class-select">
-                            <i class="fas fa-chevron-right"></i>
-                            <span class="class-title">Discrete Mathematics</span>
-                        </div>
-                        <div class="class-links">
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-book-open"></i>
-                                <span class="nav-name">Class Information</span>
-                            </a>
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-clock"></i>
-                                <span class="nav-name">Check Attendance</span>
-                            </a>
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-highlighter"></i>
-                                <span class="nav-name">Class Documentation</span>
-                            </a>
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-paperclip"></i>
-                                <span class="nav-name">Homework</span>
-                            </a>
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-percentage"></i>
-                                <span class="nav-name">Grades</span>
+                            <a href="" class="nav-link">
+                                <i class="fas fa-user"></i>
+                                <span class="nav-name">Students</span>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-        </nav>
+    </div>
+    </nav>
     </div>
 
-{{content}}
+    {{content}}

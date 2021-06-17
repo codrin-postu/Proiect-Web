@@ -8,18 +8,20 @@ use core\Request;
 use middlewares\AcademicMiddleware;
 use middlewares\RegisterMiddleware;
 use models\ClassroomModel;
-
+use models\UserClassroomModel;
+use models\UserModel;
+use models\ClassroomJoinModel;
 
 class DashboardController extends Controller
 {
     public function __construct()
     {
         $this->registerMiddleware(new RegisterMiddleware([
-            'dashboardWelcome', 
+            'dashboardWelcome',
             'dashboardAccount',
             'dashboardSecurity'
         ]));
-        
+
         $this->registerMiddleware(new AcademicMiddleware([
             'dashboardClassroomCreate'
         ]));
@@ -28,7 +30,7 @@ class DashboardController extends Controller
     public function dashboardWelcome(Request $request)
     {
         echo '<pre>';
-        preg_match('/\/\d+\//',$request->getPath(), $matches);
+        preg_match('/\/\d+\//', $request->getPath(), $matches);
         var_dump($matches);
         echo '</pre>';
         $data = [
@@ -42,7 +44,7 @@ class DashboardController extends Controller
 
     public function dashboardAccount(Request $request)
     {
-        
+
         $data = [
             'pageTitle' => 'Account',
             'relPath' => '..',
@@ -65,11 +67,31 @@ class DashboardController extends Controller
 
     public function dashboardClassroomJoin(Request $request)
     {
+        $classroomJoin = new ClassroomJoinModel();
+        $user = Application::$application->session->get('user');
+        $userClassroom = new UserClassroomModel();
+
         $data = [
             'pageTitle' => 'Join a Classroom',
             'relPath' => '../..',
             'stylesheet' => 'dashboard.css',
+            'model' => $classroomJoin
         ];
+
+        if ($request->isPost()) {
+            $classroomJoin->loadData($request->getBody());
+            $userClassroom->loadData([
+                "classroomId" => $classroomJoin->classroomId,
+                "userId" => Application::$application->user->id,
+                "type" => "student"
+            ]);
+
+            if ($classroomJoin->validate() && $classroomJoin->finalize() && $userClassroom->save()) {
+                Application::$application->session->setFlash('success', 'The code has been sent! Please wait for professor approval!');
+                Application::$application->response->redirect('/dashboard/classroom/join');
+                exit;
+            }
+        }
         $this->setLayout('dashboardheader');
         return $this->render('dashboard/joinclassroom', $data);
     }
@@ -77,6 +99,13 @@ class DashboardController extends Controller
     public function dashboardClassroomCreate(Request $request)
     {
         $classroom = new ClassroomModel();
+        $user = Application::$application->session->get('user');
+        $userClassroom = new UserClassroomModel();
+        // echo '<pre>';
+        // var_dump();
+        // echo '</pre>';
+
+
         $data = [
             'pageTitle' => 'Create a Classroom',
             'relPath' => '../..',
@@ -84,10 +113,15 @@ class DashboardController extends Controller
             'model' => $classroom
         ];
 
-        if($request->isPost()) {
+        if ($request->isPost()) {
             $classroom->loadData($request->getBody());
+            $userClassroom->loadData([
+                "classroomId" => ClassroomModel::getLatestId(),
+                "userId" => Application::$application->user->id,
+                "type" => "creator"
+            ]);
 
-            if ($classroom->validate() && $classroom->save()) {
+            if ($classroom->validate() && $classroom->save() && $userClassroom->save()) {
                 Application::$application->session->setFlash('success', 'The classroom has been created succesfully!');
                 Application::$application->response->redirect('/dashboard/classroom/create');
                 exit;

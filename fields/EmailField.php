@@ -5,12 +5,12 @@ namespace fields;
 use core\form\Field;
 use core\Model;
 
-class HiddenField extends Field
+class EmailField extends Field
 {
     public function __construct(Model $model, $inputData = '', $value = '', $inputAttributes = '', $wrapperClass = '')
     {
         $this->value = $value;
-        $this->fieldType = self::TYPE_HIDDEN;
+        $this->fieldType = self::TYPE_EMAIL;
         $this->model = $model;
         $this->inputData = $inputData;
         $this->inputAttributes = $inputAttributes;
@@ -28,8 +28,8 @@ class HiddenField extends Field
             '<input type="%s" name="%s" placeholder="%s" value="%s" %s>',
             $this->fieldType,
             $this->inputData,
-            '',
             $this->value,
+            $this->model->{$this->inputData},
             $this->inputAttributes
         );
 

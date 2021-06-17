@@ -7,6 +7,9 @@ use core\Model;
 
 class SelectField extends Field
 {
+
+    public string $optionOutput = '';
+
     public function __construct(Model $model, $inputData = '', $value = '', $inputAttributes = '', $wrapperClass = '')
     {
         $this->value = $value;
@@ -25,13 +28,12 @@ class SelectField extends Field
         );
 
         $output = $output . sprintf(
-            '<input type="%s" name="%s" placeholder="%s" value="%s" %s>',
-            $this->fieldType,
-            $this->inputData,
-            $this->value,
-            $this->model->{$this->inputData},
-            $this->inputAttributes
+            '<select name="%s">',
+            $this->inputData
         );
+        $output = $output . $this->optionOutput;
+
+        $output = $output . '</select>';
 
         return $output . sprintf(
             '
@@ -42,5 +44,34 @@ class SelectField extends Field
             ',
             $this->model->getFirstError($this->inputData)
         );
+    }
+
+    public function setOptions($values, $names, $attributes = [])
+    {
+        $found = false;
+        for ($i = 0; $i < count($values); $i++) {
+            $attributes[$i] = str_replace("selected", "", $attributes[$i]);
+            if ($this->model->{$this->inputData} === $values[$i]) {
+                $attributes[$i] = $attributes[$i] . 'selected';
+                $found = true;
+            }
+        }
+
+        if (!$found) {
+            $attributes[0] = $attributes[0] . 'selected';
+        }
+
+        $optionOutput = '';
+        for ($i = 0; $i < count($values); $i++) {
+
+            $optionOutput = $optionOutput . sprintf(
+                '<option value="%s" %s>%s</option>',
+                $values[$i],
+                $attributes[$i],
+                $names[$i],
+            );
+        }
+
+        $this->optionOutput = $optionOutput;
     }
 }

@@ -1,30 +1,45 @@
+<!-- Dashboard Content  -->
+<?php
 
-    <!-- Dashboard Content  -->
-    <div class="main-content">
+use fields\TextField;
+?>
 
-        <section class="join-classroom">
+<div class="main-content">
+
+    <?php if (\core\Application::$application->session->getFlash('success')) : ?>
+        <section>
             <div class="section-header">
-                <h2>Join a Classroom</h2>
+                <h2>Classroom Created succesfully</h2>
             </div>
             <div class="section-content">
-                <form action="/nothing.js" target="blank">
-                    <label for="">
-                        <p>Classroom Code - Insert the 6 character code provided by your professor/teacher</p>
-                        <input type="text" name="ClassCode" placeholder="###-###" required>
-
-                    </label>
-
-                    <button type="submit">Send code</button>
-                </form>
+                <?php echo '<p>' . \core\Application::$application->session->getFlash('success') . '</p>'; ?>
             </div>
         </section>
+    <?php endif; ?>
 
-    </div>
+    <section class="join-classroom">
+        <div class="section-header">
+            <h2>Join a Classroom</h2>
+        </div>
+        <div class="section-content">
+            <?php $form = core\form\Form::begin('', 'POST') ?>
+            <form action="/nothing.js" target="blank">
+                <?php echo new TextField($data['model'], 'classroomId', 'Enter the 6 digit Classroom code!'); ?>
 
-    <!-- JS Scripts -->
-    <script>document.body.classList.remove('stop-transition-load')</script>
-    <script src="/assets/scripts/dashboard-sidemenu.js"></script>
-    <script src="/assets/scripts/dashboard-input.js"></script>
+                <button type="submit">Send Code</button>
+                <?php core\form\Form::end() ?>
+            </form>
+        </div>
+    </section>
+
+</div>
+
+<!-- JS Scripts -->
+<script>
+    document.body.classList.remove('stop-transition-load')
+</script>
+<script src="/assets/scripts/dashboard-sidemenu.js"></script>
+<script src="/assets/scripts/dashboard-input.js"></script>
 </body>
 
 </html>

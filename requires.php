@@ -36,11 +36,18 @@ require __DIR__ . "/models/UserModel.php";
 require __DIR__ . "/models/LoginModel.php";
 require __DIR__ . "/models/ContactModel.php";
 require __DIR__ . "/models/ClassroomModel.php";
+require __DIR__ . "/models/UserClassroomModel.php";
+require __DIR__ . "/models/ClassroomJoinModel.php";
 
 // Fields
 
 require __DIR__ . "/fields/TextField.php";
 require __DIR__ . "/fields/NumberField.php";
 require __DIR__ . "/fields/TextareaField.php";
+require __DIR__ . "/fields/SelectField.php";
+require __DIR__ . "/fields/PasswordField.php";
+require __DIR__ . "/fields/EmailField.php";
+require __DIR__ . "/fields/CheckboxField.php";
+require __DIR__ . "/fields/HiddenField.php";
 
 require __DIR__ . "/config.php";

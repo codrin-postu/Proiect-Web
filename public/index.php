@@ -2,7 +2,7 @@
 
 session_start();
 
-require __DIR__."/../requires.php";
+require __DIR__ . "/../requires.php";
 
 use controllers\DashboardController;
 use controllers\PageController;
@@ -38,7 +38,7 @@ $application->router->get('/dashboard/security', [DashboardController::class, 'd
 // $application->router->post('/dashboard/security', [DashboardController::class, 'dashboardSecurity']);
 
 $application->router->get('/dashboard/classroom/join', [DashboardController::class, 'dashboardClassroomJoin']);
-// $application->router->post('/dashboard/classroom/join', [DashboardController::class, 'dashboardClassroomJoin']);
+$application->router->post('/dashboard/classroom/join', [DashboardController::class, 'dashboardClassroomJoin']);
 
 $application->router->get('/dashboard/classroom/create', [DashboardController::class, 'dashboardClassroomCreate']);
 $application->router->post('/dashboard/classroom/create', [DashboardController::class, 'dashboardClassroomCreate']);

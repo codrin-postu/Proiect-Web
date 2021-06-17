@@ -482,8 +482,6 @@ section .emphasis {
   -webkit-appearance: menulist-button;
   -moz-appearance: menulist-button;
   appearance: none;
-
-  height: 35px;
 }
 
 .section-content input::placeholder {

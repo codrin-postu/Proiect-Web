@@ -26,9 +26,4 @@ class Form
     {
         echo '</select>';
     }
-
-    public function field(Model $model, $inputData = '', $value = '', $attributes = '', $wrapperClass = '')
-    {
-        return new Field($model, $inputData, $value, $attributes, $wrapperClass);
-    }
 }

@@ -97,17 +97,22 @@
     <div class="contact">
       <div class="contact-form">
         <h2>Ask us any questions.</h2>
-        <?php $form = core\form\Form::begin('', 'POST') ?>
-            <?php echo $form->field($data['model'], 'name', 'Your name')->setField(core\form\Field::TYPE_TEXT); ?>
-            <?php echo $form->field($data['model'], 'email', 'Your Email')->setField(core\form\Field::TYPE_EMAIL); ?>
-            <?php echo $form->field($data['model'], 'subject', 'Subject')->setField(core\form\Field::TYPE_TEXT); ?>
-            <?php echo $form->field($data['model'], 'message', 'Message')->setField(core\form\Field::TYPE_TEXT); ?>
-    
-            <button type="submit">Send</button>
+        <?php
+
+        use fields\EmailField;
+        use fields\TextField;
+
+        $form = core\form\Form::begin('', 'POST') ?>
+        <?php echo new TextField($data['model'], 'name', 'Your name'); ?>
+        <?php echo new EmailField($data['model'], 'email', 'Your Email'); ?>
+        <?php echo new TextField($data['model'], 'subject', 'Subject'); ?>
+        <?php echo new TextField($data['model'], 'message', 'Message'); ?>
+
+        <button type="submit">Send</button>
         <?php core\form\Form::end() ?>
-        <?php if (\core\Application::$application->session->getFlash('success')): ?>
-                    <?php echo '<p>'.\core\Application::$application->session->getFlash('success').'</p>'; ?>
-                <?php endif; ?>  
+        <?php if (\core\Application::$application->session->getFlash('success')) : ?>
+          <?php echo '<p>' . \core\Application::$application->session->getFlash('success') . '</p>'; ?>
+        <?php endif; ?>
       </div>
       <div class="contact-info">
         <h2>Contact Us</h2>
@@ -121,7 +126,8 @@
 
     </div>
     <div class="bottom-bar">
-      </a><p>classMan 2021. Class project.</p> <a style="color: #fff" href="./scholarly.html">Scholarly</a> <!-- TODO: Not currently linked! To finish  -->
+      </a>
+      <p>classMan 2021. Class project.</p> <a style="color: #fff" href="./scholarly.html">Scholarly</a> <!-- TODO: Not currently linked! To finish  -->
     </div>
   </footer>
   <script src="./assets/scripts/index.js"></script>

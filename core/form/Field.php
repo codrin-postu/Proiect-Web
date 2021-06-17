@@ -32,7 +32,6 @@ class Field
     public string $value;
     public string $inputAttributes;
     public string $wrapperClass = '';
-    public string $optionOutput = '';
 
     public function __construct(Model $model, $inputData = '', $value = '', $inputAttributes = '', $wrapperClass = '')
     {
@@ -50,62 +49,15 @@ class Field
             '<div class="form-group %s">',
             $this->wrapperClass
         );
-        switch ($this->fieldType) {
-            case self::TYPE_HIDDEN:
-                $output = $output . sprintf(
-                    '<input type="%s" name="%s" placeholder="%s" value="%s" %s>',
-                    $this->fieldType,
-                    $this->inputData,
-                    '',
-                    $this->value,
-                    $this->inputAttributes
-                );
-                break;
-            case self::TYPE_CHECKBOX:
-                if ($this->model->{$this->inputData} === "on") {
-                    $isChecked = 'checked';
-                } else {
-                    $isChecked = '';
-                }
-                $output = $output . sprintf(
-                    '<input type="%s" name="%s" %s %s>
-                <label>%s</label>',
-                    $this->fieldType,
-                    $this->inputData,
-                    $this->inputAttributes,
-                    $isChecked,
-                    $this->value
-                );
-                break;
-            case self::TYPE_TEXTAREA:
-                $output = $output . sprintf(
-                    '<textarea name="%s" placeholder="%s" %s>%s</textarea>',
-                    $this->inputData,
-                    $this->value,
-                    $this->inputAttributes,
-                    $this->model->{$this->inputData}
-                );
-                break;
-            case self::TYPE_SELECT:
-                $output = $output . sprintf(
-                    '<select name="%s">',
-                    $this->value
-                );
-                $output = $output . $this->optionOutput;
 
-                $output = $output . '</select>';
-                break;
-            default:
-                $output = $output . sprintf(
-                    '<input type="%s" name="%s" placeholder="%s" value="%s" %s>',
-                    $this->fieldType,
-                    $this->inputData,
-                    $this->value,
-                    $this->model->{$this->inputData},
-                    $this->inputAttributes
-                );
-                break;
-        }
+        $output = $output . sprintf(
+            '<input type="%s" name="%s" placeholder="%s" value="%s" %s>',
+            $this->fieldType,
+            $this->inputData,
+            $this->value,
+            $this->model->{$this->inputData},
+            $this->inputAttributes
+        );
 
         return $output . sprintf(
             '
@@ -116,25 +68,5 @@ class Field
             ',
             $this->model->getFirstError($this->inputData)
         );
-    }
-
-    public function setField($fieldType)
-    {
-        $this->fieldType = $fieldType;
-        return $this;
-    }
-
-    public function setOptions($value, $name, $attributes = [])
-    {
-        for ($i = 0; $i < count($value); $i++) {
-            $optionOutput = sprintf(
-                '<option value="%s" %s>%s</option>',
-                $value[$i],
-                $attributes[$i],
-                $name[$i],
-            );
-        }
-
-        $this->optionOutput = $optionOutput;
     }
 }

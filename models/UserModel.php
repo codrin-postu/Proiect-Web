@@ -22,7 +22,7 @@ class UserModel extends DatabaseModel
     public string $agreeTOS = '';
     public int $userStatus = self::STATUS_OFFLINE;
 
-    public function primaryKey() : string
+    public function primaryKey(): string
     {
         return 'id';
     }
@@ -37,19 +37,19 @@ class UserModel extends DatabaseModel
         return $this->accountType === 'student';
     }
 
-    public function tableName() : string
+    public function tableName(): string
     {
         return 'users';
     }
 
-    public function columnsToInput() : array
+    public function columnsToInput(): array
     {
         return ['firstName', 'middleName', 'lastName', 'email', 'accountType', 'password', 'status'];
     }
 
-    public function inputs() : array
+    public function inputs(): array
     {
-            return ['firstName', 'middleName', 'lastName', 'email', 'accountType', 'password', 'userStatus'];
+        return ['firstName', 'middleName', 'lastName', 'email', 'accountType', 'password', 'userStatus'];
     }
 
     public function save()
@@ -59,7 +59,7 @@ class UserModel extends DatabaseModel
         return parent::save();
     }
 
-    public function rules() : array
+    public function rules(): array
     {
         return [
             'firstName' => [self::RULE_REQUIRED, self::RULE_TEXT],
@@ -79,13 +79,16 @@ class UserModel extends DatabaseModel
      */
     public function getDisplayName()
     {
-        return implode(' ', [$this->firstName,$this->middleName,$this->lastName]);
+        return implode(' ', [$this->firstName, $this->middleName, $this->lastName]);
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 
     public function getUserType()
     {
         return ucfirst($this->accountType);
     }
-
-    
 }
