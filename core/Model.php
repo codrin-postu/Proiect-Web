@@ -14,6 +14,7 @@ abstract class Model
     public const RULE_PASS = 'password';
     public const RULE_TEXT = 'text';
     public const RULE_UNIQUE = 'unique';
+    public const RULE_DIFFERENT = 'different';
 
     public array $errors = [];
 
@@ -61,6 +62,10 @@ abstract class Model
 
                 if ($ruleType === self::RULE_MATCH && $value !== $this->{$rule['matchAttribute']}) {
                     $this->addErrorRule($input, self::RULE_MATCH, $rule);
+                }
+
+                if ($ruleType === self::RULE_DIFFERENT && $value === $this->{$rule['matchAttribute']}) {
+                    $this->addErrorRule($input, self::RULE_DIFFERENT);
                 }
 
                 if ($ruleType === self::RULE_PASS && !preg_match('/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/', $value)) {
@@ -128,7 +133,8 @@ abstract class Model
             self::RULE_PASS => 'Password must contain at least a letter and a number',
             self::RULE_TEXT => 'This field can only contain letters',
             self::RULE_UNIQUE => 'An account with this {inputType} already exists',
-            self::RULE_NUMBER => 'The field can only contain digits'
+            self::RULE_NUMBER => 'The field can only contain digits',
+            self::RULE_DIFFERENT => 'The new password can not be the same as the old one'
         ];
     }
 }

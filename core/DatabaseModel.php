@@ -43,24 +43,20 @@ abstract class DatabaseModel extends Model
         $tableColumns = $this->columnsToInput();
         $inputs = $this->inputs();
         $params = array_map(fn ($input) => ":$input", $inputs);
-        $clause = $this->clause();
-        $set = '';
-        $id = $this->id;
 
+        $where = $this->clause();
+
+        $clauseInputs = array_keys($where);
+
+        $clause = implode("AND ", array_map(fn ($clauseInput) => "$clauseInput = :$clauseInput", $clauseInputs));
+
+        $set = '';
         for ($i = 0; $i < count($tableColumns); $i++) {
             $set = $set . $tableColumns[$i] . '=' . $params[$i];
             if ($i < count($tableColumns) - 1) {
                 $set = $set . ', ';
             }
         }
-
-        // echo "<pre>";
-        // var_dump($set);
-        // foreach ($inputs as $input) {
-        //     var_dump($this->id);
-        // }
-        // echo "</pre>";
-        // exit;
 
         $stmt = self::prepare("UPDATE $tableName 
             SET $set
@@ -71,13 +67,9 @@ abstract class DatabaseModel extends Model
             $stmt->bindValue(":$input", $this->{$input});
         }
 
-        $stmt->bindValue(":id", $id);
-
-        // echo "<pre>";
-        // var_dump(intval($id));
-        // var_dump($stmt);
-        // echo "</pre>";
-        // exit;
+        foreach ($where as $key => $value) {
+            $stmt->bindValue(":$key", $value);
+        }
 
         $stmt->execute();
         return true;

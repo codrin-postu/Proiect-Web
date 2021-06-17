@@ -574,6 +574,7 @@ form .row .row-70 {
 
 .join-classroom .section-content {
   max-height: 45vh;
+  max-width: 100ch;
 }
 
 .join-classroom p {
@@ -598,11 +599,27 @@ form .row .row-70 {
 
 /* Edit Account Page Specific  */
 
+.edit-account {
+  max-width: 100ch;
+}
+
 .edit-account .section-content {
   max-height: 80vh;
 }
 
 /* End Edit Account Page Specific  */
+
+/* Edit Password Page Specific  */
+
+.edit-password {
+  max-width: 100ch;
+}
+
+.edit-password .section-content {
+  max-height: 80vh;
+}
+
+/* End Edit Password Page Specific  */
 
 /* Class Information Page Specific  */
 

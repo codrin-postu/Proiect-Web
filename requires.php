@@ -40,6 +40,7 @@ require __DIR__ . "/models/ClassroomModel.php";
 require __DIR__ . "/models/UserClassroomModel.php";
 require __DIR__ . "/models/ClassroomJoinModel.php";
 require __DIR__ . "/models/UserUpdateModel.php";
+require __DIR__ . "/models/PasswordUpdateModel.php";
 
 // Fields
 

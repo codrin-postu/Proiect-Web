@@ -13,6 +13,7 @@ use models\UserClassroomModel;
 use models\UserModel;
 use models\ClassroomJoinModel;
 use models\UserUpdateModel;
+use models\PasswordUpdateModel;
 
 class DashboardController extends Controller
 {
@@ -88,23 +89,32 @@ class DashboardController extends Controller
 
     public function dashboardSecurity(Request $request)
     {
+        $passwordUpdate = new PasswordUpdateModel();
+        $user = UserModel::getUser(Application::$application->session->get('user'));
         $data = [
-            'pageTitle' => 'Security',
+            'pageTitle' => 'Account',
             'relPath' => '..',
             'stylesheet' => 'dashboard.css',
+            'model' => $passwordUpdate
         ];
 
-        if ($request->isPost()) {
-            $classroomJoin->loadData($request->getBody());
-            $userClassroom->loadData([
-                "classroomId" => $classroomJoin->classroomId,
-                "userId" => Application::$application->user->id,
-                "type" => "student"
-            ]);
 
-            if ($classroomJoin->validate() && $classroomJoin->finalize() && $userClassroom->save()) {
-                Application::$application->session->setFlash('success', 'The code has been sent! Please wait for professor approval!');
-                Application::$application->response->redirect('/dashboard/classroom/join');
+        $passwordUpdate->loadData([
+            'id' => $user->id,
+            'currentPassword' => $user->password,
+        ]);
+
+        if ($request->isPost()) {
+            $passwordUpdate->loadData($request->getBody());
+
+            // echo "<pre>";
+            // var_dump($userUpdate);
+            // echo "</pre>";
+            // exit;
+            echo 'reaches this';
+            if ($passwordUpdate->validate() && $passwordUpdate->update()) {
+                Application::$application->session->setFlash('success', 'Your password has been updated!');
+                Application::$application->response->redirect('/dashboard/security');
                 exit;
             }
         }
