@@ -23,9 +23,9 @@ class UserUpdateModel extends DatabaseModel
         return 'users';
     }
 
-    public function clause()
+    public function clause(): array
     {
-        return 'id=:id';
+        return ['id' => $this->id];
     }
 
     public function columnsToInput(): array

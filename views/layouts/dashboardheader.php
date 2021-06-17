@@ -1,6 +1,8 @@
 <?php
 
 use core\Application;
+use core\Navigation;
+
 ?>
 
 
@@ -47,7 +49,7 @@ use core\Application;
                     </div>
 
                 </a>
-                <!-- Must be generated like the forms -->
+                <!-- TODO: Must be generated like the forms -->
                 <div class="nav-list">
                     <!-- Navigation Section -->
                     <span class="nav-section">Navigation</span>
@@ -73,38 +75,10 @@ use core\Application;
 
                     <!-- Your Classes section -->
                     <span class="nav-section">Your Classes</span>
-                    <div class="nav-class">
-                        <div class="class-select">
-                            <i class="fas fa-chevron-right"></i>
-                            <span class="class-title">Web Technologies</span>
-                        </div>
-                        <div class="class-links">
-                            <a href="/dashboard/classroom/{classroomId}/info" class="nav-link">
-                                <i class="fas fa-book-open"></i>
-                                <span class="nav-name">Class Information</span>
-                            </a>
-                            <a href="./classroom/check-attendance.html" class="nav-link">
-                                <i class="fas fa-clock"></i>
-                                <span class="nav-name">Check Attendance</span>
-                            </a>
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-highlighter"></i>
-                                <span class="nav-name">Class Documentation</span>
-                            </a>
-                            <a href="./classroom/homework-list.html" class="nav-link">
-                                <i class="fas fa-paperclip"></i>
-                                <span class="nav-name">Homework</span>
-                            </a>
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-percentage"></i>
-                                <span class="nav-name">Grades</span>
-                            </a>
-                            <a href="" class="nav-link">
-                                <i class="fas fa-user"></i>
-                                <span class="nav-name">Students</span>
-                            </a>
-                        </div>
-                    </div>
+                    <?php echo Navigation::loadClasses() ?>
+                    <!-- <div class="nav-class"> -->
+
+
                 </div>
             </div>
     </div>

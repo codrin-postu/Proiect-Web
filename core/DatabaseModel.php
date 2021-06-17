@@ -2,6 +2,8 @@
 
 namespace core;
 
+use \PDO;
+
 abstract class DatabaseModel extends Model
 {
     abstract public function tableName(): string;
@@ -19,15 +21,10 @@ abstract class DatabaseModel extends Model
         $inputs = $this->inputs();
         $params = array_map(fn ($input) => ":$input", $inputs);
 
-
-
         $stmt = self::prepare("
             INSERT INTO $tableName (" . implode(",", $tableColumns) . ") 
             VALUES(" . implode(",", $params) . ")");
 
-
-        var_dump($stmt);
-        exit;
         foreach ($inputs as $input) {
             // var_dump($this->$input, $this->{$input});
             $stmt->bindValue(":$input", $this->{$input});
@@ -93,5 +90,20 @@ abstract class DatabaseModel extends Model
 
         $stmt->execute();
         return $stmt->fetchObject(static::class);
+    }
+
+    public function findAll($where)
+    {
+        $tableName = static::tableName();
+        $inputs = array_keys($where);
+        $endStmt = implode("AND ", array_map(fn ($input) => "$input = :$input", $inputs));
+        // SELECT * FROM tableName WHERE email = :email AND firstname = :firstname
+        $stmt = self::prepare("SELECT * FROM $tableName WHERE $endStmt");
+        foreach ($where as $key => $value) {
+            $stmt->bindValue(":$key", $value);
+        }
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 }

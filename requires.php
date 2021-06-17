@@ -23,6 +23,8 @@ require __DIR__ . "/middlewares/StudentMiddleware.php";
 require __DIR__ . "/core/form/Form.php";
 require __DIR__ . "/core/form/Field.php";
 
+require __DIR__ . "/core/Navigation.php";
+
 // Controllers
 
 require __DIR__ . "/controllers/PageController.php";
