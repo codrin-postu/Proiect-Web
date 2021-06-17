@@ -24,40 +24,45 @@ class Field
     public const TYPE_TEXTAREA = 'textarea';
 
     public const TYPE_SELECT = 'select';
-    public const TYPE_SELECT_END = 'select_end';
     public const TYPE_SELECT_OPT = 'option';
 
     public string $fieldType;
     public Model $model;
-    public string $inputType;
+    public string $inputData;
     public string $value;
-    public string $attributes;
+    public string $inputAttributes;
+    public string $wrapperClass = '';
+    public string $optionOutput = '';
 
-    public function __construct(Model $model, $inputType = '', $value = '', $attributes = '')
+    public function __construct(Model $model, $inputData = '', $value = '', $inputAttributes = '', $wrapperClass = '')
     {
         $this->value = $value;
         $this->fieldType = self::TYPE_TEXT;
         $this->model = $model;
-        $this->inputType = $inputType;
-        $this->attributes = $attributes;
+        $this->inputData = $inputData;
+        $this->inputAttributes = $inputAttributes;
+        $this->wrapperClass = $wrapperClass;
     }
 
     public function __toString()
     {
-        $output = '<div class="form-group">';
+        $output = sprintf(
+            '<div class="form-group %s">',
+            $this->wrapperClass
+        );
         switch ($this->fieldType) {
             case self::TYPE_HIDDEN:
                 $output = $output . sprintf(
                     '<input type="%s" name="%s" placeholder="%s" value="%s" %s>',
                     $this->fieldType,
-                    $this->inputType,
+                    $this->inputData,
                     '',
                     $this->value,
-                    $this->attributes
+                    $this->inputAttributes
                 );
                 break;
             case self::TYPE_CHECKBOX:
-                if ($this->model->{$this->inputType} === "on") {
+                if ($this->model->{$this->inputData} === "on") {
                     $isChecked = 'checked';
                 } else {
                     $isChecked = '';
@@ -66,8 +71,8 @@ class Field
                     '<input type="%s" name="%s" %s %s>
                 <label>%s</label>',
                     $this->fieldType,
-                    $this->inputType,
-                    $this->attributes,
+                    $this->inputData,
+                    $this->inputAttributes,
                     $isChecked,
                     $this->value
                 );
@@ -75,20 +80,29 @@ class Field
             case self::TYPE_TEXTAREA:
                 $output = $output . sprintf(
                     '<textarea name="%s" placeholder="%s" %s>%s</textarea>',
-                    $this->inputType,
+                    $this->inputData,
                     $this->value,
-                    $this->attributes,
-                    $this->model->{$this->inputType}
+                    $this->inputAttributes,
+                    $this->model->{$this->inputData}
                 );
+                break;
+            case self::TYPE_SELECT:
+                $output = $output . sprintf(
+                    '<select name="%s">',
+                    $this->value
+                );
+                $output = $output . $this->optionOutput;
+
+                $output = $output . '</select>';
                 break;
             default:
                 $output = $output . sprintf(
                     '<input type="%s" name="%s" placeholder="%s" value="%s" %s>',
                     $this->fieldType,
-                    $this->inputType,
+                    $this->inputData,
                     $this->value,
-                    $this->model->{$this->inputType},
-                    $this->attributes
+                    $this->model->{$this->inputData},
+                    $this->inputAttributes
                 );
                 break;
         }
@@ -100,7 +114,7 @@ class Field
                 </div>
             </div>
             ',
-            $this->model->getFirstError($this->inputType)
+            $this->model->getFirstError($this->inputData)
         );
     }
 
@@ -108,5 +122,19 @@ class Field
     {
         $this->fieldType = $fieldType;
         return $this;
+    }
+
+    public function setOptions($value, $name, $attributes = [])
+    {
+        for ($i = 0; $i < count($value); $i++) {
+            $optionOutput = sprintf(
+                '<option value="%s" %s>%s</option>',
+                $value[$i],
+                $attributes[$i],
+                $name[$i],
+            );
+        }
+
+        $this->optionOutput = $optionOutput;
     }
 }

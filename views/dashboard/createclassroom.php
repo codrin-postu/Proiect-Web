@@ -1,4 +1,12 @@
 <!-- Dashboard Content  -->
+<?php
+
+use fields\TextField;
+use fields\NumberField;
+use fields\TextareaField;
+
+?>
+
 <div class="main-content">
 
     <section class="create-classroom">
@@ -9,23 +17,30 @@
             <?php $form = core\form\Form::begin('', 'POST') ?>
             <fieldset>
                 <legend><span class="number">1</span> Basic Class Information</legend>
-                <?php echo $form->field($data['model'], 'name', 'Class Name*'); ?>
+                <?php echo new TextField($data['model'], 'name', 'Class Name*'); ?>
                 <?php echo $form->field($data['model'], 'subject', 'Class Subject*'); ?>
                 <?php echo $form->field($data['model'], 'duration', 'Duration (eg. 16 Weeks)*'); ?>
             </fieldset>
             <fieldset>
                 <legend><span class="number">2</span> Class Description</legend>
-                <?php echo $form->field($data['model'], 'description', 'Class Description*')->setField('textarea'); ?>
+                <?php echo new TextareaField($data['model'], 'description', 'Class Description*'); ?>
             </fieldset>
             <fieldset>
                 <legend><span class="number">3</span> Class Details</legend>
                 <?php echo $form->field($data['model'], 'commitment', 'Weekly student commitment*'); ?>
                 <div class="row">
-                    <?php echo $form->field($data['model'], 'classCount', 'No. Classes*', 'class="row-50" min="0" max="21"')->setField('number'); ?>
-                    <?php echo $form->field($data['model'], 'disabled', '/ Week', 'class="row-50" readonly'); ?>
+                    <?php echo new NumberField($data['model'], 'classCount', 'No. Classes*', 'min="0" max="21"', 'row-30'); ?>
+                    <?php echo $form->field($data['model'], 'disabled', '/ Week', 'readonly', 'row-70'); ?>
                 </div>
                 <?php echo $form->field($data['model'], 'evaluation', 'Evaluation*'); ?>
-                <?php echo $form->field($data['model'], 'difficulty', 'Class Difficulty*'); ?>
+
+                <?php echo $form->field($data['model'], 'difficulty', 'Class Difficulty*', 'disabled selected')->setField('select')
+                    ->setOptions(
+                        ['difficulty', 'easy', 'intermediate', 'difficult'],
+                        ['Class Difficulty*', 'Easy', 'Intermediate', 'Difficult'],
+                        ['disabled', '', '', '']
+                    ) ?>
+
                 <?php echo $form->field($data['model'], 'prerequisites', 'Prerequisites*'); ?>
                 <?php echo $form->field($data['model'], 'credits', 'University Credits'); ?>
                 <?php echo $form->field($data['model'], 'topics', 'Topics to be discussed*'); ?>

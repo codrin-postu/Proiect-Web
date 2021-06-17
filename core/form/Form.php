@@ -17,8 +17,18 @@ class Form
         echo '</form>';
     }
 
-    public function field(Model $model, $inputType = '', $value = '', $attributes = '')
+    public static function selectBegin($name)
     {
-        return new Field($model, $inputType, $value, $attributes);
+        echo sprintf('<select name="%s">', $name);
+    }
+
+    public static function selectEnd()
+    {
+        echo '</select>';
+    }
+
+    public function field(Model $model, $inputData = '', $value = '', $attributes = '', $wrapperClass = '')
+    {
+        return new Field($model, $inputData, $value, $attributes, $wrapperClass);
     }
 }

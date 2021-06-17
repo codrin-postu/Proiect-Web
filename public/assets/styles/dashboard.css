@@ -514,7 +514,6 @@ section .emphasis {
 
 .section-content form .row {
   display: flex;
-  flex-basis: auto;
   justify-content: space-between;
 }
 
@@ -522,8 +521,12 @@ form .row .form-group:nth-child(2) {
   margin-left: 4em;
 }
 
-.section-content .row .form-group {
-  width: 90%;
+form .row .row-30 {
+  width: 30%;
+}
+
+form .row .row-70 {
+  width: 70%;
 }
 
 /* End Form Rows */
