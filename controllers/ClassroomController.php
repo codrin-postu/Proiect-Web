@@ -58,7 +58,7 @@ class ClassroomController extends Controller
     {
         preg_match('/\d{6,}/', $request->getPath(), $matches);
         $classroom = (new ClassroomModel())->findOne(['id' => $matches[0]]);
-
+        $code = [];
         $data = [
             'pageTitle' => $classroom->name,
             'relPath' => '../../..',
@@ -100,5 +100,21 @@ class ClassroomController extends Controller
 
         $this->setLayout('dashboardheader');
         return $this->render('dashboard/classroom/grades', $data);
+    }
+
+    public function classroomHomeworkList(Request $request)
+    {
+        preg_match('/\d{6,}/', $request->getPath(), $matches);
+        $classroom = (new ClassroomModel())->findOne(['id' => $matches[0]]);
+
+        $data = [
+            'pageTitle' => $classroom->name,
+            'relPath' => '../../..',
+            'stylesheet' => 'dashboard.css',
+            'model' => $classroom
+        ];
+
+        $this->setLayout('dashboardheader');
+        return $this->render('dashboard/classroom/homeworklist', $data);
     }
 }

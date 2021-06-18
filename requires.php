@@ -24,6 +24,7 @@ require __DIR__ . "/core/form/Field.php";
 // Navigation/Table Generation
 
 require __DIR__ . "/core/generate/Navigation.php";
+require __DIR__ . "/core/generate/GeneratedCodesTable.php";
 
 // Controllers
 
@@ -43,6 +44,7 @@ require __DIR__ . "/models/UserClassroomModel.php";
 require __DIR__ . "/models/ClassroomJoinModel.php";
 require __DIR__ . "/models/UserUpdateModel.php";
 require __DIR__ . "/models/PasswordUpdateModel.php";
+require __DIR__ . "/models/AttendanceCodeModel.php";
 
 // Middlewares
 
