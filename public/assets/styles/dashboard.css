@@ -789,6 +789,10 @@ form .row .row-70 {
   margin-bottom: 0.625em;
 }
 
+.special-table tr.active-code {
+  background: #8ad882;
+}
+
 .special-table td {
   border-bottom: 1px solid #c9c9c9;
   display: block;

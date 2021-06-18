@@ -48,18 +48,18 @@ use fields\SelectField;
 
         <section class="check-attendance">
             <div class="section-header">
-                <h2>Insert code given by your professor/teacher</h2>
+                <h2>Insert attendance code</h2>
             </div>
             <div class="section-content">
-                <form action="/nothing.js" target="blank">
-                    <label for="">
-                        <p>Attendance Code</p>
-                        <input type="text" name="ClassCode" placeholder="###-###" required>
+                <?php $form = core\form\Form::begin('', 'POST') ?>
+                <fieldset>
 
-                    </label>
+                    <?php echo new TextField($data['userAttendance'], 'code', 'Code'); ?>
 
-                    <button type="submit">Send code</button>
-                </form>
+                </fieldset>
+
+                <button type="submit">Send Code</button>
+                <?php core\form\Form::end() ?>
             </div>
         </section>
 

@@ -81,7 +81,7 @@ abstract class DatabaseModel extends Model
     {
         $tableName = static::tableName();
         $inputs = array_keys($where);
-        $endStmt = implode(" AND ", array_map(fn ($input) => "$input = :$input ", $inputs));
+        $endStmt = implode(" AND ", array_map(fn ($input) => "$input = :$input", $inputs));
         // SELECT * FROM tableName WHERE email = :email AND firstname = :firstname
         $stmt = self::prepare("SELECT * FROM $tableName WHERE $endStmt");
         foreach ($where as $key => $value) {

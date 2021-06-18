@@ -12,6 +12,7 @@ use models\ClassroomModel;
 use models\UserClassroomModel;
 use models\AttendanceCodeModel;
 use core\Application;
+use models\UserAttendanceModel;
 
 class ClassroomController extends Controller
 {
@@ -66,6 +67,8 @@ class ClassroomController extends Controller
             'classroomId' => $classroom->id
         ]);
 
+        $userAttendance = new UserAttendanceModel();
+
         $code = new AttendanceCodeModel();
         $data = [
             'pageTitle' => $classroom->name,
@@ -73,8 +76,23 @@ class ClassroomController extends Controller
             'stylesheet' => 'dashboard.css',
             'classroom' => $classroom,
             'userClassroom' => $userClassroom,
-            'code' => $code
+            'code' => $code,
+            'userAttendance' => $userAttendance
         ];
+
+        if ($request->isPost() && $userClassroom->isStudent()) {
+
+            $userAttendance->loadData($request->getBody());
+            $userAttendance->loadData([
+                'classroomId' => $classroom->id,
+                'userId' => Application::$application->session->get('user')
+            ]);
+
+            if ($userAttendance->validate() && $userAttendance->save()) {
+                Application::$application->session->setFlash('success', 'The code has been generated!');
+                // Application::$application->response->redirect("/dashboard/classroom/$classroom->id/attendance");
+            }
+        }
 
         if ($request->isPost() && $userClassroom->isCreator()) {
 
@@ -84,7 +102,7 @@ class ClassroomController extends Controller
             ]);
 
             if ($code->save()) {
-                Application::$application->session->setFlash('success', 'The classroom has been created succesfully!');
+                Application::$application->session->setFlash('success', 'The code has been generated!');
                 // Application::$application->response->redirect("/dashboard/classroom/$classroom->id/attendance");
             }
         }

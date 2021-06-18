@@ -45,6 +45,7 @@ require __DIR__ . "/models/ClassroomJoinModel.php";
 require __DIR__ . "/models/UserUpdateModel.php";
 require __DIR__ . "/models/PasswordUpdateModel.php";
 require __DIR__ . "/models/AttendanceCodeModel.php";
+require __DIR__ . "/models/UserAttendanceModel.php";
 
 // Middlewares
 

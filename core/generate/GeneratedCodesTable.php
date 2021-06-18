@@ -6,6 +6,7 @@ use models\ClassroomModel;
 use models\UserClassroomModel;
 use core\Application;
 use models\AttendanceCodeModel;
+use models\UserAttendanceModel;
 
 class GeneratedCodesTable
 {
@@ -17,20 +18,7 @@ class GeneratedCodesTable
         preg_match('/\d{6,}/', $path, $matches);
         $classroomId = $matches[0];
 
-
-        $userId = Application::$application->session->get('user');
-
         $totalClassStudents = (new GeneratedCodesTable)->getTotalStudents($classroomId);
-
-
-
-
-
-        // echo '<pre>';
-        // var_dump($students);
-        // echo '</pre>';
-        // exit;
-
 
         $output .=  "
         <table cellspacing='0'>
@@ -80,16 +68,8 @@ class GeneratedCodesTable
 
     public function getStudentsAttendedCount($classroomId, $code)
     {
-        $usersClassroom = (new UserClassroomModel())->findAll(['classroomId' => $classroomId]);
+        $usersAttended = (new UserAttendanceModel())->findAll(['classroomId' => $classroomId, 'code' => $code]);
 
-        $students = 0;
-
-        foreach ($usersClassroom as $userClassroom) {
-            if ($userClassroom->type === 'student') {
-                $students++;
-            }
-        }
-
-        return $students;
+        return count($usersAttended);
     }
 }

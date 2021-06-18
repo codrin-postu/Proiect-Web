@@ -27,18 +27,17 @@ class RegisterController extends Controller
             'model' => $user
         ];
         if ($request->isPost()) {
-            
+
             $user->loadData($request->getBody());
 
-            if ($user->validate() && $user->save()) 
-            {
+            if ($user->validate() && $user->save()) {
                 Application::$application->session->setFlash('success', 'Your account has been registered succesfully!');
-                Application::$application->response->redirect('/dashboard/welcome');
+                Application::$application->response->redirect('/login');
                 exit;
             }
             return $this->render('register/academic', $data);
         }
-        
+
         return $this->render('register/academic', $data);
     }
 
@@ -53,18 +52,17 @@ class RegisterController extends Controller
         ];
 
         if ($request->isPost()) {
-            
+
             $user->loadData($request->getBody());
 
-            if ($user->validate() && $user->save()) 
-            {
+            if ($user->validate() && $user->save()) {
                 Application::$application->session->setFlash('success', 'Your account has been registered succesfully!');
                 Application::$application->response->redirect('/dashboard/welcome');
                 exit;
             }
             return $this->render('register/student', $data);
         }
-        
+
         return $this->render('register/student', $data);
     }
 }
