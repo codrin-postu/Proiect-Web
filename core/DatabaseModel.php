@@ -77,13 +77,13 @@ abstract class DatabaseModel extends Model
         return Application::$application->database->pdo->prepare($stmt);
     }
 
-    public function findOne($where)
+    public function findOne($where, $optional = '')
     {
         $tableName = static::tableName();
         $inputs = array_keys($where);
         $endStmt = implode(" AND ", array_map(fn ($input) => "$input = :$input", $inputs));
         // SELECT * FROM tableName WHERE email = :email AND firstname = :firstname
-        $stmt = self::prepare("SELECT * FROM $tableName WHERE $endStmt");
+        $stmt = self::prepare("SELECT * FROM $tableName WHERE $endStmt $optional");
         foreach ($where as $key => $value) {
             $stmt->bindValue(":$key", $value);
         }

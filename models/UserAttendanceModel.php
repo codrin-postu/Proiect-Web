@@ -12,6 +12,7 @@ class UserAttendanceModel extends DatabaseModel
     public string $userId = '';
     public string $classroomId = '';
     public string $code = '';
+    public string $codeId = '';
     public string $attended_at = '';
 
     public function primaryKey(): string
@@ -26,12 +27,12 @@ class UserAttendanceModel extends DatabaseModel
 
     public function columnsToInput(): array
     {
-        return ['userId', 'classroomId', 'code'];
+        return ['userId', 'classroomId', 'codeId'];
     }
 
     public function inputs(): array
     {
-        return ['userId', 'classroomId', 'code'];
+        return ['userId', 'classroomId', 'codeId'];
     }
 
     public function save()
@@ -39,7 +40,9 @@ class UserAttendanceModel extends DatabaseModel
         $classroomCode = (new AttendanceCodeModel)->findOne([
             'classroomId' => $this->classroomId,
             'code' => $this->code
-        ]);
+        ], 'ORDER BY expires_at DESC');
+
+
 
         if (!$classroomCode) {
             $this->addError('code', 'The code you inserted is incorrect or has expired');
@@ -51,9 +54,11 @@ class UserAttendanceModel extends DatabaseModel
             return false;
         }
 
+        $this->codeId = $classroomCode->id;
+
         $userAttendance = (new UserAttendanceModel)->findOne([
             'userId' => $this->userId,
-            'code' => $this->code,
+            'codeId' => $classroomCode->id,
             'classroomId' => $this->classroomId,
         ]);
 
@@ -64,7 +69,7 @@ class UserAttendanceModel extends DatabaseModel
 
         // echo '<pre>';
         // var_dump(time() + 3600);
-        // var_dump(strtotime($classroomCode->expires_at));
+        // var_dump($classroomCode);
         // echo '</pre>';
         // exit;
 

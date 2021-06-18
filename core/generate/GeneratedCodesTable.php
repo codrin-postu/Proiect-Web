@@ -35,7 +35,7 @@ class GeneratedCodesTable
         $classroomCodes = (new AttendanceCodeModel)->findAll(['classroomId' => $classroomId], 'ORDER BY expires_at DESC');
         foreach ($classroomCodes as $classroomCode) {
 
-            $attendedStudents = (new GeneratedCodesTable)->getStudentsAttendedCount($classroomId, $classroomCode->code);
+            $attendedStudents = (new GeneratedCodesTable)->getStudentsAttendedCount($classroomId, $classroomCode->id);
 
             $output .= " <tr>
             <td data-label='Code'>$classroomCode->code</td>
@@ -66,9 +66,9 @@ class GeneratedCodesTable
         return $students;
     }
 
-    public function getStudentsAttendedCount($classroomId, $code)
+    public function getStudentsAttendedCount($classroomId, $codeId)
     {
-        $usersAttended = (new UserAttendanceModel())->findAll(['classroomId' => $classroomId, 'code' => $code]);
+        $usersAttended = (new UserAttendanceModel())->findAll(['classroomId' => $classroomId, 'codeId' => $codeId]);
 
         return count($usersAttended);
     }
