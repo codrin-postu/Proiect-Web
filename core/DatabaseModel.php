@@ -81,7 +81,7 @@ abstract class DatabaseModel extends Model
     {
         $tableName = static::tableName();
         $inputs = array_keys($where);
-        $endStmt = implode("AND ", array_map(fn ($input) => "$input = :$input ", $inputs));
+        $endStmt = implode(" AND ", array_map(fn ($input) => "$input = :$input ", $inputs));
         // SELECT * FROM tableName WHERE email = :email AND firstname = :firstname
         $stmt = self::prepare("SELECT * FROM $tableName WHERE $endStmt");
         foreach ($where as $key => $value) {
@@ -92,13 +92,13 @@ abstract class DatabaseModel extends Model
         return $stmt->fetchObject(static::class);
     }
 
-    public function findAll($where)
+    public function findAll($where, $optional = "")
     {
         $tableName = static::tableName();
         $inputs = array_keys($where);
-        $endStmt = implode("AND ", array_map(fn ($input) => "$input = :$input", $inputs));
+        $endStmt = implode(" AND ", array_map(fn ($input) => "$input = :$input", $inputs));
         // SELECT * FROM tableName WHERE email = :email AND firstname = :firstname
-        $stmt = self::prepare("SELECT * FROM $tableName WHERE $endStmt");
+        $stmt = self::prepare("SELECT * FROM $tableName WHERE $endStmt $optional");
         foreach ($where as $key => $value) {
             $stmt->bindValue(":$key", $value);
         }

@@ -50,7 +50,7 @@ $application->router->get('/dashboard/classroom/:id/documentation', [ClassroomCo
 // $application->router->get('/dashboard/classroom/:id/attendance', [ClassroomController::class, 'classroomStudentAttendance']);
 
 $application->router->get('/dashboard/classroom/:id/attendance', [ClassroomController::class, 'classroomAttendance']);
-
+$application->router->post('/dashboard/classroom/:id/attendance', [ClassroomController::class, 'classroomAttendance']);
 // $application->router->get('/dashboard/classroom/:id/attendance', [ClassroomController::class, 'classroomAttendance']);
 
 

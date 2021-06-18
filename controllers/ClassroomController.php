@@ -9,6 +9,9 @@ use middlewares\RegisterMiddleware;
 use middlewares\MemberClassroomMiddleware;
 use middlewares\CreatorClassroomMiddleware;
 use models\ClassroomModel;
+use models\UserClassroomModel;
+use models\AttendanceCodeModel;
+use core\Application;
 
 class ClassroomController extends Controller
 {
@@ -58,13 +61,33 @@ class ClassroomController extends Controller
     {
         preg_match('/\d{6,}/', $request->getPath(), $matches);
         $classroom = (new ClassroomModel())->findOne(['id' => $matches[0]]);
-        $code = [];
+        $userClassroom = (new UserClassroomModel())->findOne([
+            'userId' => Application::$application->session->get('user'),
+            'classroomId' => $classroom->id
+        ]);
+
+        $code = new AttendanceCodeModel();
         $data = [
             'pageTitle' => $classroom->name,
             'relPath' => '../../..',
             'stylesheet' => 'dashboard.css',
-            'model' => $classroom
+            'classroom' => $classroom,
+            'userClassroom' => $userClassroom,
+            'code' => $code
         ];
+
+        if ($request->isPost() && $userClassroom->isCreator()) {
+
+            $code->loadData($request->getBody());
+            $code->loadData([
+                'classroomId' => $classroom->id
+            ]);
+
+            if ($code->save()) {
+                Application::$application->session->setFlash('success', 'The classroom has been created succesfully!');
+                // Application::$application->response->redirect("/dashboard/classroom/$classroom->id/attendance");
+            }
+        }
 
         $this->setLayout('dashboardheader');
         return $this->render('dashboard/classroom/attendance', $data);
