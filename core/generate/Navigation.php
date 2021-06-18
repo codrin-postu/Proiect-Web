@@ -1,9 +1,10 @@
 <?php
 
-namespace core;
+namespace core\generate;
 
 use models\ClassroomModel;
 use models\UserClassroomModel;
+use core\Application;
 
 class Navigation
 {
@@ -22,13 +23,24 @@ class Navigation
                     <div class=\"class-select\">
                     <i class=\"fas fa-chevron-right\"></i>
                     <span class=\"class-title\">$classroom->name</span>
-                </div>
-                <div class=\"class-links\">
+                </div>";
+
+            if ($userClassroom->type === 'pending') {
+                $output .= "<div class=\"class-links\">
+                        <a href=\"#\" class=\"nav-link\">
+                            <i class=\"fas fa-book-open\"></i>
+                            <span class=\"nav-name\">Request Pending</span>
+                        </a>
+                    </div>
+                </div>";
+                continue;
+            }
+            $output .= "<div class=\"class-links\">
                             <a href=\"/dashboard/classroom/$classroom->id/info\" class=\"nav-link\">
                                 <i class=\"fas fa-book-open\"></i>
                                 <span class=\"nav-name\">Class Information</span>
                             </a>
-                            <a href=\"/dashboard/classroom/$classroom->id/attendace\" class=\"nav-link\">
+                            <a href=\"/dashboard/classroom/$classroom->id/attendance\" class=\"nav-link\">
                                 <i class=\"fas fa-clock\"></i>
                                 <span class=\"nav-name\">Check Attendance</span>
                             </a>
@@ -46,17 +58,18 @@ class Navigation
                             </a>
                             <a href=\"/dashboard/classroom/$classroom->id/students\" class=\"nav-link\">
                                 <i class=\"fas fa-user\"></i>
-                                <span class=\"nav-name\">Students</span>
+                                <span class=\"nav-name\">Students & Management</span>
                             </a>
-                        </div>";
+                        </div>
+                    </div>";
         }
 
         return $output;
 
-        echo '<pre>';
-        var_dump($userId);
-        var_dump($userClassrooms[0]);
-        echo '</pre>';
-        exit;
+        // echo '<pre>';
+        // var_dump($userId);
+        // var_dump($userClassrooms[0]);
+        // echo '</pre>';
+        // exit;
     }
 }

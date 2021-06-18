@@ -9,6 +9,7 @@ class ClassroomModel extends DatabaseModel
 {
     public string $id = '0';
     public string $name = '';
+    public string $subtitle = '';
     public string $description = '';
     public string $duration = '';
     public string $commitment = '';
@@ -36,6 +37,25 @@ class ClassroomModel extends DatabaseModel
         return [
             'name',
             'description',
+            'subtitle',
+            'duration',
+            'commitment',
+            'classCount',
+            'subject',
+            'evaluation',
+            'difficulty',
+            'prerequisites',
+            'credits',
+            'topics'
+        ];
+    }
+
+    public function inputs(): array
+    {
+        return [
+            'name',
+            'description',
+            'subtitle',
             'duration',
             'commitment',
             'classCount',
@@ -66,28 +86,14 @@ class ClassroomModel extends DatabaseModel
         return true;
     }
 
-    public function inputs(): array
-    {
-        return [
-            'name',
-            'description',
-            'duration',
-            'commitment',
-            'classCount',
-            'subject',
-            'evaluation',
-            'difficulty',
-            'prerequisites',
-            'credits',
-            'topics'
-        ];
-    }
+
 
     public function rules(): array
     {
         return [
             'name' => [self::RULE_REQUIRED],
             'description' => [self::RULE_REQUIRED],
+            'subtitle' => [self::RULE_REQUIRED],
             'duration' => [self::RULE_REQUIRED],
             'commitment' => [self::RULE_REQUIRED],
             'classCount' => [self::RULE_REQUIRED],

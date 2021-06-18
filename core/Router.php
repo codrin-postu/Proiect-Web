@@ -41,6 +41,9 @@ class Router
         $path = preg_replace('/\/\d+/ i', '/:id', $this->request->getPath());
         $method = $this->request->method();
 
+        $completePath = Application::$application->request->getPath();
+        preg_match('/\d{6,}/', $completePath, $matches);
+
         $callback = $this->routes[$method][$path] ?? false;
 
         //var_dump($callback); //Check for callback status.
@@ -53,6 +56,8 @@ class Router
         if (is_string($callback)) {
             return $this->renderView($callback);
         }
+
+
 
         if (is_array($callback)) {
             Application::$application->controller = new $callback[0]();

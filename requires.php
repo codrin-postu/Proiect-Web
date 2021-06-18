@@ -16,14 +16,14 @@ require __DIR__ . "/core/Middleware.php";
 require __DIR__ . "/core/exceptions/NotFoundException.php";
 require __DIR__ . "/core/exceptions/ForbiddenException.php";
 
-require __DIR__ . "/middlewares/RegisterMiddleware.php";
-require __DIR__ . "/middlewares/AcademicMiddleware.php";
-require __DIR__ . "/middlewares/StudentMiddleware.php";
+// Form Generation
 
 require __DIR__ . "/core/form/Form.php";
 require __DIR__ . "/core/form/Field.php";
 
-require __DIR__ . "/core/Navigation.php";
+// Navigation/Table Generation
+
+require __DIR__ . "/core/generate/Navigation.php";
 
 // Controllers
 
@@ -43,6 +43,14 @@ require __DIR__ . "/models/UserClassroomModel.php";
 require __DIR__ . "/models/ClassroomJoinModel.php";
 require __DIR__ . "/models/UserUpdateModel.php";
 require __DIR__ . "/models/PasswordUpdateModel.php";
+
+// Middlewares
+
+require __DIR__ . "/middlewares/RegisterMiddleware.php";
+require __DIR__ . "/middlewares/AcademicMiddleware.php";
+require __DIR__ . "/middlewares/StudentMiddleware.php";
+require __DIR__ . "/middlewares/MemberClassroomMiddleware.php";
+require __DIR__ . "/middlewares/CreatorClassroomMiddleware.php";
 
 // Fields
 

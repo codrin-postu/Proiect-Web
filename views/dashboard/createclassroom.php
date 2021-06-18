@@ -30,6 +30,7 @@ use fields\TextareaField;
             <fieldset>
                 <legend><span class="number">1</span> Basic Class Information</legend>
                 <?php echo new TextField($data['model'], 'name', 'Class Name*'); ?>
+                <?php echo new TextField($data['model'], 'subtitle', 'Class Subtitle*') ?>
                 <?php echo new TextField($data['model'], 'subject', 'Class Subject*'); ?>
                 <?php echo new TextField($data['model'], 'duration', 'Duration (eg. 16 Weeks)*'); ?>
             </fieldset>
@@ -48,7 +49,7 @@ use fields\TextareaField;
 
                 <?php $selectField = new SelectField($data['model'], 'difficulty', 'Class Difficulty*', 'disabled selected');
                 $selectField->setOptions(
-                    ['difficulty', 'easy', 'intermediate', 'difficult'],
+                    ['difficulty', 'Easy', 'Intermediate', 'Difficult'],
                     ['Class Difficulty*', 'Easy', 'Intermediate', 'Difficult'],
                     ['disabled selected', '', '', '']
                 );

@@ -22,7 +22,9 @@ class DashboardController extends Controller
         $this->registerMiddleware(new RegisterMiddleware([
             'dashboardWelcome',
             'dashboardAccount',
-            'dashboardSecurity'
+            'dashboardSecurity',
+            'dashboardClassroomCreate',
+            'dashboardClassroomJoin'
         ]));
 
         $this->registerMiddleware(new AcademicMiddleware([
@@ -36,11 +38,6 @@ class DashboardController extends Controller
 
     public function dashboardWelcome(Request $request)
     {
-        // echo '<pre>';
-        // preg_match('/\/\d+\//', $request->getPath(), $matches);
-        // var_dump($matches);
-        // echo '</pre>';
-
         $data = [
             'pageTitle' => 'Welcome',
             'relPath' => '..',
@@ -162,15 +159,19 @@ class DashboardController extends Controller
         if ($request->isPost()) {
             $classroom->loadData($request->getBody());
             $userClassroom->loadData([
-                "classroomId" => ClassroomModel::getLatestId(),
                 "userId" => Application::$application->user->id,
                 "type" => "creator"
             ]);
 
-            if ($classroom->validate() && $classroom->save() && $userClassroom->save()) {
-                Application::$application->session->setFlash('success', 'The classroom has been created succesfully!');
-                Application::$application->response->redirect('/dashboard/classroom/create');
-                exit;
+            if ($classroom->validate() && $classroom->save()) {
+                $userClassroom->loadData(([
+                    "classroomId" => ClassroomModel::getLatestId()
+                ]));
+                if ($userClassroom->save()) {
+                    Application::$application->session->setFlash('success', 'The classroom has been created succesfully!');
+                    Application::$application->response->redirect('/dashboard/classroom/create');
+                    exit;
+                }
             }
         }
         $this->setLayout('dashboardheader');

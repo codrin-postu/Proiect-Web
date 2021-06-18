@@ -42,4 +42,24 @@ class UserClassroomModel extends DatabaseModel
     {
         return [];
     }
+
+    public function isCreator()
+    {
+        return $this->type === 'creator';
+    }
+
+    public function isStudent()
+    {
+        return $this->type === 'student';
+    }
+
+    public function isMember()
+    {
+        return $this->isCreator() || $this->isStudent();
+    }
+
+    public function isPending()
+    {
+        return $this->type === 'pending';
+    }
 }

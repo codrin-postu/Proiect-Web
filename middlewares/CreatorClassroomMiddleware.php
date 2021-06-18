@@ -7,7 +7,7 @@ use core\Application;
 use core\exceptions\ForbiddenException;
 use models\UserClassroomModel;
 
-class MemberClassroomMiddleware extends Middleware
+class CreatorClassroomMiddleware extends Middleware
 {
     public array $actions = [];
 
@@ -25,7 +25,7 @@ class MemberClassroomMiddleware extends Middleware
 
         $userClassroom = (new UserClassroomModel())->findOne(['userId' => $userId, 'classroomId' => $classroomId]);
 
-        if (!$userClassroom || !$userClassroom->isMember()) {
+        if (!$userClassroom || !$userClassroom->isCreator()) {
             if (empty($this->actions) || in_array(Application::$application->controller->action, $this->actions)) {
                 throw new ForbiddenException();
             }

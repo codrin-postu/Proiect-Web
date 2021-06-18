@@ -47,9 +47,14 @@ $application->router->get("/dashboard/classroom/:id/info", [ClassroomController:
 
 $application->router->get('/dashboard/classroom/:id/documentation', [ClassroomController::class, 'classroomDocumentation']);
 
+// $application->router->get('/dashboard/classroom/:id/attendance', [ClassroomController::class, 'classroomStudentAttendance']);
+
 $application->router->get('/dashboard/classroom/:id/attendance', [ClassroomController::class, 'classroomAttendance']);
 
 // $application->router->get('/dashboard/classroom/:id/attendance', [ClassroomController::class, 'classroomAttendance']);
+
+
+// $application->router->get('/dashboard/classroom/:id/grades', [ClassroomController::class, 'classroomStudentGrades']);
 
 $application->router->get('/dashboard/classroom/:id/grades', [ClassroomController::class, 'classroomGrades']);
 
