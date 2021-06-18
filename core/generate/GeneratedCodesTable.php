@@ -18,8 +18,6 @@ class GeneratedCodesTable
         preg_match('/\d{6,}/', $path, $matches);
         $classroomId = $matches[0];
 
-        $totalClassStudents = (new GeneratedCodesTable)->getTotalStudents($classroomId);
-
         $output .=  "
         <table cellspacing='0'>
         <thead>
@@ -37,12 +35,18 @@ class GeneratedCodesTable
 
             $attendedStudents = (new GeneratedCodesTable)->getStudentsAttendedCount($classroomId, $classroomCode->id);
 
-            $output .= " <tr>
-            <td data-label='Code'>$classroomCode->code</td>
-            <td data-label='Created At'>$classroomCode->created_at</td>
-            <td data-label='Expires At'>$classroomCode->expires_at</td>
-            <td data-label='Students Attended' class='success'>$attendedStudents/$totalClassStudents</td>
-        </tr>";
+            if (time() + 3600 < strtotime($classroomCode->expires_at)) {
+                $output .= '<tr class="active-code">';
+            } else {
+                $output .=  '<tr>';
+            }
+
+            $output .= "
+                    <td data-label='Code'>$classroomCode->code</td>
+                    <td data-label='Created At'>$classroomCode->created_at</td>
+                    <td data-label='Expires At'>$classroomCode->expires_at</td>
+                    <td data-label='Students Attended' class='success'>$attendedStudents</td>
+                </tr>";
         }
 
         $output .= " </tbody>
