@@ -12,6 +12,7 @@ use models\ClassroomModel;
 use models\UserClassroomModel;
 use models\AttendanceCodeModel;
 use core\Application;
+use models\LessonModel;
 use models\UserAttendanceModel;
 
 class ClassroomController extends Controller
@@ -38,7 +39,8 @@ class ClassroomController extends Controller
         ]));
 
         $this->registerMiddleware(new CreatorClassroomMiddleware([
-            'classroomStudents'
+            'classroomStudents',
+            'classroomDocumentationCreate'
         ]));
     }
 
@@ -111,33 +113,124 @@ class ClassroomController extends Controller
         return $this->render('dashboard/classroom/attendance', $data);
     }
 
-    public function classroomDocumentation(Request $request)
+    public function classroomDocumentationList(Request $request)
     {
         preg_match('/\d{6,}/', $request->getPath(), $matches);
         $classroom = (new ClassroomModel())->findOne(['id' => $matches[0]]);
+        $userClassroom = (new UserClassroomModel())->findOne([
+            'userId' => Application::$application->session->get('user'),
+            'classroomId' => $classroom->id
+        ]);
 
+        $userAttendance = new UserAttendanceModel();
+
+        $code = new AttendanceCodeModel();
         $data = [
             'pageTitle' => $classroom->name,
             'relPath' => '../../..',
             'stylesheet' => 'dashboard.css',
-            'model' => $classroom
+            'classroom' => $classroom,
+            'userClassroom' => $userClassroom
         ];
+
+        if ($request->isPost() && $userClassroom->isStudent()) {
+
+            $userAttendance->loadData($request->getBody());
+            $userAttendance->loadData([
+                'classroomId' => $classroom->id,
+                'userId' => Application::$application->session->get('user')
+            ]);
+
+            if ($userAttendance->validate() && $userAttendance->save()) {
+                Application::$application->session->setFlash('success', 'The code has been generated!');
+                // Application::$application->response->redirect("/dashboard/classroom/$classroom->id/attendance");
+            }
+        }
+
+        if ($request->isPost() && $userClassroom->isCreator()) {
+
+            $code->loadData($request->getBody());
+            $code->loadData([
+                'classroomId' => $classroom->id
+            ]);
+
+            if ($code->save()) {
+                Application::$application->session->setFlash('success', 'The code has been generated!');
+                // Application::$application->response->redirect("/dashboard/classroom/$classroom->id/attendance");
+            }
+        }
+
 
         $this->setLayout('dashboardheader');
         return $this->render('dashboard/classroom/classdoc', $data);
+    }
+
+    public function classroomDocumentationCreate(Request $request)
+    {
+        preg_match('/\d{6,}/', $request->getPath(), $matches);
+        $classroom = (new ClassroomModel())->findOne(['id' => $matches[0]]);
+
+        $lesson = new LessonModel();
+        $data = [
+            'pageTitle' => $classroom->name,
+            'relPath' => '../../../..',
+            'stylesheet' => 'dashboard.css',
+            'classroom' => $classroom,
+            'lesson' => $lesson
+        ];
+
+        if ($request->isPost()) {
+
+            $lesson->loadData($request->getBody());
+            $lesson->loadData([
+                'classroomId' => $classroom->id
+            ]);
+
+            if ($lesson->validate() && $lesson->save()) {
+                Application::$application->session->setFlash('success', 'The lesson has been added!');
+                Application::$application->response->redirect("/dashboard/classroom/$classroom->id/documentation");
+            }
+        }
+
+
+        $this->setLayout('dashboardheader');
+        return $this->render('dashboard/classroom/classdoccreate', $data);
     }
 
     public function classroomGrades(Request $request)
     {
         preg_match('/\d{6,}/', $request->getPath(), $matches);
         $classroom = (new ClassroomModel())->findOne(['id' => $matches[0]]);
+        $userClassroom = (new UserClassroomModel())->findOne([
+            'userId' => Application::$application->session->get('user'),
+            'classroomId' => $classroom->id
+        ]);
 
+        $userAttendance = new UserAttendanceModel();
+
+        $code = new AttendanceCodeModel();
         $data = [
             'pageTitle' => $classroom->name,
             'relPath' => '../../..',
             'stylesheet' => 'dashboard.css',
-            'model' => $classroom
+            'classroom' => $classroom,
+            'userClassroom' => $userClassroom,
+            'code' => $code,
+            'userAttendance' => $userAttendance
         ];
+
+        if ($request->isPost() && $userClassroom->isCreator()) {
+
+            $code->loadData($request->getBody());
+            $code->loadData([
+                'classroomId' => $classroom->id
+            ]);
+
+            if ($code->save()) {
+                Application::$application->session->setFlash('success', 'The code has been generated!');
+                // Application::$application->response->redirect("/dashboard/classroom/$classroom->id/attendance");
+            }
+        }
 
         $this->setLayout('dashboardheader');
         return $this->render('dashboard/classroom/grades', $data);

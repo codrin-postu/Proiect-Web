@@ -26,6 +26,7 @@ require __DIR__ . "/core/form/Field.php";
 require __DIR__ . "/generate/Navigation.php";
 require __DIR__ . "/generate/GeneratedCodesTable.php";
 require __DIR__ . "/generate/UserAttendanceInformation.php";
+require __DIR__ . "/generate/LessonTable.php";
 
 // Controllers
 
@@ -47,6 +48,7 @@ require __DIR__ . "/models/UserUpdateModel.php";
 require __DIR__ . "/models/PasswordUpdateModel.php";
 require __DIR__ . "/models/AttendanceCodeModel.php";
 require __DIR__ . "/models/UserAttendanceModel.php";
+require __DIR__ . "/models/LessonModel.php";
 
 // Middlewares
 
@@ -66,5 +68,6 @@ require __DIR__ . "/fields/PasswordField.php";
 require __DIR__ . "/fields/EmailField.php";
 require __DIR__ . "/fields/CheckboxField.php";
 require __DIR__ . "/fields/HiddenField.php";
+require __DIR__ . "/fields/DateField.php";
 
 require __DIR__ . "/config.php";

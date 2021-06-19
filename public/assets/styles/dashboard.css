@@ -409,7 +409,7 @@ section .emphasis {
 
   overflow: hidden;
 
-  height: 40vh;
+  max-height: 50vh;
 
   border: none;
   border-radius: 0;
@@ -649,6 +649,10 @@ form .row .row-70 {
   padding-top: 2em;
 }
 
+.class-information td {
+  align-self: center;
+}
+
 .class-information .section-content {
   padding-top: 0;
 }
@@ -656,7 +660,7 @@ form .row .row-70 {
 .class-information p {
   font-size: 1.3em;
   font-weight: 600;
-  white-space: nowrap;
+  white-space: wrap;
 }
 
 .class-information table {
@@ -681,7 +685,7 @@ form .row .row-70 {
 
 /* Check Attendance Page Specific */
 
-.codes-generated . .section-content {
+.codes-generated .section-content {
   padding: 0 1.5em;
 }
 
@@ -800,6 +804,24 @@ form .row .row-70 {
 /* End Homework Information Page Specific */
 
 /* Class Documentation List Page Specific */
+
+.class-documentation .section-header {
+  /* flex-direction: column; */
+  justify-content: space-between;
+  align-items: center;
+}
+
+.class-documentation .section-header p {
+  /* text-align: center; */
+  text-decoration: none;
+
+  font-weight: 400;
+  font-size: 1.6em;
+}
+
+.class-documentation .section-header a {
+  color: #e74c3c;
+}
 
 .class-documentation .section-content {
   padding: 0.25em;
@@ -934,6 +956,15 @@ form .row .row-70 {
   .class-banner p {
     font-size: 2em;
   }
+
+  .class-information table {
+    padding: 0.5em 0.15em;
+    font-size: 1em;
+  }
+
+  .class-information td + td {
+    border-left: 0.5em transparent solid;
+  }
 }
 
 @media screen and (min-width: 860px) {
@@ -1023,21 +1054,6 @@ form .row .row-70 {
     width: 20em;
     height: 20em;
     border-radius: 0%;
-  }
-
-  /* Class Information */
-
-  .class-information table {
-    width: 100%;
-    table-layout: fixed;
-  }
-
-  .class-information p {
-    font-size: 1.2em;
-  }
-
-  .class-information td {
-    align-self: center;
   }
 
   /* Tables class */

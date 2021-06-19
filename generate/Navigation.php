@@ -13,6 +13,14 @@ class Navigation
         $userId = Application::$application->session->get('user');
         $userClassrooms = (new UserClassroomModel())->findAll(['userId' => $userId]);
 
+        preg_match('/\d{6,}/', Application::$application->request->getPath(), $matches);
+
+        preg_match('/[a-zA-Z]+$/', Application::$application->request->getPath(), $path);
+
+        $currentClassroom = '';
+        $currentPath = '';
+
+
         $output = '';
 
         foreach ($userClassrooms as $userClassroom) {
@@ -20,7 +28,7 @@ class Navigation
 
             $output .=  "
                 <div class=\"nav-class\">
-                    <div class=\"class-select\">
+                    <div class=\"class-select\"><?php echo 'test' ?>
                     <i class=\"fas fa-chevron-right\"></i>
                     <span class=\"class-title\">$classroom->name</span>
                 </div>";
@@ -65,11 +73,5 @@ class Navigation
         }
 
         return $output;
-
-        // echo '<pre>';
-        // var_dump($userId);
-        // var_dump($userClassrooms[0]);
-        // echo '</pre>';
-        // exit;
     }
 }
