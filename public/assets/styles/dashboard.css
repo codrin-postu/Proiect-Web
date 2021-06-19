@@ -709,6 +709,46 @@ form .row .row-70 {
   margin: 0;
 }
 
+.attendance-percentage .section-content {
+  display: flex;
+  justify-content: center;
+}
+
+.attendance-percentage .semi-donut {
+  position: relative;
+  overflow: hidden;
+  width: 250px;
+  height: 125px;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  box-sizing: border-box;
+  margin: 1em 0;
+
+  color: #27ae60;
+
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.attendance-percentage .semi-donut::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 250px;
+  height: 250px;
+  border: 30px solid;
+  border-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15) #27ae60 #27ae60;
+  border-radius: 50%;
+
+  transform: rotate(calc(1deg * (-45 + var(--percentage) * 1.8)));
+
+  animation: fillAnimation 1s ease-in;
+}
+
 .attendance-history .class-date {
   padding: 0 1.2em;
   text-align: center;

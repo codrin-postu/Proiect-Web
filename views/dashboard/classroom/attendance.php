@@ -79,7 +79,7 @@ use fields\SelectField;
                 <h2>Attendance Percentage</h2>
             </div>
             <div class="section-content">
-
+                <?php echo UserAttendanceInformation::loadDonut() ?>
             </div>
         </section>
     <?php endif; ?>

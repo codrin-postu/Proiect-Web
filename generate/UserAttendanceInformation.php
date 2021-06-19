@@ -17,7 +17,6 @@ class UserAttendanceInformation
         $path = Application::$application->request->getPath();
         preg_match('/\d{6,}/', $path, $matches);
         $classroomId = $matches[0];
-        $output = '';
 
         $userId = Application::$application->session->get('user');
 
@@ -57,6 +56,48 @@ class UserAttendanceInformation
             // echo '</pre>';
             // exit;
         }
+
+        return $output;
+    }
+
+    public static function loadDonut()
+    {
+        $output = '';
+
+        $path = Application::$application->request->getPath();
+        preg_match('/\d{6,}/', $path, $matches);
+        $classroomId = $matches[0];
+
+        $userId = Application::$application->session->get('user');
+
+        $classroomCodes = (new AttendanceCodeModel)->findAll(
+            [
+                'classroomId' => $classroomId
+            ]
+        );
+
+        $totalCodesCount = count($classroomCodes);
+        $userAttendedCount = 0;
+
+
+        foreach ($classroomCodes as $classroomCode) {
+            $userAttended = ((new UserAttendanceModel)->findOne([
+                'userId' => $userId,
+                'classroomId' => $classroomId,
+                'codeId' => $classroomCode->id
+            ]));
+
+            if ($userAttended) {
+                $userAttendedCount++;
+            }
+        }
+
+        $percentage = round($userAttendedCount / $totalCodesCount * 100, 2);
+
+        $output = "<div class=\"semi-donut margin\"
+        style=\"--percentage : $percentage;\">
+            <p>$percentage%</p>
+        </div>";
 
         return $output;
     }
