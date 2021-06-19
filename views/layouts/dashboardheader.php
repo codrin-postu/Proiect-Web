@@ -1,7 +1,7 @@
 <?php
 
 use core\Application;
-use core\generate\Navigation;
+use generate\Navigation;
 
 ?>
 

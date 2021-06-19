@@ -1,9 +1,11 @@
 <!-- Dashboard Content  -->
 <?php
 
-use core\generate\GeneratedCodesTable;
+use generate\UserAttendanceInformation;
+use generate\GeneratedCodesTable;
 use fields\TextField;
 use fields\SelectField;
+
 ?>
 <div class="main-content">
     <?php if ($data['userClassroom']->isCreator()) : ?>
@@ -68,47 +70,11 @@ use fields\SelectField;
                 <h2>Your Attendance History</h2>
             </div>
             <div class="section-content">
-                <div class="class-date">
-                    <p>04/03</p>
-                    <p class="attendance-status attended">Present</p>
-                </div>
-                <div class="class-date">
-                    <p>08/03</p>
-                    <p class="attendance-status attended">Present</p>
-                </div>
-                <div class="class-date">
-                    <p>12/03</p>
-                    <p class="attendance-status">Absent</p>
-                </div>
-                <div class="class-date">
-                    <p>16/03</p>
-                    <p class="attendance-status attended">Present</p>
-                </div>
-                <div class="class-date">
-                    <p>20/03</p>
-                    <p class="attendance-status attended">Present</p>
-                </div>
-                <div class="class-date">
-                    <p>24/03</p>
-                    <p class="attendance-status">Absent</p>
-                </div>
-                <div class="class-date">
-                    <p>28/03</p>
-                    <p class="attendance-status attended">Present</p>
-                </div>
-                <div class="class-date">
-                    <p>04/04</p>
-                    <p class="attendance-status">Absent</p>
-                </div>
-                <div class="class-date">
-                    <p>08/04</p>
-                    <p class="attendance-status attended">Present</p>
-                </div>
-
+                <?php echo UserAttendanceInformation::loadTable() ?>
             </div>
         </section>
 
-        <section class="attendance-percentage width-half-L width-half-M">
+        <section class="attendance-percentage ">
             <div class="section-header">
                 <h2>Attendance Percentage</h2>
             </div>
@@ -116,16 +82,6 @@ use fields\SelectField;
 
             </div>
         </section>
-
-        <section class="attendance-information width-half-L width-half-M">
-            <div class="section-header">
-                <h2>Attendance Information</h2>
-            </div>
-            <div class="section-content">
-
-            </div>
-        </section>
-
     <?php endif; ?>
 
 </div>

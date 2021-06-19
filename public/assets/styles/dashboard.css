@@ -681,6 +681,10 @@ form .row .row-70 {
 
 /* Check Attendance Page Specific */
 
+.codes-generated . .section-content {
+  padding: 0 1.5em;
+}
+
 .check-attendance .section-content {
   padding: 0 1.5em;
 }
@@ -706,12 +710,18 @@ form .row .row-70 {
 }
 
 .attendance-history .class-date {
-  padding: 0 1em;
+  padding: 0 1.2em;
+  text-align: center;
+}
+
+.attendance-history .class-date p {
+  padding: 0.5em 0;
 }
 
 .attendance-history .attendance-status {
   color: #e74c3c;
   font-weight: 600;
+  padding: 0;
 }
 
 .attendance-history .attendance-status.attended {
@@ -785,7 +795,7 @@ form .row .row-70 {
 .special-table tr {
   border-bottom: 2px solid #c9c9c9;
   display: block;
-  padding: 1em 0;
+  padding: 1em 0.5em;
   margin-bottom: 0.625em;
 }
 
@@ -934,6 +944,19 @@ form .row .row-70 {
   }
 
   /* Page Specific  */
+
+  .class-banner {
+    height: 35vh;
+    padding: 2em 0 4em 4em;
+  }
+
+  .class-banner h2 {
+    margin-left: 1em;
+  }
+
+  .class-banner p {
+    margin-left: 2em;
+  }
 
   /* Edit Account */
 

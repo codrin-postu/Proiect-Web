@@ -23,8 +23,9 @@ require __DIR__ . "/core/form/Field.php";
 
 // Navigation/Table Generation
 
-require __DIR__ . "/core/generate/Navigation.php";
-require __DIR__ . "/core/generate/GeneratedCodesTable.php";
+require __DIR__ . "/generate/Navigation.php";
+require __DIR__ . "/generate/GeneratedCodesTable.php";
+require __DIR__ . "/generate/UserAttendanceInformation.php";
 
 // Controllers
 
