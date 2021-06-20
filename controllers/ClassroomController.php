@@ -12,6 +12,7 @@ use models\ClassroomModel;
 use models\UserClassroomModel;
 use models\AttendanceCodeModel;
 use core\Application;
+use models\HomeworkModel;
 use models\LessonModel;
 use models\UserAttendanceModel;
 
@@ -40,7 +41,8 @@ class ClassroomController extends Controller
 
         $this->registerMiddleware(new CreatorClassroomMiddleware([
             'classroomStudents',
-            'classroomDocumentationCreate'
+            'classroomDocumentationCreate',
+            'classroomHomeworkCreate'
         ]));
     }
 
@@ -244,14 +246,86 @@ class ClassroomController extends Controller
         preg_match('/\d{6,}/', $request->getPath(), $matches);
         $classroom = (new ClassroomModel())->findOne(['id' => $matches[0]]);
 
+        $userClassroom = (new UserClassroomModel())->findOne([
+            'userId' => Application::$application->session->get('user'),
+            'classroomId' => $classroom->id
+        ]);
+
         $data = [
             'pageTitle' => $classroom->name,
             'relPath' => '../../..',
             'stylesheet' => 'dashboard.css',
-            'model' => $classroom
+            'classroom' => $classroom,
+            'userClassroom' => $userClassroom
         ];
 
         $this->setLayout('dashboardheader');
         return $this->render('dashboard/classroom/homeworklist', $data);
+    }
+
+    public function classroomHomeworkCreate(Request $request)
+    {
+        preg_match('/\d{6,}/', $request->getPath(), $matches);
+        $classroom = (new ClassroomModel())->findOne(['id' => $matches[0]]);
+
+        $homework = new HomeworkModel();
+        $data = [
+            'pageTitle' => $classroom->name,
+            'relPath' => '../../../..',
+            'stylesheet' => 'dashboard.css',
+            'classroom' => $classroom,
+            'homework' => $homework
+        ];
+
+        if ($request->isPost()) {
+
+            $homework->loadData($request->getBody());
+            $homework->loadData([
+                'classroomId' => $classroom->id
+            ]);
+
+            if ($homework->validate() && $homework->save()) {
+                Application::$application->session->setFlash('success', 'The lesson has been added!');
+                Application::$application->response->redirect("/dashboard/classroom/$classroom->id/homework");
+                exit;
+            }
+        }
+
+
+        $this->setLayout('dashboardheader');
+        return $this->render('dashboard/classroom/homeworkcreate', $data);
+    }
+
+    public function classroomHomework(Request $request)
+    {
+        preg_match_all('/\d{1,}/', $request->getPath(), $matches);
+        $classroom = (new ClassroomModel())->findOne(['id' => $matches[0][0]]);
+        $userClassroom = (new UserClassroomModel())->findOne([
+            'userId' => Application::$application->session->get('user'),
+            'classroomId' => $classroom->id
+        ]);
+
+        $homework = (new HomeworkModel())->findOne(['id' => $matches[0][1]]);
+
+        $data = [
+            'pageTitle' => $classroom->name,
+            'relPath' => '../../../..',
+            'stylesheet' => 'dashboard.css',
+            'classroom' => $classroom,
+            'userClassroom' => $userClassroom,
+            'homework' => $homework
+        ];
+
+        if ($request->isPost() && $userClassroom->isCreator()) {
+
+            if ($homework->delete()) {
+                Application::$application->session->setFlash('success', 'The lesson has been removed!');
+                Application::$application->response->redirect("/dashboard/classroom/$classroom->id/homework");
+                exit;
+            }
+        }
+
+        $this->setLayout('dashboardheader');
+        return $this->render('dashboard/classroom/homework', $data);
     }
 }

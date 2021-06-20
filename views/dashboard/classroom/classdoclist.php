@@ -7,6 +7,19 @@ use controllers\generate\LessonTable;
 
 <div class="main-content">
 
+    <?php if (\core\Application::$application->session->getFlash('success')) : ?>
+        <section>
+            <div class="section-header">
+                <h2>Lesson Added succesfully</h2>
+            </div>
+            <div class="section-content">
+                <?php echo '<p>' . \core\Application::$application->session->getFlash('success') . '</p>'; ?>
+            </div>
+
+
+        </section>
+    <?php endif; ?>
+
     <section class="class-documentation special-table">
         <div class="section-header">
             <h2>Class Documentation</h2>

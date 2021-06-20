@@ -67,9 +67,16 @@ $application->router->get('/dashboard/classroom/:id/grades', [ClassroomControlle
 
 $application->router->get('/dashboard/classroom/:id/homework', [ClassroomController::class, 'classroomHomeworkList']);
 
+$application->router->get('/dashboard/classroom/:id/homework/create', [ClassroomController::class, 'classroomHomeworkCreate']);
+$application->router->post('/dashboard/classroom/:id/homework/create', [ClassroomController::class, 'classroomHomeworkCreate']);
+
+
 // $application->router-
 
 $application->router->get('/dashboard/classroom/:id/homework/:id', [ClassroomController::class, 'classroomHomework']);
 $application->router->post('/dashboard/classroom/:id/homework/:id', [ClassroomController::class, 'classroomHomework']);
+
+$application->router->get('/dashboard/classroom/:id/homework/:id/list', [ClassroomController::class, 'classroomHomeworkReceived']);
+
 
 $application->run();

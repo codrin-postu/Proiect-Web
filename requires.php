@@ -42,6 +42,7 @@ require __DIR__ . "/models/PasswordUpdateModel.php";
 require __DIR__ . "/models/AttendanceCodeModel.php";
 require __DIR__ . "/models/UserAttendanceModel.php";
 require __DIR__ . "/models/LessonModel.php";
+require __DIR__ . "/models/HomeworkModel.php";
 
 // Navigation/Table Generation
 
@@ -70,5 +71,7 @@ require __DIR__ . "/fields/EmailField.php";
 require __DIR__ . "/fields/CheckboxField.php";
 require __DIR__ . "/fields/HiddenField.php";
 require __DIR__ . "/fields/DateField.php";
+require __DIR__ . "/fields/DateTimeField.php";
+require __DIR__ . "/fields/FileField.php";
 
 require __DIR__ . "/config.php";

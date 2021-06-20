@@ -1,71 +1,59 @@
+<!-- Dashboard Content  -->
+<div class="main-content">
 
-    <!-- Dashboard Content  -->
-    <div class="main-content">
+    <section class="homework-detail">
+        <div class="section-header">
+            <h2><?php
 
-        <section class="homework-detail">
-            <div class="section-header">
-                <p>Create a responsive website</p>
+                use fields\FileField;
+
+                echo $data['homework']->title ?></h2>
+        </div>
+        <div class="section-content">
+            <div class="homework-text">
+                <?php echo $data['homework']->description ?>
             </div>
-            <div class="section-content">
-                <div class="homework-text">
-                    <h3>What is Lorem Ipsum?</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                        Ipsum has
-                        been
-                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                        of
-                        type and scrambled it to make a type specimen book. It has survived not only five centuries, but
-                        also the leap into electronic typesetting, remaining essentially unchanged. It was popularised
-                        in
-                        the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently
-                        with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                    </p>
-                    <h3> Why do we use it?</h3>
+            <div class="homework-status">
+                <div class="status-info">
+                    <h3>Homework Deadline </h3>
+                    <p><?php echo date('M d, Y H:i', strtotime($data['homework']->end_date)) ?></p>
+                    <h3>Time Left</h3>
                     <p>
-                        It is a long established fact that a reader will be distracted by the readable content of a
-                        page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                        normal
-                        distribution of letters, as opposed to using 'Content here, content here', making it look like
-                        readable
-                        English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their
-                        default
-                        model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
-                        Various
-                        versions have evolved over the years, sometimes by accident, sometimes on purpose (injected
-                        humour
-                        and the like).</p>
-                    <p>Code Snippet example:</p>
-                    <p class="code-snippet">
-                        package mypackage;<br>
-                        import de.svenjacobs.loremipsum.LoremIpsum <br>
-                        public class MyClass{<br>
-                        &emsp;&emsp;private LoremIpsum loremIpsum;<br>
-                        &emsp;&emsp;public Myclass(){<br>
-                        &emsp;&emsp;&emsp;&emsp;this.loremIpsum = new LoremIpsum(); <br>
-                        }
+                        <?php echo date('d \D\a\y\s H:i \H\o\u\r\s', strtotime($data['homework']->end_date) - time()) ?>
                     </p>
                 </div>
-                <div class="homework-status">
-                    <div class="status-info">
-                        <h3>Homework Status </h3>
-                        <p>Not Uploaded</p>
-                    </div>
-                    <div class="upload-info">
-                        <h3>Uploaded Files</h3>
-                        <p>None </p>
-                        <button>Upload File </button>
-                    </div>
-
-
+                <div class="upload-info">
+                    <?php if ($data['userClassroom']->isCreator()) : ?>
+                        <h3>Manage Homework</h3>
+                        <?php $form = core\form\Form::begin('', 'POST') ?>
+                        <button type="submit">Delete</button>
+                        <?php core\form\Form::end() ?>
+                        <h3>Homeworks Received</h3>
+                        <p><a href="/dashboard/classroom/<?= $data['classroom']->id ?>/homework/<?= $data['homework']->id ?>/list">Click here to check</p>
+                    <?php elseif ($data['userClassroom']->isStudent()) : ?>
+                        <?php $form = core\form\Form::begin('', 'POST') ?>
+                        <h3>Upload Homework</h3>
+                        <?php echo new FileField($data['userHomework'], 'uploaded_file', 'Upload File', 'accept=".zip"'); ?>
+                        <button type="submit">Upload</button>
+                        <?php core\form\Form::end() ?>
+                        <h3>Homework Status</h3>
+                        <p>TODO</p>
+                    <?php endif; ?>
                 </div>
-            </div>
-    </div>
-    </section>
-    </div>
 
-    <!-- JS Scripts -->
-    <script>document.body.classList.remove('stop-transition-load')</script>
-    <script src="/assets/scripts/dashboard-sidemenu.js"></script>
+
+
+            </div>
+        </div>
+</div>
+</section>
+</div>
+
+<!-- JS Scripts -->
+<script>
+    document.body.classList.remove('stop-transition-load')
+</script>
+<script src="/assets/scripts/dashboard-sidemenu.js"></script>
 </body>
 
 </html>

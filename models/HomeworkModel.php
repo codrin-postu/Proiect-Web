@@ -3,10 +3,6 @@
 namespace models;
 
 use core\DatabaseModel;
-use core\Model;
-use DateInterval;
-use DateTime;
-use DateTimeZone;
 
 class HomeworkModel extends DatabaseModel
 {
@@ -15,7 +11,7 @@ class HomeworkModel extends DatabaseModel
     public $end_date = '';
     public string $classroomId = '';
     public string $title = '';
-    public string $status = 0;
+    public string $status = '0';
     public string $description = '';
 
     public function primaryKey(): string

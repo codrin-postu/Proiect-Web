@@ -22,6 +22,8 @@ class Field
     public const TYPE_SUBMIT = 'submit';
     public const TYPE_HIDDEN = 'hidden';
     public const TYPE_TEXTAREA = 'textarea';
+    public const TYPE_DATETIME = 'datetime-local';
+    public const TYPE_FILE = 'file';
 
     public const TYPE_SELECT = 'select';
     public const TYPE_SELECT_OPT = 'option';

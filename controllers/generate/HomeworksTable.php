@@ -31,7 +31,7 @@ class HomeworksTable
         if ($userClassroom->isStudent()) {
             $output .= "<th scope='col'>Status</th>";
         } else {
-            $output .= "<th scope='col'>Received</th>";
+            $output .= "<th scope='col'>Unreviewed</th>";
         }
 
 
@@ -42,10 +42,13 @@ class HomeworksTable
 
         $homeworks = (new HomeworkModel)->findAll([
             'classroomId' => $classroomId
-        ], 'ORDER BY created_at DESC');
+        ], 'ORDER BY start_date DESC');
+
         foreach ($homeworks as $homework) {
 
             //TODO: Add an emphasis if all students sent homework
+
+            // $usersHomeworks
 
             $startDate = date('M d, Y H:i', strtotime($homework->start_date));
             $endDate = date('M d, Y H:i', strtotime($homework->end_date));
@@ -57,22 +60,22 @@ class HomeworksTable
 
             if ($userClassroom->isStudent()) {
                 switch ($homework->status) {
-                    case 0:
-                        $output .= "<td data-label='Status' class='fail>Not Uploaded</td>";
+                    case '0':
+                        $output .= "<td data-label='Status' class='fail'>Not Uploaded</td>";
                         break;
-                    case 1:
+                    case '1':
                         $output .= "<td data-label='Status'>Sent</td>";
                         break;
-                    case 2:
+                    case '2':
                         $output .= "<td data-label='Status' class='success'>Reviewed</td>";
                         break;
                     default:
-                        $output .= "<td data-label='Status'>Not Uploaded</td>";
+                        $output .= "<td data-label='Status' class='fail'>Not Uploaded</td>";
                 }
             } else {
-                $output .= "<th scope='col'>Received</th>";
+                $output .= "<td data-label='Status'>TODO</td>";
             }
-            $output .= "<td data-label='Content'><a href='/dashboard/classroom/$matches[0]/documentation/$lesson->id'>Click Here</a></td>
+            $output .= "<td data-label='Content'><a href='/dashboard/classroom/$matches[0]/homework/$homework->id'>Click Here</a></td>
                 </tr>";
         }
 

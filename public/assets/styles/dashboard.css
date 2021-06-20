@@ -368,6 +368,21 @@ section .section-header {
   background: white;
   color: black;
   overflow: visible;
+  justify-content: space-between;
+
+  align-items: center;
+}
+
+.section-header p {
+  /* text-align: center; */
+  text-decoration: none;
+
+  font-weight: 400;
+  font-size: 1.6em;
+}
+
+.section-header a {
+  color: #e74c3c;
 }
 
 section .section-content {
@@ -660,7 +675,7 @@ form .row .row-70 {
 .class-information p {
   font-size: 1.3em;
   font-weight: 600;
-  white-space: wrap;
+  word-wrap: break-word;
 }
 
 .class-information table {
@@ -808,19 +823,6 @@ form .row .row-70 {
 .class-documentation .section-header {
   /* flex-direction: column; */
   justify-content: space-between;
-  align-items: center;
-}
-
-.class-documentation .section-header p {
-  /* text-align: center; */
-  text-decoration: none;
-
-  font-weight: 400;
-  font-size: 1.6em;
-}
-
-.class-documentation .section-header a {
-  color: #e74c3c;
 }
 
 .class-documentation .section-content {
@@ -845,7 +847,7 @@ form .row .row-70 {
 
 .special-table thead {
   border: none;
-  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
   height: 1px;
   margin-right: 1em;
   overflow: hidden;
@@ -920,16 +922,21 @@ form .row .row-70 {
   overflow-y: auto;
   white-space: pre-wrap;
   word-wrap: break-word;
+  background-color: #ffe7bc;
+  margin: 0 auto;
+  padding: 0.5em 0 1em;
+  max-width: 70ch;
+  min-width: 40ch;
 }
 
 .homework-detail .homework-status {
   margin-top: 3em;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   border-top: 1px solid #c9c9c9;
   padding-top: 3em;
-  align-items: flex-start;
+  align-items: stretch;
   text-align: center;
 }
 
@@ -973,6 +980,10 @@ form .row .row-70 {
 
   .class-information td + td {
     border-left: 0.5em transparent solid;
+  }
+
+  .homework-detail .homework-text {
+    min-width: 28ch;
   }
 }
 
@@ -1123,27 +1134,28 @@ form .row .row-70 {
   /* Homework Detail */
 
   .homework-detail {
-    max-width: fit-content;
+    width: fit-content;
+    max-width: 100em;
   }
 
   .homework-detail .section-content {
     flex-direction: row;
     justify-content: space-between;
-    max-width: fit-content;
+    min-width: 45em;
   }
 
   .homework-detail .homework-text {
-    max-width: 100ch;
-    width: 50%;
+    max-width: 70ch;
+    min-width: 50ch;
   }
 
   .homework-detail .homework-status {
-    margin: 0;
     flex-direction: column;
     border-top: none;
     height: inherit;
     align-items: center;
     text-align: center;
+    justify-content: center;
   }
 
   .homework-status h3 {

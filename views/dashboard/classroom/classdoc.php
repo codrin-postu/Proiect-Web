@@ -18,7 +18,7 @@
                     <div class="upload-info">
                         <h3>Manage Lesson</h3>
                         <?php $form = core\form\Form::begin('', 'POST') ?>
-                        <button type="submit">Delete Lesson</button>
+                        <button type="submit">Delete</button>
                         <?php core\form\Form::end() ?>
                     </div>
                 <?php endif; ?>
