@@ -15,7 +15,7 @@ class HomeworkModel extends DatabaseModel
     public $end_date = '';
     public string $classroomId = '';
     public string $title = '';
-    public string $status = '';
+    public string $status = 0;
     public string $description = '';
 
     public function primaryKey(): string

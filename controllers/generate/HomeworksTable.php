@@ -56,7 +56,19 @@ class HomeworksTable
                     <td data-label='Deadline'>$homework->end_date</td>";
 
             if ($userClassroom->isStudent()) {
-                $output .= "<td data-label='Status'>$homework->end_date</td>";
+                switch ($homework->status) {
+                    case 0:
+                        $output .= "<td data-label='Status' class='fail>Not Uploaded</td>";
+                        break;
+                    case 1:
+                        $output .= "<td data-label='Status'>Sent</td>";
+                        break;
+                    case 2:
+                        $output .= "<td data-label='Status' class='success'>Reviewed</td>";
+                        break;
+                    default:
+                        $output .= "<td data-label='Status'>Not Uploaded</td>";
+                }
             } else {
                 $output .= "<th scope='col'>Received</th>";
             }
