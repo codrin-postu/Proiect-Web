@@ -9,10 +9,11 @@ class UserHomeworkModel extends DatabaseModel
 
     public string $id = '0';
     public string $userId = '';
-    public string $classroomId = '';
-    public string $code = '';
-    public string $codeId = '';
-    public string $attended_at = '';
+    public string $homeworkId = '';
+    public string $gradeId = '';
+    public string $status = '';
+    public string $uploaded_file = '';
+    public string $uploaded_at = '';
 
     public function primaryKey(): string
     {
@@ -21,48 +22,32 @@ class UserHomeworkModel extends DatabaseModel
 
     public function tableName(): string
     {
-        return 'attendance';
+        return 'users_homeworks';
     }
 
     public function columnsToInput(): array
     {
-        return ['userId', 'classroomId', 'codeId'];
+        return ['userId', 'classroomId', 'uploaded_file', 'status'];
     }
 
     public function inputs(): array
     {
-        return ['userId', 'classroomId', 'codeId'];
+        return ['userId', 'classroomId', 'uploaded_file', 'status'];
     }
 
     public function save()
     {
-        $classroomCode = (new AttendanceCodeModel)->findOne([
-            'classroomId' => $this->classroomId,
-            'code' => $this->code
-        ], 'ORDER BY expires_at DESC');
 
 
 
-        if (!$classroomCode) {
-            $this->addError('code', 'The code you inserted is incorrect or has expired');
-            return false;
-        }
-
-        if (time() + 3600 > strtotime($classroomCode->expires_at)) {
-            $this->addError('code', 'The code you inserted is incorrect or has expired');
-            return false;
-        }
-
-        $this->codeId = $classroomCode->id;
-
-        $userAttendance = (new UserAttendanceModel)->findOne([
+        $userHomework = (new UserHomeworkModel)->findOne([
             'userId' => $this->userId,
-            'codeId' => $classroomCode->id,
+            // 'homeworkId' => $homework->id,
             'classroomId' => $this->classroomId,
         ]);
 
-        if ($userAttendance) {
-            $this->addError('code', 'You already have an attendance for this class');
+        if ($userHomework) {
+            $this->addError('code', 'You already uploaded a file for this homework');
             return false;
         }
 
