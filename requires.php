@@ -21,13 +21,6 @@ require __DIR__ . "/core/exceptions/ForbiddenException.php";
 require __DIR__ . "/core/form/Form.php";
 require __DIR__ . "/core/form/Field.php";
 
-// Navigation/Table Generation
-
-require __DIR__ . "/generate/Navigation.php";
-require __DIR__ . "/generate/GeneratedCodesTable.php";
-require __DIR__ . "/generate/UserAttendanceInformation.php";
-require __DIR__ . "/generate/LessonTable.php";
-
 // Controllers
 
 require __DIR__ . "/controllers/PageController.php";
@@ -49,6 +42,14 @@ require __DIR__ . "/models/PasswordUpdateModel.php";
 require __DIR__ . "/models/AttendanceCodeModel.php";
 require __DIR__ . "/models/UserAttendanceModel.php";
 require __DIR__ . "/models/LessonModel.php";
+
+// Navigation/Table Generation
+
+require __DIR__ . "/controllers/generate/Navigation.php";
+require __DIR__ . "/controllers/generate/GeneratedCodesTable.php";
+require __DIR__ . "/controllers/generate/UserAttendanceInformation.php";
+require __DIR__ . "/controllers/generate/LessonTable.php";
+require __DIR__ . "/controllers/generate/HomeworksTable.php";
 
 // Middlewares
 

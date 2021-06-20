@@ -2,7 +2,7 @@
 <?php
 
 use core\Application;
-use generate\LessonTable;
+use controllers\generate\LessonTable;
 ?>
 
 <div class="main-content">

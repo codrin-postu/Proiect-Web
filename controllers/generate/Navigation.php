@@ -1,6 +1,6 @@
 <?php
 
-namespace generate;
+namespace controllers\generate;
 
 use models\ClassroomModel;
 use models\UserClassroomModel;

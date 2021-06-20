@@ -1,8 +1,8 @@
 <!-- Dashboard Content  -->
 <?php
 
-use generate\UserAttendanceInformation;
-use generate\GeneratedCodesTable;
+use controllers\generate\UserAttendanceInformation;
+use controllers\generate\GeneratedCodesTable;
 use fields\TextField;
 use fields\SelectField;
 
