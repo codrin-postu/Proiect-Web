@@ -47,7 +47,9 @@ $application->router->post('/dashboard/classroom/create', [DashboardController::
 $application->router->get("/dashboard/classroom/:id/info", [ClassroomController::class, 'classroomInfo']);
 
 $application->router->get('/dashboard/classroom/:id/documentation', [ClassroomController::class, 'classroomDocumentationList']);
+
 $application->router->get('/dashboard/classroom/:id/documentation/:id', [ClassroomController::class, 'classroomDocumentation']);
+$application->router->post('/dashboard/classroom/:id/documentation/:id', [ClassroomController::class, 'classroomDocumentation']);
 
 $application->router->get('/dashboard/classroom/:id/documentation/create', [ClassroomController::class, 'classroomDocumentationCreate']);
 $application->router->post('/dashboard/classroom/:id/documentation/create', [ClassroomController::class, 'classroomDocumentationCreate']);

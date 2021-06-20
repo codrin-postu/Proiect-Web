@@ -38,13 +38,13 @@ class LessonTable
 
             //TODO: Add an emphasis if all students attended
 
-
+            $date = date('M d, Y', strtotime($lesson->created_at));
 
             $output .= "
                     <td data-label='No.'>$lesson->number</td>
                     <td data-label='Lesson'>$lesson->title</td>
-                    <td data-label='Posted'>$lesson->created_at</td>
-                    <td data-label='Content'>Click Here</td>
+                    <td data-label='Posted'>$date</td>
+                    <td data-label='Content'><a href='/dashboard/classroom/$matches[0]/documentation/$lesson->id'>Click Here</a></td>
                 </tr>";
         }
 

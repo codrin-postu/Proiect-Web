@@ -36,7 +36,7 @@ use fields\TextareaField;
             </fieldset>
             <fieldset>
                 <legend><span class="number">2</span> Class Description</legend>
-                <?php echo new TextareaField($data['model'], 'description', 'Class Description*', 'row="6"'); ?>
+                <?php echo new TextareaField($data['model'], 'description', 'Class Description*', 'rows="12"'); ?>
             </fieldset>
             <fieldset>
                 <legend><span class="number">3</span> Class Details</legend>

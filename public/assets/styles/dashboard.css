@@ -873,6 +873,11 @@ form .row .row-70 {
   text-align: right;
 }
 
+.special-table td a {
+  color: #000;
+  font-weight: 600;
+}
+
 .special-table td::before {
   content: attr(data-label);
   float: left;
@@ -913,6 +918,8 @@ form .row .row-70 {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .homework-detail .homework-status {
@@ -922,6 +929,8 @@ form .row .row-70 {
   justify-content: space-between;
   border-top: 1px solid #c9c9c9;
   padding-top: 3em;
+  align-items: flex-start;
+  text-align: center;
 }
 
 .homework-status h3 {
@@ -1114,25 +1123,23 @@ form .row .row-70 {
   /* Homework Detail */
 
   .homework-detail {
-    width: fit-content;
-    max-width: 100em;
+    max-width: fit-content;
   }
 
   .homework-detail .section-content {
     flex-direction: row;
-    justify-content: space-around;
-    min-width: fit-content;
+    justify-content: space-between;
+    max-width: fit-content;
   }
 
   .homework-detail .homework-text {
-    flex-basis: 100ch;
-    flex-grow: 0;
+    max-width: 100ch;
+    width: 50%;
   }
 
   .homework-detail .homework-status {
     margin: 0;
     flex-direction: column;
-    padding-left: 1em;
     border-top: none;
     height: inherit;
     align-items: center;

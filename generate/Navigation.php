@@ -28,7 +28,7 @@ class Navigation
 
             $output .=  "
                 <div class=\"nav-class\">
-                    <div class=\"class-select\"><?php echo 'test' ?>
+                    <div class=\"class-select\">
                     <i class=\"fas fa-chevron-right\"></i>
                     <span class=\"class-title\">$classroom->name</span>
                 </div>";

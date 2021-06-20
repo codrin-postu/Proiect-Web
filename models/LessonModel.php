@@ -33,7 +33,8 @@ class LessonModel extends DatabaseModel
             'number',
             'title',
             'classroomId',
-            'content'
+            'content',
+            'created_at'
         ];
     }
 
@@ -43,7 +44,8 @@ class LessonModel extends DatabaseModel
             'number',
             'title',
             'classroomId',
-            'content'
+            'content',
+            'created_at'
         ];
     }
 
@@ -56,14 +58,30 @@ class LessonModel extends DatabaseModel
         ];
     }
 
-    public function save()
+    public function delete()
     {
 
+        $this->created_at = date('Y-m-d H:i:s', time());
+
         // echo '<pre>';
-        // var_dump($classroomCode);
+        // var_dump($this->created_at);
         // echo '</pre>';
         // exit;
 
+
+        $tableName = $this->tableName();
+        $stmt = self::prepare("DELETE FROM $tableName WHERE id = :id;");
+
+        $stmt->bindValue(":id", $this->id);
+
+        $stmt->execute();
+        return true;
+    }
+
+    public function save()
+    {
+
+        $this->created_at = date('Y-m-d H:i:s', time());
 
         $tableName = $this->tableName();
         $tableColumns = $this->columnsToInput();

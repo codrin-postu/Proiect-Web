@@ -122,9 +122,6 @@ class ClassroomController extends Controller
             'classroomId' => $classroom->id
         ]);
 
-        $userAttendance = new UserAttendanceModel();
-
-        $code = new AttendanceCodeModel();
         $data = [
             'pageTitle' => $classroom->name,
             'relPath' => '../../..',
@@ -133,36 +130,8 @@ class ClassroomController extends Controller
             'userClassroom' => $userClassroom
         ];
 
-        if ($request->isPost() && $userClassroom->isStudent()) {
-
-            $userAttendance->loadData($request->getBody());
-            $userAttendance->loadData([
-                'classroomId' => $classroom->id,
-                'userId' => Application::$application->session->get('user')
-            ]);
-
-            if ($userAttendance->validate() && $userAttendance->save()) {
-                Application::$application->session->setFlash('success', 'The code has been generated!');
-                // Application::$application->response->redirect("/dashboard/classroom/$classroom->id/attendance");
-            }
-        }
-
-        if ($request->isPost() && $userClassroom->isCreator()) {
-
-            $code->loadData($request->getBody());
-            $code->loadData([
-                'classroomId' => $classroom->id
-            ]);
-
-            if ($code->save()) {
-                Application::$application->session->setFlash('success', 'The code has been generated!');
-                // Application::$application->response->redirect("/dashboard/classroom/$classroom->id/attendance");
-            }
-        }
-
-
         $this->setLayout('dashboardheader');
-        return $this->render('dashboard/classroom/classdoc', $data);
+        return $this->render('dashboard/classroom/classdoclist', $data);
     }
 
     public function classroomDocumentationCreate(Request $request)
@@ -189,12 +158,46 @@ class ClassroomController extends Controller
             if ($lesson->validate() && $lesson->save()) {
                 Application::$application->session->setFlash('success', 'The lesson has been added!');
                 Application::$application->response->redirect("/dashboard/classroom/$classroom->id/documentation");
+                exit;
             }
         }
 
 
         $this->setLayout('dashboardheader');
         return $this->render('dashboard/classroom/classdoccreate', $data);
+    }
+
+    public function classroomDocumentation(Request $request)
+    {
+        preg_match_all('/\d{1,}/', $request->getPath(), $matches);
+        $classroom = (new ClassroomModel())->findOne(['id' => $matches[0][0]]);
+        $userClassroom = (new UserClassroomModel())->findOne([
+            'userId' => Application::$application->session->get('user'),
+            'classroomId' => $classroom->id
+        ]);
+
+        $lesson = (new LessonModel())->findOne(['id' => $matches[0][1]]);
+
+        $data = [
+            'pageTitle' => $classroom->name,
+            'relPath' => '../../../..',
+            'stylesheet' => 'dashboard.css',
+            'classroom' => $classroom,
+            'userClassroom' => $userClassroom,
+            'lesson' => $lesson
+        ];
+
+        if ($request->isPost() && $userClassroom->isCreator()) {
+
+            if ($lesson->delete()) {
+                Application::$application->session->setFlash('success', 'The lesson has been removed!');
+                Application::$application->response->redirect("/dashboard/classroom/$classroom->id/documentation");
+                exit;
+            }
+        }
+
+        $this->setLayout('dashboardheader');
+        return $this->render('dashboard/classroom/classdoc', $data);
     }
 
     public function classroomGrades(Request $request)
