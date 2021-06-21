@@ -1135,18 +1135,18 @@ form .row .row-70 {
 
   .homework-detail {
     width: fit-content;
-    max-width: 100em;
+    max-width: 100ch;
   }
 
   .homework-detail .section-content {
     flex-direction: row;
-    justify-content: space-between;
-    min-width: 45em;
+    justify-content: space-around;
+    min-width: 25em;
   }
 
   .homework-detail .homework-text {
     max-width: 70ch;
-    min-width: 50ch;
+    min-width: 40ch;
   }
 
   .homework-detail .homework-status {
@@ -1156,6 +1156,9 @@ form .row .row-70 {
     align-items: center;
     text-align: center;
     justify-content: center;
+    padding: 0;
+    margin: 0;
+    margin-right: 2em;
   }
 
   .homework-status h3 {

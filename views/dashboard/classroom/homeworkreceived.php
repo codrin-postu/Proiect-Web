@@ -10,7 +10,7 @@ use controllers\generate\HomeworksTable;
     <?php if (\core\Application::$application->session->getFlash('success')) : ?>
         <section>
             <div class="section-header">
-                <h2>Homework Update</h2>
+                <h2>Homework Reviewed</h2>
             </div>
             <div class="section-content">
                 <?php echo '<p>' . \core\Application::$application->session->getFlash('success') . '</p>'; ?>
@@ -22,13 +22,10 @@ use controllers\generate\HomeworksTable;
 
     <section class="homework-list special-table">
         <div class="section-header">
-            <h2>Homework List</h2>
-            <?php if ($data['userClassroom']->isCreator()) : ?>
-                <p><a href="/dashboard/classroom/<?php echo $data['classroom']->id ?>/homework/create">Add new homework</a></p>
-            <?php endif; ?>
+            <h2><?php echo $data['homework']->title ?> - Received</h2>
         </div>
         <div class="section-content">
-            <?php echo HomeworksTable::load($data['userClassroom']) ?>
+            <?php echo HomeworksTable::loadReceived($data['userClassroom'], $data['homework']) ?>
         </div>
     </section>
 

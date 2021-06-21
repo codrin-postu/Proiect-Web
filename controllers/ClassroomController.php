@@ -15,6 +15,7 @@ use core\Application;
 use models\HomeworkModel;
 use models\LessonModel;
 use models\UserAttendanceModel;
+use models\UserHomeworkModel;
 
 class ClassroomController extends Controller
 {
@@ -28,7 +29,10 @@ class ClassroomController extends Controller
             'classroomAttendance',
             'classroomGrades',
             'classroomHomework',
-            'classroomStudents'
+            'classroomStudents',
+            'classroomStudents',
+            'classroomDocumentationCreate',
+            'classroomHomeworkCreate'
         ]));
 
         $this->registerMiddleware(new MemberClassroomMiddleware([
@@ -36,7 +40,7 @@ class ClassroomController extends Controller
             'classroomDocumentation',
             'classroomAttendance',
             'classroomGrades',
-            'classroomHomework'
+            'classroomHomework',
         ]));
 
         $this->registerMiddleware(new CreatorClassroomMiddleware([
@@ -307,14 +311,86 @@ class ClassroomController extends Controller
 
         $homework = (new HomeworkModel())->findOne(['id' => $matches[0][1]]);
 
+        $userHomework = (new UserHomeworkModel())->findOne([
+            'homeworkId' => $homework->id,
+            'userId' => Application::$application->session->get('user')
+        ]);
+
+        if (!$userHomework) {
+            $userHomework = new UserHomeworkModel();
+        }
+
+        // $timeLeft = '';
+
+        // if (strtotime($homework->end_date) - time() > 0) {
+        //     $timeLeft = date('d \D\a\y\s H:i \H\o\u\r\s', strtotime($homework->end_date) - time());
+        // } else {
+        //     $timeLeft = 'Expired';
+        // }
+        // echo "<pre>";
+        // var_dump(date('Y-m-d H:i', strtotime($homework->end_date)));
+        // var_dump(strtotime($homework->end_date) - time());
+        // var_dump(date('Y-m-d H:i', strtotime($homework->end_date) - time()));
+        // var_dump($timeLeft);
+        // echo "</pre>";
+        // exit;
+
+
+
         $data = [
             'pageTitle' => $classroom->name,
             'relPath' => '../../../..',
             'stylesheet' => 'dashboard.css',
             'classroom' => $classroom,
             'userClassroom' => $userClassroom,
-            'homework' => $homework
+            'homework' => $homework,
+            'userHomework' => $userHomework
         ];
+
+        if ($request->isPost() && $userClassroom->isStudent()) {
+
+            $userHomework->loadData($request->getBody());
+            $userHomework->loadData([
+                'uploaded_file' => $_FILES['uploaded_file']['name'],
+                'homeworkId' => $homework->id,
+                'userId' => Application::$application->session->get('user'),
+                'gradeId' => '0',
+                'status' => '1'
+            ]);
+
+            $target_dir = "../uploads/";
+            $target_file = $target_dir . basename($_FILES['uploaded_file']['name']);
+            $uploadOk = 1;
+            $zipFileType =  strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+            $check = filesize($_FILES['uploaded_file']['tmp_name']);
+
+            if ($check === false) {
+                $uploadOk = 0;
+            } else {
+                $uploadOk = 1;
+            }
+
+            if (file_exists($target_file)) {
+
+                $uploadOk = 0;
+            }
+            if ($_FILES['uploaded_file']['size'] > 20971520) {
+                $uploadOk = 0;
+            }
+
+            if ($uploadOk === 0) {
+                $userHomework->addError('uploaded_file', 'There was a problem uploading your file');
+            } else {
+                if (move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $target_file) && $userHomework->save()) {
+                    Application::$application->session->setFlash('success', 'Your homework has been uploaded');
+                    Application::$application->response->redirect("/dashboard/classroom/$classroom->id/homework/$homework->id");
+                } else {
+                    $userHomework->addError('uploaded_file', 'There was a problem uploading your file');
+                }
+            }
+        }
+
 
         if ($request->isPost() && $userClassroom->isCreator()) {
 
@@ -327,5 +403,29 @@ class ClassroomController extends Controller
 
         $this->setLayout('dashboardheader');
         return $this->render('dashboard/classroom/homework', $data);
+    }
+
+    public function classroomHomeworkReceived(Request $request)
+    {
+        preg_match_all('/\d{6,}/', $request->getPath(), $matches);
+        $classroom = (new ClassroomModel())->findOne(['id' => $matches[0][0]]);
+        $homework = (new HomeworkModel())->findOne(['id' => $matches[0][1]]);
+
+        $userClassroom = (new UserClassroomModel())->findOne([
+            'userId' => Application::$application->session->get('user'),
+            'classroomId' => $classroom->id
+        ]);
+
+        $data = [
+            'pageTitle' => $classroom->name,
+            'relPath' => '../../../../..',
+            'stylesheet' => 'dashboard.css',
+            'classroom' => $classroom,
+            'userClassroom' => $userClassroom,
+            'homework' => $homework
+        ];
+
+        $this->setLayout('dashboardheader');
+        return $this->render('dashboard/classroom/homeworkreceived', $data);
     }
 }

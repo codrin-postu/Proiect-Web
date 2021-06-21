@@ -10,7 +10,7 @@ use controllers\generate\LessonTable;
     <?php if (\core\Application::$application->session->getFlash('success')) : ?>
         <section>
             <div class="section-header">
-                <h2>Lesson Added succesfully</h2>
+                <h2>Lesson Update</h2>
             </div>
             <div class="section-content">
                 <?php echo '<p>' . \core\Application::$application->session->getFlash('success') . '</p>'; ?>

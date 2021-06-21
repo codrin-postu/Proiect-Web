@@ -76,7 +76,7 @@ $application->router->post('/dashboard/classroom/:id/homework/create', [Classroo
 $application->router->get('/dashboard/classroom/:id/homework/:id', [ClassroomController::class, 'classroomHomework']);
 $application->router->post('/dashboard/classroom/:id/homework/:id', [ClassroomController::class, 'classroomHomework']);
 
-$application->router->get('/dashboard/classroom/:id/homework/:id/list', [ClassroomController::class, 'classroomHomeworkReceived']);
+$application->router->get('/dashboard/classroom/:id/homework/:id/received', [ClassroomController::class, 'classroomHomeworkReceived']);
 
 
 $application->run();

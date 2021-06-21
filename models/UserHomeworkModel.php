@@ -27,12 +27,12 @@ class UserHomeworkModel extends DatabaseModel
 
     public function columnsToInput(): array
     {
-        return ['userId', 'classroomId', 'uploaded_file', 'status'];
+        return ['userId', 'homeworkId', 'uploaded_file', 'status'];
     }
 
     public function inputs(): array
     {
-        return ['userId', 'classroomId', 'uploaded_file', 'status'];
+        return ['userId', 'homeworkId', 'uploaded_file', 'status'];
     }
 
     public function save()
@@ -43,7 +43,7 @@ class UserHomeworkModel extends DatabaseModel
         $userHomework = (new UserHomeworkModel)->findOne([
             'userId' => $this->userId,
             // 'homeworkId' => $homework->id,
-            'classroomId' => $this->classroomId,
+            'homeworkId' => $this->homeworkId,
         ]);
 
         if ($userHomework) {
@@ -62,8 +62,6 @@ class UserHomeworkModel extends DatabaseModel
 
     public function rules(): array
     {
-        return [
-            'code' => [self::RULE_REQUIRED]
-        ];
+        return [];
     }
 }

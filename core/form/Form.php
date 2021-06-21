@@ -6,9 +6,9 @@ use core\Model;
 
 class Form
 {
-    public static function begin($action, $method)
+    public static function begin($action, $method, $attributes = '')
     {
-        echo sprintf('<form action="%s" method="%s">', $action, $method);
+        echo sprintf('<form action="%s" method="%s" %s>', $action, $method, $attributes);
         return new Form;
     }
 

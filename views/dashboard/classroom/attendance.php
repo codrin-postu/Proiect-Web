@@ -21,9 +21,9 @@ use fields\SelectField;
                         <?php echo new TextField($data['code'], 'code', 'Code', 'disabled', 'row-70'); ?>
                         <?php $selectField = new SelectField($data['code'], 'duration', 'Choose Code Duration', 'disabled selected', 'row-30');
                         $selectField->setOptions(
-                            ['5', '10', '15', '30'],
-                            ['5 Minutes', '10 Minutes', '15 Minutes', '30 Minutes'],
-                            ['', '', '', '']
+                            ['5', '10', '15', '30', '60', '120'],
+                            ['5 Minutes', '10 Minutes', '15 Minutes', '30 Minutes', '60 Minutes', '120 Minutes'],
+                            ['', '', '', '', '', '']
                         );
                         echo $selectField ?>
                     </div>

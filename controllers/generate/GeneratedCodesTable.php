@@ -40,7 +40,7 @@ class GeneratedCodesTable
             $attendedStudents = (new GeneratedCodesTable)
                 ->getStudentsAttendedCount($classroomId, $classroomCode->id);
 
-            $expiresIn = (strtotime($classroomCode->expires_at) - time());
+            $expiresIn = (strtotime($classroomCode->expires_at) - (time() + 3600));
 
             if (time() + 3600 < strtotime($classroomCode->expires_at)) {
                 $output .= '<tr class="active-code">';
