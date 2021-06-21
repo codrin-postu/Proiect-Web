@@ -22,7 +22,7 @@ class migration06_users_classroomsTable
     public function down()
     {
         $database = Application::$application->database;
-        $stmt = "DROP TABLE IF EXISTS users_classes;";
+        $stmt = "DROP TABLE IF EXISTS users_classrooms;";
         $database->pdo->exec($stmt);
     }
 }

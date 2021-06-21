@@ -21,7 +21,7 @@ class migration08_users_attendanceTable
     public function down()
     {
         $database = Application::$application->database;
-        $stmt = "DROP TABLE IF EXISTS users_attendance;";
+        $stmt = "DROP TABLE IF EXISTS attendance;";
         $database->pdo->exec($stmt);
     }
 }

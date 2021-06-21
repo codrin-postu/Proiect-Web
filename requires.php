@@ -28,6 +28,10 @@ require __DIR__ . "/controllers/RegisterController.php";
 require __DIR__ . "/controllers/LoginController.php";
 require __DIR__ . "/controllers/DashboardController.php";
 require __DIR__ . "/controllers/ClassroomController.php";
+require __DIR__ . "/controllers/HomeworkController.php";
+require __DIR__ . "/controllers/GradesController.php";
+require __DIR__ . "/controllers/DocumentationController.php";
+require __DIR__ . "/controllers/AttendanceController.php";
 
 // Models
 
@@ -45,6 +49,7 @@ require __DIR__ . "/models/LessonModel.php";
 require __DIR__ . "/models/HomeworkModel.php";
 require __DIR__ . "/models/UserHomeworkModel.php";
 require __DIR__ . "/models/GradeModel.php";
+require __DIR__ . "/models/EquationModel.php";
 
 // Navigation/Table Generation
 
@@ -53,6 +58,7 @@ require __DIR__ . "/controllers/generate/GeneratedCodesTable.php";
 require __DIR__ . "/controllers/generate/UserAttendanceInformation.php";
 require __DIR__ . "/controllers/generate/LessonTable.php";
 require __DIR__ . "/controllers/generate/HomeworksTable.php";
+require __DIR__ . "/controllers/generate/GradesTable.php";
 
 // Middlewares
 

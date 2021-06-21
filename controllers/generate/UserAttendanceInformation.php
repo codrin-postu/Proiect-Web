@@ -92,7 +92,13 @@ class UserAttendanceInformation
             }
         }
 
-        $percentage = round($userAttendedCount / $totalCodesCount * 100, 2);
+        if ($totalCodesCount !== 0) {
+            $tempDivision = $userAttendedCount / $totalCodesCount;
+        } else {
+            $tempDivision = 0;
+        }
+
+        $percentage = round($tempDivision * 100, 2);
 
         $output = "<div class=\"semi-donut margin\"
         style=\"--percentage : $percentage;\">

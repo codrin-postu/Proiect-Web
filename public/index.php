@@ -4,11 +4,15 @@ session_start();
 
 require __DIR__ . "/../requires.php";
 
+use controllers\AttendanceController;
 use controllers\DashboardController;
 use controllers\PageController;
 use controllers\RegisterController;
 use controllers\LoginController;
 use controllers\ClassroomController;
+use controllers\DocumentationController;
+use controllers\GradesController;
+use controllers\HomeworkController;
 use core\Application;
 use models\ClassroomModel;
 
@@ -46,41 +50,37 @@ $application->router->post('/dashboard/classroom/create', [DashboardController::
 
 $application->router->get("/dashboard/classroom/:id/info", [ClassroomController::class, 'classroomInfo']);
 
-$application->router->get('/dashboard/classroom/:id/documentation', [ClassroomController::class, 'classroomDocumentationList']);
+$application->router->get('/dashboard/classroom/:id/documentation', [DocumentationController::class, 'classroomDocumentationList']);
 
-$application->router->get('/dashboard/classroom/:id/documentation/:id', [ClassroomController::class, 'classroomDocumentation']);
-$application->router->post('/dashboard/classroom/:id/documentation/:id', [ClassroomController::class, 'classroomDocumentation']);
+$application->router->get('/dashboard/classroom/:id/documentation/:id', [DocumentationController::class, 'classroomDocumentation']);
+$application->router->post('/dashboard/classroom/:id/documentation/:id', [DocumentationController::class, 'classroomDocumentation']);
 
-$application->router->get('/dashboard/classroom/:id/documentation/create', [ClassroomController::class, 'classroomDocumentationCreate']);
-$application->router->post('/dashboard/classroom/:id/documentation/create', [ClassroomController::class, 'classroomDocumentationCreate']);
+$application->router->get('/dashboard/classroom/:id/documentation/create', [DocumentationController::class, 'classroomDocumentationCreate']);
+$application->router->post('/dashboard/classroom/:id/documentation/create', [DocumentationController::class, 'classroomDocumentationCreate']);
 
-// $application->router->get('/dashboard/classroom/:id/attendance', [ClassroomController::class, 'classroomStudentAttendance']);
+$application->router->get('/dashboard/classroom/:id/attendance', [AttendanceController::class, 'classroomAttendance']);
+$application->router->post('/dashboard/classroom/:id/attendance', [AttendanceController::class, 'classroomAttendance']);
 
-$application->router->get('/dashboard/classroom/:id/attendance', [ClassroomController::class, 'classroomAttendance']);
-$application->router->post('/dashboard/classroom/:id/attendance', [ClassroomController::class, 'classroomAttendance']);
-// $application->router->get('/dashboard/classroom/:id/attendance', [ClassroomController::class, 'classroomAttendance']);
+$application->router->get('/dashboard/classroom/:id/homework', [HomeworkController::class, 'classroomHomeworkList']);
+
+$application->router->get('/dashboard/classroom/:id/homework/create', [HomeworkController::class, 'classroomHomeworkCreate']);
+$application->router->post('/dashboard/classroom/:id/homework/create', [HomeworkController::class, 'classroomHomeworkCreate']);
+
+$application->router->get('/dashboard/classroom/:id/homework/:id', [HomeworkController::class, 'classroomHomework']);
+$application->router->post('/dashboard/classroom/:id/homework/:id', [HomeworkController::class, 'classroomHomework']);
+
+$application->router->get('/dashboard/classroom/:id/homework/:id/received', [HomeworkController::class, 'classroomHomeworkReceived']);
+$application->router->get('/dashboard/classroom/:id/homework/:id/download', [HomeworkController::class, 'classroomHomeworkDownload']);
+
+$application->router->get('/dashboard/classroom/:id/homework/:id/review', [HomeworkController::class, 'classroomHomeworkReview']);
+$application->router->post('/dashboard/classroom/:id/homework/:id/review', [HomeworkController::class, 'classroomHomeworkReview']);
+
+$application->router->get('/dashboard/classroom/:id/grades', [GradesController::class, 'classroomGrades']);
+$application->router->post('/dashboard/classroom/:id/grades', [GradesController::class, 'classroomGrades']);
 
 
-// $application->router->get('/dashboard/classroom/:id/grades', [ClassroomController::class, 'classroomStudentGrades']);
-
-$application->router->get('/dashboard/classroom/:id/grades', [ClassroomController::class, 'classroomGrades']);
-
-$application->router->get('/dashboard/classroom/:id/homework', [ClassroomController::class, 'classroomHomeworkList']);
-
-$application->router->get('/dashboard/classroom/:id/homework/create', [ClassroomController::class, 'classroomHomeworkCreate']);
-$application->router->post('/dashboard/classroom/:id/homework/create', [ClassroomController::class, 'classroomHomeworkCreate']);
-
-
-// $application->router-
-
-$application->router->get('/dashboard/classroom/:id/homework/:id', [ClassroomController::class, 'classroomHomework']);
-$application->router->post('/dashboard/classroom/:id/homework/:id', [ClassroomController::class, 'classroomHomework']);
-
-$application->router->get('/dashboard/classroom/:id/homework/:id/received', [ClassroomController::class, 'classroomHomeworkReceived']);
-$application->router->get('/dashboard/classroom/:id/homework/:id/download', [ClassroomController::class, 'classroomHomeworkDownload']);
-
-$application->router->get('/dashboard/classroom/:id/homework/:id/review', [ClassroomController::class, 'classroomHomeworkReview']);
-$application->router->post('/dashboard/classroom/:id/homework/:id/review', [ClassroomController::class, 'classroomHomeworkReview']);
+$application->router->get('/dashboard/classroom/:id/grades/add', [GradesController::class, 'classroomGradesAdd']);
+$application->router->post('/dashboard/classroom/:id/grades/add', [GradesController::class, 'classroomGradesAdd']);
 
 
 $application->run();

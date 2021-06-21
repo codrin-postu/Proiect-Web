@@ -57,7 +57,7 @@ class RegisterController extends Controller
 
             if ($user->validate() && $user->save()) {
                 Application::$application->session->setFlash('success', 'Your account has been registered succesfully!');
-                Application::$application->response->redirect('/dashboard/welcome');
+                Application::$application->response->redirect('/login');
                 exit;
             }
             return $this->render('register/student', $data);

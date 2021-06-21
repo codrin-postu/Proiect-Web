@@ -95,10 +95,10 @@ class HomeworksTable
 
                 if (!$usersHomeworks) {
                     $count = 0;
-                    $output .= "<td data-label='Status' class='success'>$count</td>";
+                    $output .= "<td data-label='Unreviewed' class='success'>$count</td>";
                 } else {
                     $count = count($usersHomeworks);
-                    $output .= "<td data-label='Status' class='fail'>$count</td>";
+                    $output .= "<td data-label='Unreviewed' class='fail'>$count</td>";
                 }
             }
             $output .= "<td data-label='Content'><a href='/dashboard/classroom/$matches[0]/homework/$homework->id'>Click Here</a></td>
@@ -151,11 +151,11 @@ class HomeworksTable
                     $status = 'Reviewed';
                     break;
             }
-            $fileLocation = dirname(__DIR__) . '/../uploads/' . $userHomework->uploaded_file;
+            $encodedDownload = urlencode($userHomework->uploaded_file);
             $output .= "
                     <td data-label='Full Name'>$user->firstName $user->middleName $user->lastName</td>
                     <td data-label='Uploaded At'>$uploadDate</td>
-                    <td data-label='Uploaded File'><a href='download?file=$userHomework->uploaded_file'>Download</a></td>";
+                    <td data-label='Uploaded File'><a href='download?file=$encodedDownload'>Download</a></td>";
 
             if ($status === 'Reviewed') {
                 $output .= "<td data-label='Status' class='success'>$status</td>

@@ -68,8 +68,6 @@ class GradeModel extends DatabaseModel
         return true;
     }
 
-
-
     public function rules(): array
     {
         return [
@@ -79,21 +77,17 @@ class GradeModel extends DatabaseModel
         ];
     }
 
-    public static function getLatestId()
+    public function updateFinalColumn()
     {
-        $stmt = self::prepare("SELECT * FROM classrooms ORDER BY id DESC LIMIT 0, 1;");
+        $tableName = $this->tableName();
+
+        $stmt = self::prepare("UPDATE $tableName 
+            SET grade = $this->grade
+            WHERE userId = $this->userId
+            AND `classroomId` = $this->classroomId
+            AND type = 'FinalGrade';");
 
         $stmt->execute();
-        return $stmt->fetchObject(ClassroomModel::class)->{"id"};
-    }
-
-    public static function getClassById($id)
-    {
-        $stmt = self::prepare("SELECT * FROM classrooms WHERE id = :$id;");
-
-        $stmt->bindValue(":$id", $id);
-
-        $stmt->execute();
-        return $stmt->fetchObject(ClassroomModel::class);
+        return true;
     }
 }

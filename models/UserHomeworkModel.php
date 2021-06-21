@@ -65,7 +65,8 @@ class UserHomeworkModel extends DatabaseModel
         $tableName = $this->tableName();
 
         $stmt = self::prepare("UPDATE $tableName 
-            SET status = $this->status
+            SET status = $this->status,
+            gradeId = $this->gradeId
             WHERE id = $this->id;");
 
         $stmt->execute();

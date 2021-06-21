@@ -64,13 +64,15 @@ if ($timeLeft > 0 && $timeLeft < 86400) {
                             <h3>Uploaded Homework</h3>
                             <p style="max-width: 25ch; word-wrap: break-word;"><?php echo $data['userHomework']->uploaded_file ?></p>
 
-                            <?php if ($data['userHomework']->gradeId !== 0) : ?>
+                            <?php if ($data['userHomework']->status  === '1') : ?>
                                 <h3>Homework Status</h3>
                                 <p>Sent</p>
-                            <?php else : ?>
-                                <h3>Homework Status</h3>
-                                <p>Reviewed</p>
-                                <p></p>
+                            <?php elseif ($data['userHomework']->status === '2') : ?>
+                                <?php $grade = $data['grade']->findOne(['id' => $data['userHomework']->gradeId]); ?>
+                                <h3>Grade Received</h3>
+                                <p class="grade"><?= $grade->grade ?></p>
+                                <h4>Details</h4>
+                                <p style="max-width: 25ch; word-wrap: break-word;"><?= $grade->detail ?></p>
                             <?php endif; ?>
 
                         <?php else : ?>

@@ -940,6 +940,23 @@ form .row .row-70 {
   text-align: center;
 }
 
+.homework-status .grade {
+  font-size: 2em;
+  padding: 0;
+  margin: 0;
+  color: rgb(95, 168, 93);
+  font-weight: 600;
+}
+
+.homework-status h4 {
+  margin-top: 1em;
+  font-size: 1.4em;
+}
+
+.homework-status a {
+  color: #000;
+}
+
 .homework-status h3 {
   margin-bottom: 0.5em;
 

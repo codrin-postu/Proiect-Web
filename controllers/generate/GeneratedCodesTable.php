@@ -2,7 +2,6 @@
 
 namespace controllers\generate;
 
-use models\ClassroomModel;
 use models\UserClassroomModel;
 use core\Application;
 use models\AttendanceCodeModel;
