@@ -6,13 +6,13 @@ use fields\FileField;
 
 $timeLeftformat = '';
 
-$timeLeft = strtotime($data['homework']->end_date) - time();
+$timeLeft = strtotime($data['homework']->end_date) - (time() + 7200);
 
 
 if ($timeLeft > 0 && $timeLeft < 86400) {
-    $timeLeftFormat = date('H\H i\M ', strtotime($data['homework']->end_date) - (time() + 3600));
+    $timeLeftFormat = date('H\H i\M ', strtotime($data['homework']->end_date) - (time() + 7200));
 } elseif ($timeLeft >= 86400) {
-    $timeLeftFormat = date('d \D\a\y\s H:i \H\o\u\r\s', strtotime($data['homework']->end_date) - (time() + 3600));
+    $timeLeftFormat = date('d \D\a\y\s H:i \H\o\u\r\s', strtotime($data['homework']->end_date) - (time() + 7200));
 } else {
     $timeLeftFormat = 'Expired';
 }

@@ -60,6 +60,18 @@ class UserHomeworkModel extends DatabaseModel
         return parent::save();
     }
 
+    public function updateColumn()
+    {
+        $tableName = $this->tableName();
+
+        $stmt = self::prepare("UPDATE $tableName 
+            SET status = $this->status
+            WHERE id = $this->id;");
+
+        $stmt->execute();
+        return true;
+    }
+
     public function rules(): array
     {
         return [];

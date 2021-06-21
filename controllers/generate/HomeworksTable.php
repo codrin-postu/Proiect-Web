@@ -61,7 +61,19 @@ class HomeworksTable
                     <td data-label='Deadline'>$homework->end_date</td>";
 
             if ($userClassroom->isStudent()) {
-                switch ($homework->status) {
+
+                $userHomework = (new UserHomeworkModel())->findOne([
+                    'userId' => $userClassroom->userId,
+                    'homeworkId' => $homework->id
+                ]);
+
+                if (!$userHomework) {
+                    $status = 0;
+                } else {
+                    $status = $userHomework->status;
+                }
+
+                switch ($status) {
                     case '0':
                         $output .= "<td data-label='Status' class='fail'>Not Uploaded</td>";
                         break;
@@ -75,7 +87,19 @@ class HomeworksTable
                         $output .= "<td data-label='Status' class='fail'>Not Uploaded</td>";
                 }
             } else {
-                $output .= "<td data-label='Status'>TODO</td>";
+                $usersHomeworks = (new UserHomeworkModel())->findAll(['homeworkId' => $homework->id, 'status' => '1']);
+                // echo '<pre>';
+                // var_dump($usersHomeworks);
+                // echo '</pre>';
+                // exit;
+
+                if (!$usersHomeworks) {
+                    $count = 0;
+                    $output .= "<td data-label='Status' class='success'>$count</td>";
+                } else {
+                    $count = count($usersHomeworks);
+                    $output .= "<td data-label='Status' class='fail'>$count</td>";
+                }
             }
             $output .= "<td data-label='Content'><a href='/dashboard/classroom/$matches[0]/homework/$homework->id'>Click Here</a></td>
                 </tr>";
@@ -103,6 +127,7 @@ class HomeworksTable
                 <th scope='col'>Full Name</th>
                 <th scope='col'>Uploaded At</th>
                 <th scope='col'>Uploaded File</th>
+                <th scope='col'>Status</th>
                 <th scope='col'>Review It</th>
             </tr>
         </thead>
@@ -117,14 +142,30 @@ class HomeworksTable
             $user = (new UserModel)->findOne(['id' => $userHomework->userId]);
 
             $uploadDate = date('M d, Y H:i', strtotime($userHomework->uploaded_at));
+            $status = '';
+            switch ($userHomework->status) {
+                case '1':
+                    $status = 'Not Reviewed';
+                    break;
+                case '2':
+                    $status = 'Reviewed';
+                    break;
+            }
             $fileLocation = dirname(__DIR__) . '/../uploads/' . $userHomework->uploaded_file;
             $output .= "
                     <td data-label='Full Name'>$user->firstName $user->middleName $user->lastName</td>
                     <td data-label='Uploaded At'>$uploadDate</td>
-                    <td data-label='Uploaded File'><a href='$fileLocation' download>Download</a></td>";
+                    <td data-label='Uploaded File'><a href='download?file=$userHomework->uploaded_file'>Download</a></td>";
 
-            $output .= "<td data-label='Review It'><a href='/dashboard/classroom/$classroomId/homework/$homework->id/review'>Click Here</a></td>
+            if ($status === 'Reviewed') {
+                $output .= "<td data-label='Status' class='success'>$status</td>
+                 <td data-label='Review It'></td>
+                    </tr>";
+            } else {
+                $output .= "<td data-label='Status'>$status</td>
+                <td data-label='Review It'><a href='/dashboard/classroom/$classroomId/homework/$homework->id/review?student=$userHomework->userId'>Click Here</a></td>
                 </tr>";
+            }
         }
 
         $output .= " </tbody>

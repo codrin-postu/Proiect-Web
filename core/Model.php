@@ -44,7 +44,7 @@ abstract class Model
                     $this->addErrorRule($input, self::RULE_REQUIRED);
                 }
 
-                if ($ruleType === self::RULE_NUMBER && !preg_match('/^\d{6}$/', $value)) {
+                if ($ruleType === self::RULE_NUMBER && !preg_match('/^\d+$/', $value)) {
                     $this->addErrorRule($input, self::RULE_NUMBER);
                 }
 

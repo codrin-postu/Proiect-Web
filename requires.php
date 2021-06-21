@@ -44,6 +44,7 @@ require __DIR__ . "/models/UserAttendanceModel.php";
 require __DIR__ . "/models/LessonModel.php";
 require __DIR__ . "/models/HomeworkModel.php";
 require __DIR__ . "/models/UserHomeworkModel.php";
+require __DIR__ . "/models/GradeModel.php";
 
 // Navigation/Table Generation
 

@@ -12,10 +12,13 @@ use models\ClassroomModel;
 use models\UserClassroomModel;
 use models\AttendanceCodeModel;
 use core\Application;
+use core\exceptions\NotFoundException;
 use models\HomeworkModel;
 use models\LessonModel;
 use models\UserAttendanceModel;
 use models\UserHomeworkModel;
+use models\UserModel;
+use models\GradeModel;
 
 class ClassroomController extends Controller
 {
@@ -32,7 +35,8 @@ class ClassroomController extends Controller
             'classroomStudents',
             'classroomStudents',
             'classroomDocumentationCreate',
-            'classroomHomeworkCreate'
+            'classroomHomeworkCreate',
+            'classroomHomeworkReview'
         ]));
 
         $this->registerMiddleware(new MemberClassroomMiddleware([
@@ -46,7 +50,8 @@ class ClassroomController extends Controller
         $this->registerMiddleware(new CreatorClassroomMiddleware([
             'classroomStudents',
             'classroomDocumentationCreate',
-            'classroomHomeworkCreate'
+            'classroomHomeworkCreate',
+            'classroomHomeworkReview'
         ]));
     }
 
@@ -427,5 +432,106 @@ class ClassroomController extends Controller
 
         $this->setLayout('dashboardheader');
         return $this->render('dashboard/classroom/homeworkreceived', $data);
+    }
+
+    public function classroomHomeworkReview(Request $request)
+    {
+        preg_match_all('/\d{6,}/', $request->getPath(), $matches);
+        $classroom = (new ClassroomModel())->findOne(['id' => $matches[0][0]]);
+        $homework = (new HomeworkModel())->findOne(['id' => $matches[0][1]]);
+
+        $userId = basename($_GET['student']);
+        $user = (new UserModel())->findOne(['id' => $userId]);
+
+        $userHomework = (new UserHomeworkModel())->findOne([
+            'userId' => $userId,
+            'homeworkId' => $homework->id
+        ]);
+
+        $grade = new GradeModel();
+
+        if (!$userHomework) {
+            throw new NotFoundException();
+        }
+
+        $data = [
+            'pageTitle' => $classroom->name,
+            'relPath' => '../../../../..',
+            'stylesheet' => 'dashboard.css',
+            'classroom' => $classroom,
+            'userHomework' => $userHomework,
+            'homework' => $homework,
+            'grade' => $grade,
+            'user' => $user
+        ];
+
+        if ($request->isPost()) {
+
+            $grade->loadData($request->getBody());
+            $grade->loadData([
+                'homeworkId' => $homework->id,
+                'userId' => $userHomework->id,
+                'classroomId' => $classroom->id
+            ]);
+
+            $userHomework->loadData([
+                'status' => '2'
+            ]);
+
+            if ($grade->validate() && $grade->save() && $userHomework->updateColumn()) {
+                Application::$application->session->setFlash('success', 'The homework has been reviewed!');
+                Application::$application->response->redirect("/dashboard/classroom/$classroom->id/homework/$homework->id/received");
+                exit;
+            }
+        }
+
+        $this->setLayout('dashboardheader');
+        return $this->render('dashboard/classroom/homeworkreview', $data);
+    }
+
+    public function classroomHomeworkDownload(Request $request)
+    {
+        preg_match_all('/\d{6,}/', $request->getPath(), $matches);
+        $classroom = (new ClassroomModel())->findOne(['id' => $matches[0][0]]);
+        $homework = (new HomeworkModel())->findOne(['id' => $matches[0][1]]);
+
+
+        if (!empty($_GET['file'])) {
+            // Security, down allow to pass ANY PATH in your server
+            $fileName = basename($_GET['file']);
+        } else {
+            return;
+        }
+
+        $filePath = dirname(__DIR__) . '/uploads/' . $fileName;
+
+        // echo "<pre>";
+        // var_dump($filePath);
+        // echo "</pre>";
+        // exit;
+
+        if (!file_exists($filePath)) {
+            echo "Something went wrong!";
+        }
+
+        header("Content-disposition: attachment; filename=" . $fileName);
+        header("Content-type: application/zip");
+        readfile($filePath);
+
+        $userClassroom = (new UserClassroomModel())->findOne([
+            'userId' => Application::$application->session->get('user'),
+            'classroomId' => $classroom->id
+        ]);
+
+        $data = [
+            'pageTitle' => $classroom->name,
+            'relPath' => '../../../../..',
+            'stylesheet' => 'dashboard.css',
+            'classroom' => $classroom,
+            'userClassroom' => $userClassroom,
+            'homework' => $homework
+        ];
+
+        Application::$application->response->redirect("/dashboard/classroom/$classroom->id/homework/$homework->id/received");
     }
 }
