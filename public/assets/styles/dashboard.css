@@ -986,6 +986,23 @@ form .row .row-70 {
 
 /* End Homework Detail Page Specific */
 
+/* Grade Page Specific */
+
+.final-grade,
+.grade-history {
+  max-width: 110ch;
+}
+
+.final-grade {
+  max-height: 60vh;
+}
+
+.final-grade .section-content {
+  max-height: 50vh;
+}
+
+/* End Grade Page Specific */
+
 /* End Custom Container Classes  */
 
 /* Media Queries  */

@@ -63,12 +63,14 @@ class Navigation
                             <a href=\"/dashboard/classroom/$classroom->id/grades\" class=\"nav-link\">
                                 <i class=\"fas fa-percentage\"></i>
                                 <span class=\"nav-name\">Grades</span>
-                            </a>
-                            <a href=\"/dashboard/classroom/$classroom->id/students\" class=\"nav-link\">
+                            </a>";
+            if (Application::$application->user->isAcademic()) {
+                $output .= "<a href=\"/dashboard/classroom/$classroom->id/students\" class=\"nav-link\">
                                 <i class=\"fas fa-user\"></i>
                                 <span class=\"nav-name\">Students & Management</span>
-                            </a>
-                        </div>
+                            </a>";
+            }
+            $output .= "</div>
                     </div>";
         }
 

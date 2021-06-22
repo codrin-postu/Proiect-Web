@@ -1,3 +1,8 @@
+body {
+  max-width: 21cm;
+  margin: auto;
+}
+
 article {
   font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
   padding: 4em 1em;
@@ -28,4 +33,19 @@ li {
 }
 li a {
   color: #3b358f;
+  text-decoration: none;
+}
+
+li a:active {
+  color: rgb(58, 58, 58);
+}
+
+figure img {
+  width: 40em;
+  height: auto;
+  border: rgb(116, 116, 116) solid 2px;
+}
+
+figure figcaption {
+  font-size: 0.9em;
 }
