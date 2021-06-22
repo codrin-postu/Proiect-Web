@@ -18,6 +18,8 @@ use models\ClassroomModel;
 
 $application = new Application(dirname(__DIR__)); //send in the project root DIR
 
+$application->router->get('/documentation', [PageController::class, 'documentation']);
+
 $application->router->get('/', [PageController::class, 'index']);
 $application->router->post('/', [PageController::class, 'index']);
 

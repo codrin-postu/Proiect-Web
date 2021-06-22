@@ -32,7 +32,7 @@ use controllers\generate\Navigation;
 
         <div class="header-account">
             <div class="header-img">
-                <img src="<?php echo array_key_exists("relPath", $data) ? $data["relPath"] . '/assets/images/png/codrin-img.png' : '/assets/images/png/codrin-img.png' ?>" alt="Profile Picture">
+                <img src="<?php echo array_key_exists("relPath", $data) ? $data["relPath"] . '/assets/images/png/default.png' : '/assets/images/png/default.png' ?>" alt="Profile Picture">
 
             </div>
             <a href="/logout">Logout</a>

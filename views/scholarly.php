@@ -4,14 +4,14 @@
 <head>
     <title>Scholarly HTML</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="styles/scholarly.css" />
+    <link rel="stylesheet" href="assets/styles/scholarly.css" />
 
 </head>
 
 <body prefix="schema: https://schema.org/" itemscope="" itemtype="http://schema.org/WebPage">
     <article prefix="sa:https://ns.science.ai/" typeof="schema:ScholarlyArticle">
         <header>
-            <h1>Scholarly HTML - ClassMan</h1>
+            <h1>Scholarly HTML - ClassMa</h1>
         </header>
         <h2>Cuprins</h2>
         <ul>
@@ -47,10 +47,30 @@
                 </ul>
             </li>
 
+            <li><a href="#overall-interface">3. Cerinte Interfata Externa</a>
+                <ul>
+                    <li><a href="#user-interface">3.1 Interfata Utilizator</a></li>
+                    <li><a href="#hardware-interface">3.2 Interfata Hardware</a></li>
+                    <li><a href="#software-interface">3.3 Interfata Software</a></li>
+                    <li><a href="#communication-interface">3.4 Interfata de Comunicare</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#overall-system">4. Cerinte Sistem</a></li>
+
+            <li><a href="#overall-nonfunctional">5. Cerinte Nonfunctionale</a>
+                <ul>
+                    <li><a href="#performance-requirements">5.1 Cerinte de Performanta</a></li>
+                    <li><a href="#safety-requirements">5.2 Cerinte de Siguranta</a></li>
+                    <li><a href="#app-quality">5.3 Atribute pentru Calitatea Aplicatiei</a></li>
+                    <li><a href="#usability-rules">5.4 Reguli de Utilizare</a></li>
+                </ul>
+            </li>
+
             <li><a href="#other-requirements">Alte Cerinte</a>
                 <ul>
                     <li><a href="#appendix-a">Appendix A: Glosar</a></li>
-                    <li><a href="#appendix-b">Appendix B: Referinte imagini folosite in aplicatie</a></li>
+                    <li><a href="#appendix-b">Appendix B: Referinte</a></li>
                 </ul>
             </li>
         </ul>
@@ -90,9 +110,9 @@
                 <h2 id="introduction">1. Introducere</h2>
                 <h3 id="purpose">1.1 Motivatie</h3>
                 <p>
-                    Aplicatia ClassMan doreste sa ajute personalul academic si studentii oferindu-le
+                    Aplicatia ClassMa doreste sa ajute personalul academic si studentii oferindu-le
                     mai multe functionalitati pentru prezenta, trimitere de teme si vizualizarea acestora.
-                    Scopul acestui document este specificarea resurselor si cerintelor aplicatiei ClassMan.
+                    Scopul acestui document este specificarea resurselor si cerintelor aplicatiei ClassMa.
                 </p>
 
                 <h3 id="document-conventions">1.2 Conventii Document</h3>
@@ -118,8 +138,7 @@
 
                 <h3 id="references" typeof="sa:ReferenceList">1.5 Referinte</h3>
                 <ul>
-                    <li class="reference" typeof="schema:ScholarlyArticle"
-                        resource="https://github.com/rick4470/IEEE-SRS-Tempate">
+                    <li class="reference" typeof="schema:ScholarlyArticle" resource="https://github.com/rick4470/IEEE-SRS-Tempate">
                         <span property="schema:author" typeof="schema:Person">
                             <span property="schema:givenName">Rick</span>
                             <span property="schema:familyName">H</span>.
@@ -131,8 +150,7 @@
                     </li>
                 </ul>
                 <ul>
-                    <li class="reference" typeof="schema:ScholarlyArticle"
-                        resource="https://profs.info.uaic.ro/~busaco/teach/courses/web/web-projects.html">
+                    <li class="reference" typeof="schema:ScholarlyArticle" resource="https://profs.info.uaic.ro/~busaco/teach/courses/web/web-projects.html">
                         <span property="schema:author" typeof="schema:Person">
                             <span property="schema:givenName">Sabin</span>
                             <span property="schema:additionalName">Corneliu</span>
@@ -154,7 +172,7 @@
 
             <h3 id="product-perspective">2.1 Perspectiva Aplicatiei</h3>
             <p>
-                Aplicatia ClassMan este proiectul pentru materia Tehnologii Web a celor trei autori.
+                Aplicatia ClassMa este proiectul pentru materia Tehnologii Web a celor trei autori.
                 Acest proiect este in etapa de dezvoltare, momentan lucrandu-se la interfata. Orice aspect
                 al aplicatiei poate fi modificat in viitor daca nu este considerat eficient sau potrivit
                 pentru scopul aplicatiei.
@@ -206,7 +224,7 @@
 
             <h3 id="design-implementation-constraints">2.5 Limite de design si implementare</h3>
             <p>
-                Aplicatia ClassMan este dezvoltata pe partea de interfata folosind doar HTML5, CSS3 si JavaScript.
+                Aplicatia ClassMa este dezvoltata pe partea de interfata folosind doar HTML5, CSS3 si JavaScript.
                 Nu sunt folosite nici o librarie sau framework.
             </p>
 

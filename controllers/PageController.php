@@ -30,10 +30,8 @@ class PageController extends Controller
         return $this->render('index', $data);
     }
 
-    public function handleLogin(Request $request)
+    public function documentation(Request $request)
     {
-        $body = $request->getBody();
-        var_dump($body);
-        return "Handling login data!";
+        return $this->render('scholarly');
     }
 }

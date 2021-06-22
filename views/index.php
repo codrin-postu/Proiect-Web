@@ -127,7 +127,7 @@
     </div>
     <div class="bottom-bar">
       </a>
-      <p>classMan 2021. Class project.</p> <a style="color: #fff" href="./scholarly.html">Scholarly</a> <!-- TODO: Not currently linked! To finish  -->
+      <p>classMan 2021. Class project.</p> <a style="color: #fff" href="/documentation">Scholarly</a> <!-- TODO: Not currently linked! To finish  -->
     </div>
   </footer>
   <script src="./assets/scripts/index.js"></script>
