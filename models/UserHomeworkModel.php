@@ -76,7 +76,7 @@ class UserHomeworkModel extends DatabaseModel
     public function delete()
     {
         $tableName = $this->tableName();
-        $stmt = self::prepare("DELETE FROM $tableName WHERE id = $this->id;");
+        $stmt = self::prepare("DELETE FROM $tableName WHERE id = '$this->id';");
 
         $stmt->execute();
         return true;

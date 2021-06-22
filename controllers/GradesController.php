@@ -71,10 +71,8 @@ class GradesController extends Controller
             $usersClassroom = (new UserClassroomModel())->findAll(['classroomId' => $classroom->id, 'userType' => 'student']);
 
 
-            $usersGrades[0] = (new GradeModel())->findAll(['classroomId' => $classroom->id, 'userId' => $usersClassroom[0]->userId]);
-            $userGradeCount = count($usersGrades[0]);
-
             $userGrades = [];
+            $userGradeCount = $equation->gradeCount;
 
             if (!$equation->validate()) {
                 $this->setLayout('dashboardheader');
@@ -82,22 +80,19 @@ class GradesController extends Controller
                 exit;
             }
 
-            for ($i = 0; $i < count($usersGrades[0]); $i++) {
-                $userGrades[0]["grade_" . $i + 1] = $usersGrades[0][$i]->grade;
-            }
-            foreach ($usersGrades[0] as $value) {
-            }
-
-
-            for ($i = 1; $i < count($usersClassroom); $i++) {
+            for ($i = 0; $i < count($usersClassroom); $i++) {
                 $usersGrades[$i] = (new GradeModel())->findAll(['classroomId' => $classroom->id, 'userId' => $usersClassroom[$i]->userId]);
+                $j = $i + 1;
                 foreach ($usersGrades[$i] as $key => $value) {
                     if ($value->type === 'FinalGrade') {
-                        continue;
+                        echo "happened!\n";
+                    } else {
+                        $userGrades[$i]["grade_" . $j] = $value->grade;
+                        $j++;
                     }
-                    $userGrades[$i]["grade_" . ($i + 1)] = $value->grade;
                 }
-                if (count($usersGrades[$i]) !== $userGradeCount) {
+                if (count($userGrades[$i]) != $userGradeCount) {
+                    exit;
                     $equation->addError('gradeCount', 'Not all students have the same number of grades!');
                     $this->setLayout('dashboardheader');
                     return $this->render('dashboard/classroom/grades', $data);
