@@ -67,6 +67,9 @@ $application->router->post('/dashboard/classroom/:id/documentation/create', [Doc
 $application->router->get('/dashboard/classroom/:id/attendance', [AttendanceController::class, 'classroomAttendance']);
 $application->router->post('/dashboard/classroom/:id/attendance', [AttendanceController::class, 'classroomAttendance']);
 
+$application->router->get('/dashboard/classroom/:id/attendance/:id/list', [AttendanceController::class, 'classroomAttendanceList']);
+
+
 $application->router->get('/dashboard/classroom/:id/homework', [HomeworkController::class, 'classroomHomeworkList']);
 
 $application->router->get('/dashboard/classroom/:id/homework/create', [HomeworkController::class, 'classroomHomeworkCreate']);

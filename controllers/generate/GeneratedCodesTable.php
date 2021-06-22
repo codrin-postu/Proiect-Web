@@ -55,7 +55,7 @@ class GeneratedCodesTable
                     <td data-label='Code'>$classroomCode->code</td>
                     <td data-label='Created At'>$classroomCode->created_at</td>
                     <td data-label='Expires In'>$expiresInFormatted</td>
-                    <td data-label='Students Attended'>$attendedStudents</td>
+                    <td data-label='Students Attended'><a href='/dashboard/classroom/$classroomId/attendance/$classroomCode->id/list'>$attendedStudents</a></td>
                 </tr>";
         }
 

@@ -60,6 +60,7 @@ require __DIR__ . "/controllers/generate/LessonTable.php";
 require __DIR__ . "/controllers/generate/HomeworksTable.php";
 require __DIR__ . "/controllers/generate/GradesTable.php";
 require __DIR__ . "/controllers/generate/StudentTable.php";
+require __DIR__ . "/controllers/generate/AttendedTable.php";
 
 // Middlewares
 

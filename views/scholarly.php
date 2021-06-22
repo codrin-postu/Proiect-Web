@@ -49,21 +49,22 @@
 
             <li><a href="#overall-interface">3. Cerinte Interfata Externa</a>
                 <ul>
-                    <li><a href="#user-interface">3.1 Interfata Utilizator</a></li>
+                    <li><a href="#user-interface">3.1 Interfata Utilizator</a>
+                        <ul>
+                            <li><a href="#mainpage">3.1.1 Pagina Principala</a></li>
+                            <li><a href="#authpage">3.1.2 Pagina Login/Inregistrare</a></li>
+                            <li><a href="#dashboard">3.1.3 Pagina Meniu</a></li>
+                            <li><a href="#joinclass">3.1.4 Pagina de adaugat cod pentru o Clasa</a></li>
+                            <li><a href="#createclass">3.1.5 Pagina Creare Clasa</a></li>
+                            <li><a href="#infoclass">3.1.6 Pagina Informatii Clasa</a></li>
+                            <li><a href="#attendance">3.1.7 Pagina Prezenta (Studenti)</a></li>
+                            <li><a href="#attendanceprof">3.1.8 Pagina Prezenta (Profesori)</a></li>
+                            <li><a href="#grades">3.1.9 Pagina Note</a></li>
+                            <li><a href="#students">3.1.10 Pagina Studenti</a></li>
+                        </ul>
+                    </li>
                     <li><a href="#hardware-interface">3.2 Interfata Hardware</a></li>
                     <li><a href="#software-interface">3.3 Interfata Software</a></li>
-                    <li><a href="#communication-interface">3.4 Interfata de Comunicare</a></li>
-                </ul>
-            </li>
-
-            <li><a href="#overall-system">4. Cerinte Sistem</a></li>
-
-            <li><a href="#overall-nonfunctional">5. Cerinte Nonfunctionale</a>
-                <ul>
-                    <li><a href="#performance-requirements">5.1 Cerinte de Performanta</a></li>
-                    <li><a href="#safety-requirements">5.2 Cerinte de Siguranta</a></li>
-                    <li><a href="#app-quality">5.3 Atribute pentru Calitatea Aplicatiei</a></li>
-                    <li><a href="#usability-rules">5.4 Reguli de Utilizare</a></li>
                 </ul>
             </li>
 
@@ -270,15 +271,15 @@
         </section>
 
         <section typeof="sa:Interfaces">
-            <h2 id="overall-description">3. Cerinte Interfata Externa</h2>
+            <h2 id="overall-interface">3. Cerinte Interfata Externa</h2>
 
             <section typeof="sa:UserInterface">
-                <h3 id="product-perspective">3.1 Interfata Utilizator</h3>
+                <h3 id="user-interface">3.1 Interfata Utilizator</h3>
                 <p>Utilizatorul interactioneaza cu o multitudine de pagini, dar marea parte din timpul petrecut
                     in aplicatie va fi concentrat pe acelasi format. Acest design este facut pentru a fi mult mai
                     usor de inteles si de utilizat aplicatia.
                 </p>
-                <section typeof="sa:HomepageInterface">
+                <section typeof="sa:HomepageInterface" id="mainpage">
                     <h4>3.1.1 Pagina Principala</h4>
                     <figure typeof="sa:image">
                         <img src="assets/images/png/homepage.png" alt="Landing Page">
@@ -294,7 +295,7 @@
                     </p>
                 </section>
 
-                <section typeof="sa:AuthInterface">
+                <section typeof="sa:AuthInterface" id="authpage">
                     <h4>3.1.2 Pagina Login/Inregistrare</h4>
                     <figure typeof="sa:image">
                         <img src="assets/images/png/loginpage.png" alt="Login Page">
@@ -309,8 +310,8 @@
                     </p>
                 </section>
 
-                <section typeof="sa:DashboardInterface">
-                    <h4>3.1.2 Pagina Meniu</h4>
+                <section typeof="sa:DashboardInterface" id="dashboard">
+                    <h4>3.1.3 Pagina Meniu</h4>
                     <figure typeof="sa:image">
                         <img src="assets/images/png/dashboardpage.png" alt="Dashboard Page">
                         <figcaption>Pagina de Meniu</figcaption>
@@ -321,8 +322,8 @@
                     </p>
                 </section>
 
-                <section typeof="sa:JoinClassInterface">
-                    <h4>3.1.2 Pagina de adaugat cod pentru o Clasa</h4>
+                <section typeof="sa:JoinClassInterface" id="joinclass">
+                    <h4>3.1.4 Pagina de adaugat cod pentru o Clasa</h4>
                     <figure typeof="sa:image">
                         <img src="assets/images/png/joinclassroompage.png" alt="Join Classroom Page">
                         <figcaption>Pagina de adaugat cod pentru o clasa</figcaption>
@@ -332,8 +333,8 @@
                     </p>
                 </section>
 
-                <section typeof="sa:CreateClassInterface">
-                    <h4>3.1.2 Pagina Creare Clasa</h4>
+                <section typeof="sa:CreateClassInterface" id="createclass">
+                    <h4>3.1.5 Pagina Creare Clasa</h4>
                     <figure typeof="sa:image">
                         <img src="assets/images/png/createclasspage.png" alt="Create Class Page">
                         <figcaption>Pagina de Creare Clasa</figcaption>
@@ -343,8 +344,8 @@
                     </p>
                 </section>
 
-                <section typeof="sa:InfoClassInterface">
-                    <h4>3.1.2 Pagina Informatii Clasa</h4>
+                <section typeof="sa:InfoClassInterface" id="infoclass">
+                    <h4>3.1.6 Pagina Informatii Clasa</h4>
                     <figure typeof="sa:image">
                         <img src="assets/images/png/classinfopage.png" alt="Class Information Page">
                         <figcaption>Pagina de Informatii Clasa</figcaption>
@@ -354,8 +355,8 @@
                     </p>
                 </section>
 
-                <section typeof="sa:AttendanceInterface">
-                    <h4>3.1.2 Pagina Prezenta (Studenti)</h4>
+                <section typeof="sa:AttendanceInterface" id="attendance">
+                    <h4>3.1.7 Pagina Prezenta (Studenti)</h4>
                     <figure typeof="sa:image">
                         <img src="assets/images/png/attendancepage.png" alt="Attendance Page">
                         <figcaption>Pagina de Prezenta</figcaption>
@@ -365,8 +366,8 @@
                     </p>
                 </section>
 
-                <section typeof="sa:AcademicAttendanceInterface">
-                    <h4>3.1.2 Pagina Prezenta (Profesori)</h4>
+                <section typeof="sa:AcademicAttendanceInterface" id="attendanceprof">
+                    <h4>3.1.8 Pagina Prezenta (Profesori)</h4>
                     <figure typeof="sa:image">
                         <img src="assets/images/png/attendanceprofpage.png" alt="Attendance Page">
                         <figcaption>Pagina de Prezenta</figcaption>
@@ -377,8 +378,8 @@
                     </p>
                 </section>
 
-                <section typeof="sa:GradeInterface">
-                    <h4>3.1.2 Pagina Note</h4>
+                <section typeof="sa:GradeInterface" id="grades">
+                    <h4>3.1.29 Pagina Note</h4>
                     <figure typeof="sa:image">
                         <img src="assets/images/png/finalgradepage.png" alt="Grade Page">
                         <figcaption>Pagina Note</figcaption>
@@ -388,8 +389,8 @@
                     </p>
                 </section>
 
-                <section typeof="sa:StudentsInterface">
-                    <h4>3.1.2 Pagina Studenti</h4>
+                <section typeof="sa:StudentsInterface" id="students">
+                    <h4>3.1.10 Pagina Studenti</h4>
                     <figure typeof="sa:image">
                         <img src="assets/images/png/studentspage.png" alt="Students Page">
                         <figcaption>Pagina Studenti</figcaption>
@@ -416,36 +417,18 @@
 
             <section typeof="sa:SoftwareInterface">
                 <h3 id="software-interface">3.3 Interfata Software</h3>
-                <p>Vor fi trei tipuri de utilizatori:</p>
+                <p>Aplicatia va folosi baza de date relationala pentru a salva majoritatea informatiilor ce necesita
+                    accesate mai tarziu. Informatiile care sunt scrise de catre utilizator, sunt in general trimise printr-o
+                    metoda POST care este apoi filtrata.
+                </p>
+                <p>Baza de date este conceputa astfel incat toate tabelele sa aibe o relatie intre ele, pentru a putea accesa
+                    informatiile.
+                </p>
+                <p>Aplicatia foloseste pe partea de server si modelul MVC (Model View Controller) care ajuta la impartirea
+                    sarcinilor. Modelele sunt folosite pentru a se conecta la tabelele respective din baza de date si pentru a
+                    adauga/modifica/extrage informatii.
+                </p>
             </section>
-        </section>
-
-        <h3 id="operating-environment">2.4 Mediul de Operare</h3>
-        <p>
-            Aplicatia poate fi folosita fie pe un calculator cu un ecran de orice dimensiuni, sau
-            pe smartphone (android/iOS) cu un ecran cu o latime de cel putin 300px.
-        </p>
-
-        <h3 id="design-implementation-constraints">2.5 Limite de design si implementare</h3>
-        <p>
-            Aplicatia ClassMa este dezvoltata pe partea de interfata folosind doar HTML5, CSS3 si JavaScript.
-            Pe partea de back-end este folosit limbajul PHP fara librarii sau framework si o baza de date MySQL.
-        </p>
-
-        <h3 id="documentantion">2.6 Documentatie Utilizator</h3>
-        <p>
-            Acest document poate fi folosit ca un manual pentru utilizatori, acesta continand informatii despre aplicatie
-            in detaliu.
-        </p>
-
-        <h3 id="dependencies-assumptions">2.7 Dependinte si Factori</h3>
-        <p>Pot fi urmatorii factori care vor rezulta la imposibilitatea de a folosi aplicatia:</p>
-        <ul>
-            <li>Latimea ecranului este sub 300px</li>
-            <li>JavaScript nu este activat</li>
-            <li>Erori care nu au fost gasite in timpul dezvoltarii aplicatiei</li>
-        </ul>
-
         </section>
 
         <section typeof="sa:ReferenceList">
@@ -454,8 +437,21 @@
             <h3 id="appendix-a">Appendix A: Glosar</h3>
 
 
-            <h3 id="appendix-b">Appendix B: Referinte imagini folosite in aplicatie</h3>
+            <h3 id="appendix-b">Appendix B: Referinte </h3>
             <ul>
+                <li>
+                    <a property="schema:hasPart" href="https://www.php.net/manual/en/">PHP Documentation</a>
+                </li>
+                <li>
+                    <a property="schema:hasPart" href="https://stackoverflow.com/questions/51947388/replace-with-dynamic-variable-in-preg-replace">Dynamic Variables</a>
+                </li>
+                <li>
+                    <a property="schema:hasPart" href="https://www.youtube.com/watch?v=6ERdu4k62wI">Tutorial MVC</a>
+                </li>
+                <li>
+                    <a property="schema:hasPart" href="https://makitweb.com/how-to-export-mysql-table-data-as-csv-file-in-php/">Export to CSV</a>
+
+                </li>
                 <li>
                     <a property="schema:hasPart" href="https://fontawesome.com/license/free">Imagini Font Awesome</a>
                 </li>

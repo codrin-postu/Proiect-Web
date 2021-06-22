@@ -88,4 +88,34 @@ class AttendanceController extends Controller
         $this->setLayout('dashboardheader');
         return $this->render('dashboard/classroom/attendance', $data);
     }
+
+    public function classroomAttendanceList(Request $request)
+    {
+        preg_match_all('/\d{1,}/', $request->getPath(), $matches);
+        $classroom = (new ClassroomModel())->findOne(['id' => $matches[0][0]]);
+        $userClassroom = (new UserClassroomModel())->findOne([
+            'userId' => Application::$application->session->get('user'),
+            'classroomId' => $classroom->id
+        ]);
+
+        $code = (new AttendanceCodeModel())->findOne(['id' => $matches[0][1]]);
+
+        $usersAttended = (new UserAttendanceModel())->findAll([
+            'classroomId' => $classroom->id,
+            'codeId' => $code->id
+        ]);
+
+        $data = [
+            'pageTitle' => $classroom->name,
+            'relPath' => '../../../../..',
+            'stylesheet' => 'dashboard.css',
+            'classroom' => $classroom,
+            'userClassroom' => $userClassroom,
+            'code' => $code,
+            'usersAttended' => $usersAttended
+        ];
+
+        $this->setLayout('dashboardheader');
+        return $this->render('dashboard/classroom/attendancelist', $data);
+    }
 }
