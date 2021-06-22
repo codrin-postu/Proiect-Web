@@ -68,7 +68,7 @@ class GradesController extends Controller
 
             $input = $equation->equation;
 
-            $usersClassroom = (new UserClassroomModel())->findAll(['classroomId' => $classroom->id, 'type' => 'student']);
+            $usersClassroom = (new UserClassroomModel())->findAll(['classroomId' => $classroom->id, 'userType' => 'student']);
 
 
             $usersGrades[0] = (new GradeModel())->findAll(['classroomId' => $classroom->id, 'userId' => $usersClassroom[0]->userId]);
@@ -213,7 +213,7 @@ class GradesController extends Controller
 
         $usersClassroom = (new UserClassroomModel())->findAll([
             'classroomId' => $classroom->id,
-            'type' => 'student'
+            'userType' => 'student'
         ]);
         $usersIds = ['userId'];
         $usersNames = ['Select Student*'];

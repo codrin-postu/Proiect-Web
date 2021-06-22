@@ -82,4 +82,13 @@ class UserAttendanceModel extends DatabaseModel
             'code' => [self::RULE_REQUIRED]
         ];
     }
+
+    public function delete()
+    {
+        $tableName = $this->tableName();
+        $stmt = self::prepare("DELETE FROM $tableName WHERE id = $this->id;");
+
+        $stmt->execute();
+        return true;
+    }
 }

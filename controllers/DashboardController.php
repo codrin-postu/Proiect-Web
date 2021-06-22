@@ -130,7 +130,7 @@ class DashboardController extends Controller
             $userClassroom->loadData([
                 "classroomId" => $classroomJoin->classroomId,
                 "userId" => Application::$application->user->id,
-                "type" => "student"
+                "userType" => "pending"
             ]);
 
             if ($classroomJoin->validate() && $classroomJoin->finalize() && $userClassroom->save()) {
@@ -160,7 +160,7 @@ class DashboardController extends Controller
             $classroom->loadData($request->getBody());
             $userClassroom->loadData([
                 "userId" => Application::$application->user->id,
-                "type" => "creator"
+                "userType" => "creator"
             ]);
 
             if ($classroom->validate() && $classroom->save()) {

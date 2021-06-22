@@ -75,7 +75,7 @@ class GradesTable
 
         $usersClassroom = (new UserClassroomModel())->findAll([
             'classroomId' => $classroomId,
-            'type' => 'student'
+            'userType' => 'student'
         ]);
 
         foreach ($usersClassroom as $userClassroom) {

@@ -10,7 +10,7 @@ class UserClassroomModel extends DatabaseModel
     public string $id = '0';
     public string $userId = '';
     public string $classroomId = '';
-    public string $type = '';
+    public string $userType = '';
 
     public function primaryKey(): string
     {
@@ -24,12 +24,12 @@ class UserClassroomModel extends DatabaseModel
 
     public function columnsToInput(): array
     {
-        return ['userId', 'classroomId', 'type'];
+        return ['userId', 'classroomId', 'userType'];
     }
 
     public function inputs(): array
     {
-        return ['userId', 'classroomId', 'type'];
+        return ['userId', 'classroomId', 'userType'];
     }
 
     public function save()
@@ -44,12 +44,12 @@ class UserClassroomModel extends DatabaseModel
 
     public function isCreator()
     {
-        return $this->type === 'creator';
+        return $this->userType === 'creator';
     }
 
     public function isStudent()
     {
-        return $this->type === 'student';
+        return $this->userType === 'student';
     }
 
     public function isMember()
@@ -59,6 +59,28 @@ class UserClassroomModel extends DatabaseModel
 
     public function isPending()
     {
-        return $this->type === 'pending';
+        return $this->userType === 'pending';
+    }
+
+    public function setStudent()
+    {
+
+        $tableName = $this->tableName();
+
+        $stmt = self::prepare("UPDATE $tableName
+            SET userType = '$this->userType'
+            WHERE id = $this->id;");
+
+        $stmt->execute();
+        return true;
+    }
+
+    public function delete()
+    {
+        $tableName = $this->tableName();
+        $stmt = self::prepare("DELETE FROM $tableName WHERE id = $this->id;");
+
+        $stmt->execute();
+        return true;
     }
 }

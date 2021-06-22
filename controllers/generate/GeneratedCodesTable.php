@@ -73,7 +73,7 @@ class GeneratedCodesTable
         $students = 0;
 
         foreach ($usersClassroom as $userClassroom) {
-            if ($userClassroom->type === 'student') {
+            if ($userClassroom->userType === 'student') {
                 $students++;
             }
         }

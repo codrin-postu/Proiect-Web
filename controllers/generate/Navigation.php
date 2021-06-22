@@ -33,7 +33,7 @@ class Navigation
                     <span class=\"class-title\">$classroom->name</span>
                 </div>";
 
-            if ($userClassroom->type === 'pending') {
+            if ($userClassroom->userType === 'pending') {
                 $output .= "<div class=\"class-links\">
                         <a href=\"#\" class=\"nav-link\">
                             <i class=\"fas fa-book-open\"></i>

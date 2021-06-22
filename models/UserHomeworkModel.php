@@ -73,6 +73,15 @@ class UserHomeworkModel extends DatabaseModel
         return true;
     }
 
+    public function delete()
+    {
+        $tableName = $this->tableName();
+        $stmt = self::prepare("DELETE FROM $tableName WHERE id = $this->id;");
+
+        $stmt->execute();
+        return true;
+    }
+
     public function rules(): array
     {
         return [];

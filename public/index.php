@@ -50,6 +50,10 @@ $application->router->post('/dashboard/classroom/create', [DashboardController::
 
 $application->router->get("/dashboard/classroom/:id/info", [ClassroomController::class, 'classroomInfo']);
 
+$application->router->get('/dashboard/classroom/:id/students', [ClassroomController::class, 'classroomStudents']);
+$application->router->post('/dashboard/classroom/:id/students', [ClassroomController::class, 'classroomStudents']);
+
+
 $application->router->get('/dashboard/classroom/:id/documentation', [DocumentationController::class, 'classroomDocumentationList']);
 
 $application->router->get('/dashboard/classroom/:id/documentation/:id', [DocumentationController::class, 'classroomDocumentation']);
@@ -81,6 +85,7 @@ $application->router->post('/dashboard/classroom/:id/grades', [GradesController:
 
 $application->router->get('/dashboard/classroom/:id/grades/add', [GradesController::class, 'classroomGradesAdd']);
 $application->router->post('/dashboard/classroom/:id/grades/add', [GradesController::class, 'classroomGradesAdd']);
+
 
 
 $application->run();
