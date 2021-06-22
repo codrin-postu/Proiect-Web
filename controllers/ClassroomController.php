@@ -10,8 +10,10 @@ use middlewares\CreatorClassroomMiddleware;
 use models\ClassroomModel;
 use models\UserClassroomModel;
 use core\Application;
+use models\GradeModel;
 use models\UserAttendanceModel;
 use models\UserHomeworkModel;
+use models\UserModel;
 
 class ClassroomController extends Controller
 {
@@ -139,5 +141,91 @@ class ClassroomController extends Controller
 
         $this->setLayout('dashboardheader');
         return $this->render('dashboard/classroom/management', $data);
+    }
+
+    public function classroomStudentsDownload(Request $request)
+    {
+        preg_match('/\d{6,}/', $request->getPath(), $matches);
+        $classroom = (new ClassroomModel())->findOne(['id' => $matches[0]]);
+
+        $filename = 'student_catalogue.csv';
+        $file = fopen($filename, "w");
+
+        $user_arr = [];
+
+        $usersClassroom = (new UserClassroomModel())->findAll([
+            'classroomId' => $classroom->id,
+            'userType' => 'student'
+        ]);
+
+        $data = [
+            'pageTitle' => $classroom->name,
+            'relPath' => '../../..',
+            'stylesheet' => 'dashboard.css',
+            'classroom' => $classroom
+        ];
+
+        if (!$usersClassroom) {
+            $this->setLayout('dashboardheader');
+            return $this->render('dashboard/classroom/management', $data);
+            exit;
+        }
+
+        foreach ($usersClassroom as $userClassroom) {
+
+            $user = (new UserModel)->findOne([
+                'id' => $userClassroom->userId
+            ]);
+
+            $grades = (new GradeModel())->findAll([
+                'userId' => $userClassroom->userId,
+                'classroomId' => $classroom->id
+            ]);
+
+            $gradesOutput = '';
+            $finalGrade = '';
+
+            foreach ($grades as $grade) {
+                if ($grade->type !== 'FinalGrade') {
+                    $gradesOutput .= $grade->grade . ',';
+                } else {
+                    $finalGrade = $grade->grade;
+                }
+            }
+
+            $gradesOutput = preg_replace('/,$/', '', $gradesOutput);
+
+            $user_arr[] = array(
+                $user->id,
+                $user->firstName,
+                $user->middleName,
+                $user->lastName,
+                $user->email,
+                $userClassroom->userType,
+                $gradesOutput,
+                $finalGrade
+            );
+        }
+
+        // echo '<pre>';
+        // var_dump($user_arr);
+        // echo '</pre>';
+        // exit;
+
+        foreach ($user_arr as $line) {
+            fputcsv($file, $line);
+        }
+
+        fclose($file);
+
+        header("Content-Description: File Transfer");
+        header("Content-Disposition: attachment; filename=" . $filename);
+        header("Content-Type: application/csv; ");
+
+        readfile($filename);
+
+        // deleting file
+        unlink($filename);
+        exit();
     }
 }

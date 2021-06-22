@@ -381,6 +381,15 @@ section .section-header {
   font-size: 1.6em;
 }
 
+.section-header button {
+  border: none;
+  background-color: transparent;
+  font-size: 1.2em;
+  font-weight: 400;
+  color: #e74c3c;
+  font-family: "Poppins", sans-serif;
+}
+
 .section-header a {
   color: #e74c3c;
 }

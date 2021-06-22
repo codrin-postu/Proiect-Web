@@ -24,7 +24,9 @@ use controllers\generate\StudentTable;
         <div class="section-header">
             <h2>Class Students</h2>
             <?php if ($data['userClassroom']->isCreator()) : ?>
-                <p><a href="/dashboard/classroom/<?php echo $data['classroom']->id ?>/students/download">Download CSV Catalogue</a></p>
+                <?php $form = core\form\Form::begin('', 'POST') ?>
+                <button type="submit">Download CSV Catalogue</button>
+                <?php core\form\Form::end() ?>
             <?php endif; ?>
         </div>
         <div class="section-content">
